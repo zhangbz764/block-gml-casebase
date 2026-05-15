@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "sanfrancisco"
+city_name = "amsterdam"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -34,6 +34,29 @@ lod1_surface_table_name = f"lod1.{city_name}_building_surfaces_lod1"
 # ==============================
 # 获取 block 列表
 # ==============================
+# ── 方式 A: 随机选择 block ────────────────────
+# sql_blocks = f"""
+#     SELECT bl.block_id, ST_AsText(bl.geom) AS geom_wkt, 
+#            ST_X(bl.centroid::geometry) AS lon, 
+#            ST_Y(bl.centroid::geometry) AS lat,
+#            bl.area_m2,
+#            bl.elongation, bl.compactness, bl.lod1_building_count, bl.lod1_bcr
+#     FROM {block_table_name} bl
+#     WHERE EXISTS (
+#         SELECT 1 FROM {lod1_table_name} b
+#         WHERE b.block_id = bl.block_id
+#     )
+#     ORDER BY RANDOM()
+#     LIMIT 30;
+# """
+
+# ── 方式 B: 指定 block_id 列表 ────────────────────
+TARGET_BLOCK_IDS = [
+    'NL_AM_003000', 'NL_AM_002325', 'NL_AM_002768', 'NL_AM_002679', 'NL_AM_003572', 'NL_AM_000917', 'NL_AM_002956', 'NL_AM_004115', 'NL_AM_002940', 'NL_AM_004231', 'NL_AM_000546', 'NL_AM_002889', 'NL_AM_000461', 'NL_AM_003881', 'NL_AM_000708', 'NL_AM_000919', 'NL_AM_003806', 'NL_AM_003649', 'NL_AM_004789', 'NL_AM_002714', 'NL_AM_003071', 'NL_AM_000538', 'NL_AM_000441', 'NL_AM_000392', 'NL_AM_000966', 'NL_AM_003310', 'NL_AM_002280', 'NL_AM_001572', 'NL_AM_001530', 'NL_AM_000039'
+    ]
+
+
+placeholders = ", ".join([f"'{bid}'" for bid in TARGET_BLOCK_IDS])
 sql_blocks = f"""
     SELECT bl.block_id, ST_AsText(bl.geom) AS geom_wkt, 
            ST_X(bl.centroid::geometry) AS lon, 
@@ -41,13 +64,10 @@ sql_blocks = f"""
            bl.area_m2,
            bl.elongation, bl.compactness, bl.lod1_building_count, bl.lod1_bcr
     FROM {block_table_name} bl
-    WHERE EXISTS (
-        SELECT 1 FROM {lod1_table_name} b
-        WHERE b.block_id = bl.block_id
-    )
-    ORDER BY RANDOM()
-    LIMIT 30;
+    WHERE bl.block_id IN ({placeholders})
+    ORDER BY bl.block_id;
 """
+
 rows = utils_z.run_sql(sql_blocks, conn=conn, fetch=True)
 
 block_ids           = [str(r[0]) for r in rows]

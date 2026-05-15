@@ -9,3 +9,4 @@ __pycache__
 .env
 /casebase/record_temp
 .claude
+~$*.xlsx
