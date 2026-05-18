@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "amsterdam"
+city_name = "washington"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -52,8 +52,37 @@ lod1_surface_table_name = f"lod1.{city_name}_building_surfaces_lod1"
 
 # ── 方式 B: 指定 block_id 列表 ────────────────────
 TARGET_BLOCK_IDS = [
-    'NL_AM_003000', 'NL_AM_002325', 'NL_AM_002768', 'NL_AM_002679', 'NL_AM_003572', 'NL_AM_000917', 'NL_AM_002956', 'NL_AM_004115', 'NL_AM_002940', 'NL_AM_004231', 'NL_AM_000546', 'NL_AM_002889', 'NL_AM_000461', 'NL_AM_003881', 'NL_AM_000708', 'NL_AM_000919', 'NL_AM_003806', 'NL_AM_003649', 'NL_AM_004789', 'NL_AM_002714', 'NL_AM_003071', 'NL_AM_000538', 'NL_AM_000441', 'NL_AM_000392', 'NL_AM_000966', 'NL_AM_003310', 'NL_AM_002280', 'NL_AM_001572', 'NL_AM_001530', 'NL_AM_000039'
-    ]
+    'US_WA_005420',
+    'US_WA_001342',
+    'US_WA_000074',
+    'US_WA_005202',
+    'US_WA_000213',
+    'US_WA_005154',
+    'US_WA_000534',
+    'US_WA_005010',
+    'US_WA_003831',
+    'US_WA_003306',
+    'US_WA_005387',
+    'US_WA_000285',
+    'US_WA_002695',
+    'US_WA_004456',
+    'US_WA_005551',
+    'US_WA_003457',
+    'US_WA_003703',
+    'US_WA_000646',
+    'US_WA_005618',
+    'US_WA_004856',
+    'US_WA_002902',
+    'US_WA_003940',
+    'US_WA_005445',
+    'US_WA_004573',
+    'US_WA_003298',
+    'US_WA_000282',
+    'US_WA_003718',
+    'US_WA_002751',
+    'US_WA_002838',
+    'US_WA_002245',
+]
 
 
 placeholders = ", ".join([f"'{bid}'" for bid in TARGET_BLOCK_IDS])

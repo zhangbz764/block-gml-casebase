@@ -2,9 +2,6 @@
 .vscode
 cache
 /output/
-/postgresql/cache/
-/postgresql/images/
-/city2Graph/cache/
 __pycache__
 .env
 /casebase/ai_text
