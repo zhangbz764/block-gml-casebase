@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "washington"
+city_name = "tokyo"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -52,36 +52,16 @@ lod1_surface_table_name = f"lod1.{city_name}_building_surfaces_lod1"
 
 # ── 方式 B: 指定 block_id 列表 ────────────────────
 TARGET_BLOCK_IDS = [
-    'US_WA_005420',
-    'US_WA_001342',
-    'US_WA_000074',
-    'US_WA_005202',
-    'US_WA_000213',
-    'US_WA_005154',
-    'US_WA_000534',
-    'US_WA_005010',
-    'US_WA_003831',
-    'US_WA_003306',
-    'US_WA_005387',
-    'US_WA_000285',
-    'US_WA_002695',
-    'US_WA_004456',
-    'US_WA_005551',
-    'US_WA_003457',
-    'US_WA_003703',
-    'US_WA_000646',
-    'US_WA_005618',
-    'US_WA_004856',
-    'US_WA_002902',
-    'US_WA_003940',
-    'US_WA_005445',
-    'US_WA_004573',
-    'US_WA_003298',
-    'US_WA_000282',
-    'US_WA_003718',
-    'US_WA_002751',
-    'US_WA_002838',
-    'US_WA_002245',
+    "JP_TK_035847",
+    "JP_TK_035929",
+    "JP_TK_035978",
+    "JP_TK_035980",
+    "JP_TK_035987",
+    "JP_TK_035992",
+    "JP_TK_036072",
+    "JP_TK_036083",
+    "JP_TK_036106",
+    "JP_TK_036115",
 ]
 
 
