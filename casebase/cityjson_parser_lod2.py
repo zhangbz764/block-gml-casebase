@@ -194,6 +194,7 @@ def parse_cityjson_lod2_NL_AM(filepath, target_lod="2.2"):
         attrs     = building_attrs.get(parent_id, {})
 
         height      = attrs.get("b3_h_dak_50p")
+        h_maaiveld  = attrs.get("b3_h_maaiveld")
         floor_count = attrs.get("b3_bouwlagen")
         function    = attrs.get("status")
         roof_type   = attrs.get("b3_dak_type")
@@ -248,7 +249,7 @@ def parse_cityjson_lod2_NL_AM(filepath, target_lod="2.2"):
 
         buildings.append({
             "citygml_id":  obj_id,
-            "height":      height,
+            "height":      height - h_maaiveld,
             "floor_count": floor_count,
             "function":    function,
             "roof_type":   roof_type,

@@ -7,6 +7,7 @@ DESCRIPTION: This module provides functions to parse CityJSON files, specificall
 """
 
 import json
+import attrs
 import numpy as np
 from shapely.geometry import Polygon
 from shapely.wkt import dumps as wkt_dumps
@@ -182,7 +183,8 @@ def parse_cityjson_lod1_NL_AM(filepath, target_lod="1.3"):
         parent_id = obj_id.rsplit("-", 1)[0]
         attrs     = building_attrs.get(parent_id, {})
 
-        height      = attrs.get("b3_h_dak_50p")
+        height = attrs.get("b3_h_dak_50p")
+        h_maaiveld = attrs.get("b3_h_maaiveld")
         floor_count = attrs.get("b3_bouwlagen")
         function    = attrs.get("status")
 
@@ -221,10 +223,14 @@ def parse_cityjson_lod1_NL_AM(filepath, target_lod="1.3"):
             if roof_face is None:
                 print(f"No roof face and no height attribute for building: {obj_id}")
                 continue
-            top_z  = float(np.mean([c[2] for c in roof_face.exterior.coords]))
+            top_z = float(np.mean([c[2] for c in roof_face.exterior.coords]))
             height = top_z - ground_z
         else:
-            height = float(height)
+            # 用屋顶高程减去地面高程得到净高度
+            if h_maaiveld is not None:
+                height = float(height) - float(h_maaiveld)
+            else:
+                height = top_z - ground_z  # fallback
 
         geom_2d = Polygon([(c[0], c[1]) for c in ground_face.exterior.coords])
 

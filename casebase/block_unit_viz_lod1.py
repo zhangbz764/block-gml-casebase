@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "tokyo"
+city_name = "rotterdam"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -52,19 +52,8 @@ lod1_surface_table_name = f"lod1.{city_name}_building_surfaces_lod1"
 
 # ── 方式 B: 指定 block_id 列表 ────────────────────
 TARGET_BLOCK_IDS = [
-    "JP_TK_035847",
-    "JP_TK_035929",
-    "JP_TK_035978",
-    "JP_TK_035980",
-    "JP_TK_035987",
-    "JP_TK_035992",
-    "JP_TK_036072",
-    "JP_TK_036083",
-    "JP_TK_036106",
-    "JP_TK_036115",
+    "NL_RO_002603",
 ]
-
-
 placeholders = ", ".join([f"'{bid}'" for bid in TARGET_BLOCK_IDS])
 sql_blocks = f"""
     SELECT bl.block_id, ST_AsText(bl.geom) AS geom_wkt, 
