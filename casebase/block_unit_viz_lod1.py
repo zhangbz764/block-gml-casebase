@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "rotterdam"
+city_name = "berlin"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -52,7 +52,16 @@ lod1_surface_table_name = f"lod1.{city_name}_building_surfaces_lod1"
 
 # ── 方式 B: 指定 block_id 列表 ────────────────────
 TARGET_BLOCK_IDS = [
-    "NL_RO_002603",
+    "DE_BE_007107",
+    "DE_BE_004322",
+    "DE_BE_002621",
+    "DE_BE_009363",
+    "DE_BE_005190",
+    "DE_BE_006853",
+    "DE_BE_005689",
+    "DE_BE_001920",
+    "DE_BE_006496",
+    "DE_BE_007061"
 ]
 placeholders = ", ".join([f"'{bid}'" for bid in TARGET_BLOCK_IDS])
 sql_blocks = f"""

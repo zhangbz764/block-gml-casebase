@@ -19,7 +19,6 @@ Block 级指标计算工具库。
     - 返回 dict 形式的验证结果统计
 """
 
-import psycopg2
 from psycopg2.extras import execute_values
 import numpy as np
 import pandas as pd

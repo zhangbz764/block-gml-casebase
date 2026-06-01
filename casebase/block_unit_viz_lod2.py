@@ -24,7 +24,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "lyon"
+city_name = "berlin"
 # z_scale = 0.3048  # 英尺
 z_scale = 1 # 米
 
@@ -36,19 +36,47 @@ lod2_surface_table_name = f"lod2.{city_name}_building_surfaces_lod2"
 # ==============================
 # 获取 block 列表
 # ==============================
+# ── 方式 A: 随机选择 block ────────────────────
+# sql_blocks = f"""
+#     SELECT bl.block_id, ST_AsText(bl.geom) AS geom_wkt, 
+#            ST_X(bl.centroid::geometry) AS lon, 
+#            ST_Y(bl.centroid::geometry) AS lat,
+#            bl.area_m2,
+#            bl.elongation, bl.compactness, bl.lod1_building_count, bl.lod1_bcr
+#     FROM {block_table_name} bl
+#     WHERE EXISTS (
+#         SELECT 1 FROM {lod1_table_name} b
+#         WHERE b.block_id = bl.block_id
+#     )
+#     ORDER BY RANDOM()
+#     LIMIT 30;
+# """
+
+# ── 方式 B: 指定 block_id 列表 ────────────────────
+TARGET_BLOCK_IDS = [
+    "DE_BE_007107",
+    "DE_BE_004322",
+    "DE_BE_002621",
+    "DE_BE_009363",
+    "DE_BE_005190",
+    "DE_BE_006853",
+    "DE_BE_005689",
+    "DE_BE_001920",
+    "DE_BE_006496",
+    "DE_BE_007061"
+]
+placeholders = ", ".join([f"'{bid}'" for bid in TARGET_BLOCK_IDS])
 sql_blocks = f"""
     SELECT bl.block_id, ST_AsText(bl.geom) AS geom_wkt, 
            ST_X(bl.centroid::geometry) AS lon, 
            ST_Y(bl.centroid::geometry) AS lat,
-           bl.area_m2
+           bl.area_m2,
+           bl.elongation, bl.compactness, bl.lod1_building_count, bl.lod1_bcr
     FROM {block_table_name} bl
-    WHERE EXISTS (
-        SELECT 1 FROM {lod2_table_name} b
-        WHERE b.block_id = bl.block_id
-    )
-    ORDER BY RANDOM()
-    LIMIT 30;
+    WHERE bl.block_id IN ({placeholders})
+    ORDER BY bl.block_id;
 """
+
 rows = utils_z.run_sql(sql_blocks, conn=conn, fetch=True)
 
 block_ids           = [str(r[0]) for r in rows]

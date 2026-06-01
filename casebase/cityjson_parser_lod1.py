@@ -13,45 +13,6 @@ from shapely.geometry import Polygon
 from shapely.wkt import dumps as wkt_dumps
 from lxml import etree
 
-
-# ── 工具函数：统一高度和层数验证逻辑 ──
-
-def _validate_height(height, ground_z, roof_face):
-    """
-    确保 height > 0，否则用 roof_face 的 Z 坐标重算。
-    返回有效的 height 值，或 None（无法确定有效高度时丢弃该建筑）。
-    """
-    if height is not None and height > 0:
-        return float(height)
-
-    # height 为 None / <= 0，尝试用 Z 坐标
-    if roof_face is not None:
-        top_z = float(np.mean([c[2] for c in roof_face.exterior.coords]))
-        h = top_z - ground_z
-        if h > 0:
-            return h
-    return None
-
-
-def _validate_floor_count(floor_count, height):
-    """
-    确保 floor_count 是正整数，否则用 height/3 估算。
-    返回有效的 floor_count 值，或 0（无法确定时）。
-    """
-    if floor_count is not None:
-        try:
-            fc = int(floor_count)
-            if fc > 0:
-                return fc
-        except (ValueError, TypeError):
-            pass
-
-    # 无效，用 height/3 估算
-    if height is not None and height > 0:
-        return max(round(height / 3), 1)
-    return 0
-
-
 # ── 通用解析器 ──
 
 def parse_cityjson_lod1(filepath, target_lod="1"):
@@ -461,7 +422,235 @@ def parse_citygml_lod1_JP(filepath):
     return buildings
 
 
+# ── 柏林（德国）──
+
+# 命名空间：柏林是 CityGML 1.0
+NS_DE_BE = {
+    "bldg": "http://www.opengis.net/citygml/building/1.0",
+    "gml":  "http://www.opengis.net/gml",
+    "core": "http://www.opengis.net/citygml/1.0",
+}
+
+
+def parse_citygml_lod1_DE_BE(filepath):
+    """
+    解析柏林（Berlin）CityGML LOD1 数据。
+
+    数据特点：
+    - CityGML 1.0 命名空间
+    - UTM 投影坐标 (Easting, Northing, Height)，直接使用，无需坐标交换
+    - 支持 Building + BuildingPart 结构（bldg:consistsOfBuildingPart）
+
+    处理逻辑：
+    1. 简单 Building（无 BuildingPart）：直接处理为一条建筑记录
+    2. 容器 Building（有 BuildingPart）：跳过父级 Building，
+       每个 BuildingPart 作为一条独立记录处理
+    3. BuildingPart 的属性优先使用自身值，缺失时从父级 Building 继承
+       （function 通常在父级 Building 上）
+    """
+    tree = etree.parse(filepath)
+    root = tree.getroot()
+
+    # ── 第一遍：建立父级 Building 属性查找表 ──
+    # 仅缓存含有 BuildingPart 的容器 Building
+    parent_attrs = {}
+    for bldg_el in root.iter("{http://www.opengis.net/citygml/building/1.0}Building"):
+        obj_id = bldg_el.get("{http://www.opengis.net/gml}id")
+        has_parts = bldg_el.findall("bldg:consistsOfBuildingPart", NS_DE_BE)
+        if not has_parts:
+            continue
+
+        attrs = {}
+        el_func = bldg_el.find("bldg:function", NS_DE_BE)
+        if el_func is not None:
+            attrs["function"] = el_func.text.strip()
+
+        el_height = bldg_el.find("bldg:measuredHeight", NS_DE_BE)
+        if el_height is not None:
+            attrs["measuredHeight"] = el_height.text.strip()
+
+        el_storeys = bldg_el.find("bldg:storeysAboveGround", NS_DE_BE)
+        if el_storeys is not None:
+            attrs["storeysAboveGround"] = el_storeys.text.strip()
+
+        parent_attrs[obj_id] = attrs
+
+    buildings = []
+
+    # ── 第二遍：处理 Building 和 BuildingPart ──
+    for bldg_el in root.iter("{http://www.opengis.net/citygml/building/1.0}Building"):
+        obj_id = bldg_el.get("{http://www.opengis.net/gml}id")
+
+        # 检查是否有 BuildingPart
+        part_els = bldg_el.findall("bldg:consistsOfBuildingPart/bldg:BuildingPart", NS_DE_BE)
+
+        if part_els:
+            # ── 情况 B：容器 Building，处理每个 BuildingPart ──
+            for part_el in part_els:
+                part_id = part_el.get("{http://www.opengis.net/gml}id")
+
+                # 从 BuildingPart 自身取属性
+                h_el = part_el.find("bldg:measuredHeight", NS_DE_BE)
+                s_el = part_el.find("bldg:storeysAboveGround", NS_DE_BE)
+                f_el = part_el.find("bldg:function", NS_DE_BE)
+
+                height_raw = float(h_el.text.strip()) if h_el is not None else None
+                floor_count_raw = float(s_el.text.strip()) if s_el is not None else None
+                function = f_el.text.strip() if f_el is not None else None
+
+                # 如果 BuildingPart 自身没有，从父级继承
+                parent = parent_attrs.get(obj_id, {})
+                if height_raw is None and "measuredHeight" in parent:
+                    height_raw = float(parent["measuredHeight"])
+                if floor_count_raw is None and "storeysAboveGround" in parent:
+                    floor_count_raw = float(parent["storeysAboveGround"])
+                if function is None and "function" in parent:
+                    function = parent["function"]
+
+                # 解析几何
+                solid_el = part_el.find(".//bldg:lod1Solid/gml:Solid", NS_DE_BE)
+                if solid_el is None:
+                    print(f"文件 {filepath}：No lod1Solid for BuildingPart: {part_id}")
+                    continue
+
+                # 从 gml:Solid 中解析所有面，柏林坐标直接使用无需交换
+                faces = []
+                for poslist_el in solid_el.iter("{http://www.opengis.net/gml}posList"):
+                    vals = list(map(float, poslist_el.text.strip().split()))
+                    coords = []
+                    for i in range(0, len(vals) - 2, 3):
+                        x, y, z = vals[i], vals[i+1], vals[i+2]
+                        coords.append((x, y, z))
+                    if len(coords) >= 3:
+                        faces.append(Polygon(coords))
+
+                # 统一构建 building 记录
+                if not faces:
+                    print(f"文件 {filepath}：No valid faces for: {part_id}")
+                    continue
+
+                surfaces = classify_surfaces(faces)
+                ground_face = next((f for stype, f in surfaces if stype == "GroundSurface"), None)
+                roof_face   = next((f for stype, f in surfaces if stype == "RoofSurface"), None)
+
+                if ground_face is None:
+                    print(f"文件 {filepath}：No ground face: {part_id}")
+                    continue
+
+                ground_z = float(np.mean([c[2] for c in ground_face.exterior.coords]))
+                height = _validate_height(height_raw, ground_z, roof_face)
+                if height is None:
+                    print(f"文件 {filepath}：Invalid height for building: {part_id}")
+                    continue
+
+                floor_count = _validate_floor_count(floor_count_raw, height)
+                geom_2d = Polygon([(c[0], c[1]) for c in ground_face.exterior.coords])
+
+                buildings.append({
+                    "citygml_id":  part_id,
+                    "height":      height,
+                    "ground_z":    ground_z,
+                    "floor_count": floor_count,
+                    "function":    function,
+                    "geom_2d":     geom_2d,
+                    "surfaces":    surfaces
+                })
+
+        else:
+            # ── 情况 A：简单 Building（无 BuildingPart）──
+            height_raw = bldg_el.findtext("bldg:measuredHeight", None, NS_DE_BE)
+            floor_count_raw = bldg_el.findtext("bldg:storeysAboveGround", None, NS_DE_BE)
+            function = bldg_el.findtext("bldg:function", None, NS_DE_BE)
+
+            height_raw = float(height_raw) if height_raw is not None else None
+            floor_count_raw = float(floor_count_raw) if floor_count_raw is not None else None
+
+            # 解析几何
+            solid_el = bldg_el.find(".//bldg:lod1Solid/gml:Solid", NS_DE_BE)
+            if solid_el is None:
+                continue
+
+            faces = []
+            for poslist_el in solid_el.iter("{http://www.opengis.net/gml}posList"):
+                vals = list(map(float, poslist_el.text.strip().split()))
+                coords = []
+                for i in range(0, len(vals) - 2, 3):
+                    x, y, z = vals[i], vals[i+1], vals[i+2]
+                    coords.append((x, y, z))
+                if len(coords) >= 3:
+                    faces.append(Polygon(coords))
+
+            if not faces:
+                print(f"文件 {filepath}：No valid faces for: {obj_id}")
+                continue
+
+            surfaces = classify_surfaces(faces)
+            ground_face = next((f for stype, f in surfaces if stype == "GroundSurface"), None)
+            roof_face   = next((f for stype, f in surfaces if stype == "RoofSurface"), None)
+
+            if ground_face is None:
+                print(f"文件 {filepath}：No ground face: {obj_id}")
+                continue
+
+            ground_z = float(np.mean([c[2] for c in ground_face.exterior.coords]))
+            height = _validate_height(height_raw, ground_z, roof_face)
+            if height is None:
+                print(f"文件 {filepath}：Invalid height for building: {obj_id}")
+                continue
+
+            floor_count = _validate_floor_count(floor_count_raw, height)
+            geom_2d = Polygon([(c[0], c[1]) for c in ground_face.exterior.coords])
+
+            buildings.append({
+                "citygml_id":  obj_id,
+                "height":      height,
+                "ground_z":    ground_z,
+                "floor_count": floor_count,
+                "function":    function,
+                "geom_2d":     geom_2d,
+                "surfaces":    surfaces
+            })
+
+    return buildings
+
+
 # ── 辅助函数：法向量计算和面分类 ──
+# ── 工具函数：统一高度和层数验证逻辑 ──
+
+def _validate_height(height, ground_z, roof_face):
+    """
+    确保 height > 0，否则用 roof_face 的 Z 坐标重算。
+    返回有效的 height 值，或 None（无法确定有效高度时丢弃该建筑）。
+    """
+    if height is not None and height > 0:
+        return float(height)
+
+    # height 为 None / <= 0，尝试用 Z 坐标
+    if roof_face is not None:
+        top_z = float(np.mean([c[2] for c in roof_face.exterior.coords]))
+        h = top_z - ground_z
+        if h > 0:
+            return h
+    return None
+
+
+def _validate_floor_count(floor_count, height):
+    """
+    确保 floor_count 是正整数，否则用 height/3 估算。
+    返回有效的 floor_count 值，或 0（无法确定时）。
+    """
+    if floor_count is not None:
+        try:
+            fc = int(floor_count)
+            if fc > 0:
+                return fc
+        except (ValueError, TypeError):
+            pass
+
+    # 无效，用 height/3 估算
+    if height is not None and height > 0:
+        return max(round(height / 3), 1)
+    return 0
 
 def get_normal(poly):
     """计算多边形的法向量，用于识别表面朝向。"""

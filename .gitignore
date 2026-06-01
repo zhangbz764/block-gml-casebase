@@ -8,3 +8,4 @@ __pycache__
 /casebase/ai_code
 .claude
 ~$*.xlsx
+/casebase/output
