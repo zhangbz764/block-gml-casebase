@@ -33,15 +33,15 @@ def get_conn(dbname, user, password, host, port):
     )
 
 
-def run_sql(sql, fetch=False, conn=None):
-    """Execute SQL statements, optionally fetch results."""
+def run_sql(sql, params=None, fetch=False, conn=None):
+    """Execute SQL statements, optionally with parameters and fetch results."""
     created_conn = False
     if conn is None:
         conn = get_conn()
         created_conn = True
     cur = conn.cursor()
     try:
-        cur.execute(sql)
+        cur.execute(sql, params)
         conn.commit()
         if fetch:
             return cur.fetchall()
