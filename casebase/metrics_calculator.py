@@ -69,7 +69,7 @@ def compute_avg_nn_distance_lod1(conn, cities=None, bld_table_schema="lod1", ver
     cities : list of str, optional
         城市名列表，每个值直接对应建筑表名的后缀（全小写）。
         例如 "newyork" → lod1.newyork_buildings_lod1。
-        如果不传，则从 block.lod1_valid_blocks 查询 DISTINCT city 作为默认值。
+        如果不传，则从 summary.lod1_valid_blocks 查询 DISTINCT city 作为默认值。
     bld_table_schema : str, default "lod1"
         建筑表所在的 schema，例如 "lod1" 或 "lod2"。
         表名规则为 {schema}.{city}_buildings_{schema}。
@@ -91,7 +91,7 @@ def compute_avg_nn_distance_lod1(conn, cities=None, bld_table_schema="lod1", ver
     # ── Step 1: 获取城市列表 ──
     if cities is None:
         with conn.cursor() as cur:
-            cur.execute("SELECT DISTINCT city FROM block.lod1_valid_blocks ORDER BY city;")
+            cur.execute("SELECT DISTINCT city FROM summary.lod1_valid_blocks ORDER BY city;")
             cities = [r[0] for r in cur.fetchall()]
 
     if verbose:
@@ -139,7 +139,7 @@ def compute_avg_nn_distance_lod1(conn, cities=None, bld_table_schema="lod1", ver
 
             # 2c. 查询当前城市在汇总表中的有效 block_id
             with conn.cursor() as cur:
-                cur.execute("SELECT block_id FROM block.lod1_valid_blocks;")
+                cur.execute("SELECT block_id FROM summary.lod1_valid_blocks;")
                 valid_block_ids = {r[0] for r in cur.fetchall()}
 
             # 2d. 按 block 分组，只保留在汇总表中的有效 block，用 KDTree 计算
@@ -156,7 +156,7 @@ def compute_avg_nn_distance_lod1(conn, cities=None, bld_table_schema="lod1", ver
             if update_data:
                 with conn.cursor() as cur:
                     execute_values(cur, """
-                        UPDATE block.lod1_valid_blocks
+                        UPDATE summary.lod1_valid_blocks
                         SET avg_nn_distance = v.val
                         FROM (VALUES %s) AS v(block_id, val)
                         WHERE lod1_valid_blocks.block_id = v.block_id::VARCHAR;
@@ -181,7 +181,7 @@ def compute_avg_nn_distance_lod1(conn, cities=None, bld_table_schema="lod1", ver
                 ROUND(AVG(avg_nn_distance)::numeric, 2)  AS global_avg_m,
                 ROUND(MIN(avg_nn_distance)::numeric, 2)  AS min_m,
                 ROUND(MAX(avg_nn_distance)::numeric, 2)  AS max_m
-            FROM block.lod1_valid_blocks;
+            FROM summary.lod1_valid_blocks;
         """)
         row = cur.fetchone()
 
