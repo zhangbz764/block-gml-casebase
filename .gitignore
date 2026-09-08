@@ -9,3 +9,6 @@ __pycache__
 .claude
 ~$*.xlsx
 /casebase/output
+/casebase/archive
+/casebase/quality_checks
+/casebase/20260903_record_text
