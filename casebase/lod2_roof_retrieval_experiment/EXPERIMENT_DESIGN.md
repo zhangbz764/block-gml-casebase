@@ -9,6 +9,7 @@
 ## 2. 数据与同源对照
 
 - 唯一源数据为 `lod2.luxembourg_buildings_lod2`、`lod2.luxembourg_building_surfaces_lod2` 及对应道路街区表。
+- 实验数据库对象统一写入独立 schema `exp_lod2_roof_lu`；既有 `block`、`lod1`、`lod2` 和 `summary` schema 只读，不新增字段、不建临时表、不覆盖数据。
 - G2 保留数据库中的 LOD2 屋顶几何。
 - G1 使用同一批建筑对象和底面，将每栋建筑简化为单一高度体块。
 - 既有 LOD1 指标的定义和实现思路可以复用，但所有数值必须从 Luxembourg LOD2 对象重新计算；不得把独立 LOD1 表中的历史数值混入同源实验。
@@ -100,6 +101,8 @@ D_M2 = (1 - lambda) * D_general + lambda * D_roof
 - `development_retrieval_results.csv`：M1/M2 Top-5、距离分量和排名。
 
 中间文件只写入本实验文件夹，不改动已有 LOD1 指标表和原始 LOD2 表。
+
+数据库中对应保存 `exp_lod2_roof_lu.building_metrics`、`exp_lod2_roof_lu.block_metrics` 和 `exp_lod2_roof_lu.retrieval_results`。Notebook 可以重复创建或替换这三个实验表，但不得对其他 schema 执行 DDL 或 DML。
 
 ## 9. 代码组织
 
