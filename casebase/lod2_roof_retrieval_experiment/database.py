@@ -94,10 +94,16 @@ def _decode_polygon(value) -> Polygon:
 
 
 def iter_luxembourg_buildings(
-    connection, metric_srid: int
+    connection, metric_srid: int, block_ids: Sequence[str] | None = None
 ) -> Iterator[BuildingGeometryRecord]:
     """Stream matched buildings grouped with all roof and ground surfaces."""
 
+    selected_blocks = sorted({str(value) for value in block_ids}) if block_ids else None
+    block_filter = "AND b.block_id = ANY(%s)" if selected_blocks else ""
+    params = (metric_srid, metric_srid, selected_blocks) if selected_blocks else (
+        metric_srid,
+        metric_srid,
+    )
     cursor = connection.cursor(name="lod2_roof_lu_buildings")
     cursor.itersize = 2000
     cursor.execute(
@@ -110,9 +116,10 @@ def iter_luxembourg_buildings(
         JOIN {SOURCE_SURFACE_TABLE} AS s ON s.building_id = b.building_id
         WHERE b.block_id IS NOT NULL
           AND s.surface_type IN ('RoofSurface', 'GroundSurface')
+          {block_filter}
         ORDER BY b.building_id, s.surface_type, s.surface_id
         """,
-        (metric_srid, metric_srid),
+        params,
     )
     current_id = None
     current = None

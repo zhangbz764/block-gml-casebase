@@ -6,6 +6,8 @@
 
 投稿前只处理 Luxembourg。当前阶段完成：最低数据质检、同源 G1/G2 表征、M1/M2 指标、开发查询、候选池和 Top-5 检索。正式评价、批量图面和评分方案后置。
 
+首次运行以固定随机种子从全部匹配街区中抽取 500 个街区，符合投稿前 300—1000 个候选街区的范围目标。该参数集中写在 notebook 配置单元中；小样本流程确认后可设为 `None` 扩展到全部街区。
+
 ## 2. 数据与同源对照
 
 - 唯一源数据为 `lod2.luxembourg_buildings_lod2`、`lod2.luxembourg_building_surfaces_lod2` 及对应道路街区表。
@@ -97,7 +99,7 @@ D_M2 = (1 - lambda) * D_general + lambda * D_roof
 - `building_metrics.parquet`：建筑级 G1 与屋顶指标；
 - `block_metrics.parquet`：M1/M2 街区指标；
 - `experiment_config.json`：城市、SRID、阈值、指标列表、缩放和权重；
-- `development_queries.csv`：4 类屋顶情景各 1 个查询，另加 1 个边界案例；
+- `development_queries.csv`：低/高平均坡度、中等坡度下低/高离散度、最高屋顶起伏各 1 个查询；
 - `development_retrieval_results.csv`：M1/M2 Top-5、距离分量和排名。
 
 中间文件只写入本实验文件夹，不改动已有 LOD1 指标表和原始 LOD2 表。
@@ -111,13 +113,16 @@ lod2_roof_retrieval_experiment/
 ├─ EXPERIMENT_DESIGN.md
 ├─ 01_luxembourg_metrics_and_retrieval.ipynb
 ├─ roof_geometry.py
+├─ database.py
 ├─ block_metrics.py
 ├─ retrieval.py
+├─ tests/
 └─ outputs/
 ```
 
 - notebook 是可阅读、可分步执行的主流程；
 - `roof_geometry.py` 负责投影、三角化、坡度、三维面积和 G1 高度；
+- `database.py` 负责源数据只读访问、抽样限制和实验 schema 白名单写入；
 - `block_metrics.py` 负责建筑级和街区级指标汇总；
 - `retrieval.py` 负责缩放、候选池、距离与 Top-5；
 - notebook 中不复制方法实现，只负责参数、调用、质检摘要和结果展示。

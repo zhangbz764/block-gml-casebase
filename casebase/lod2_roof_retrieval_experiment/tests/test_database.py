@@ -7,6 +7,7 @@ from database import (
     RETRIEVAL_TABLE,
     assert_experiment_relation,
     ensure_experiment_schema,
+    iter_luxembourg_buildings,
 )
 
 
@@ -22,6 +23,12 @@ class RecordingCursor:
 
     def __exit__(self, exc_type, exc_value, traceback):
         return False
+
+    def __iter__(self):
+        return iter(())
+
+    def close(self):
+        pass
 
 
 class RecordingConnection:
@@ -56,6 +63,15 @@ class DatabaseSafetyTests(unittest.TestCase):
             self.assertNotIn(f"CREATE TABLE IF NOT EXISTS {source_schema}", emitted)
             self.assertNotIn(f"TRUNCATE TABLE {source_schema}", emitted)
         self.assertEqual(connection.commits, 1)
+
+    def test_building_stream_can_be_limited_to_sampled_blocks(self):
+        connection = RecordingConnection()
+
+        list(iter_luxembourg_buildings(connection, 2169, block_ids=["b2", "b1"]))
+
+        statement, params = connection.statements[0]
+        self.assertIn("b.block_id = ANY(%s)", statement)
+        self.assertEqual(params, (2169, 2169, ["b1", "b2"]))
 
 
 if __name__ == "__main__":
