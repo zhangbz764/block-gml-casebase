@@ -12,18 +12,39 @@ class NotebookStructureTests(unittest.TestCase):
     def setUpClass(cls):
         path = Path(__file__).parents[1] / "01_luxembourg_metrics_and_retrieval.ipynb"
         cls.notebook = nbformat.read(path, as_version=4)
+        cls.formal_path = (
+            Path(__file__).parents[1] / "02_luxembourg_formal_evaluation.ipynb"
+        )
 
-    def test_notebook_is_substantial_and_output_free(self):
+    def test_metrics_notebook_is_substantial(self):
         self.assertGreaterEqual(len(self.notebook.cells), 10)
-        for cell in self.notebook.cells:
+
+    def test_formal_notebook_is_substantial_and_output_free(self):
+        self.assertTrue(self.formal_path.is_file())
+        notebook = nbformat.read(self.formal_path, as_version=4)
+        self.assertGreaterEqual(len(notebook.cells), 10)
+        for cell in notebook.cells:
             if cell.cell_type == "code":
                 self.assertIsNone(cell.execution_count)
                 self.assertEqual(cell.outputs, [])
+        source = "\n".join(cell.source for cell in notebook.cells)
+        self.assertIn("PRIMARY_LAMBDA = 0.35", source)
+        self.assertIn("FORMAL_QUERY_COUNT = 20", source)
+        self.assertIn("WRITE_EXPERIMENT_SCHEMA = True", source)
+        self.assertIn("replace_formal_evaluation_results", source)
 
     def test_every_code_cell_has_valid_python_syntax(self):
-        for index, cell in enumerate(self.notebook.cells):
-            if cell.cell_type == "code":
-                compile(cell.source, f"notebook-cell-{index}", "exec")
+        notebooks = [self.notebook]
+        if self.formal_path.is_file():
+            notebooks.append(nbformat.read(self.formal_path, as_version=4))
+        for notebook_index, notebook in enumerate(notebooks):
+            for cell_index, cell in enumerate(notebook.cells):
+                if cell.cell_type == "code":
+                    compile(
+                        cell.source,
+                        f"notebook-{notebook_index}-cell-{cell_index}",
+                        "exec",
+                    )
 
     def test_configuration_and_safety_switch_are_explicit(self):
         source = "\n".join(cell.source for cell in self.notebook.cells)
@@ -33,7 +54,12 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("db.assert_experiment_relation", source)
 
     def test_no_source_schema_mutation_sql(self):
-        source = "\n".join(cell.source for cell in self.notebook.cells)
+        notebooks = [self.notebook]
+        if self.formal_path.is_file():
+            notebooks.append(nbformat.read(self.formal_path, as_version=4))
+        source = "\n".join(
+            cell.source for notebook in notebooks for cell in notebook.cells
+        )
         forbidden = re.compile(
             r"(?:UPDATE|DELETE\s+FROM|DROP\s+TABLE|ALTER\s+TABLE|TRUNCATE\s+TABLE)"
             r"\s+(?:block|lod1|lod2|summary)\.",
