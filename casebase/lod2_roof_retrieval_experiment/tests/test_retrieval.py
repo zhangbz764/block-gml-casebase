@@ -69,6 +69,59 @@ class RetrievalTests(unittest.TestCase):
         self.assertEqual(counts[("M2", 0.5)], 2)
         self.assertTrue(set(result["candidate_id"]).issubset({"a", "b", "c", "d"}))
 
+    def test_preserves_query_and_candidate_city_metadata(self):
+        frame = self.frame.assign(
+            city=["luxembourg", "berlin", "luxembourg", "vienna", "berlin", "vienna"]
+        )
+
+        result = retrieve_for_query(
+            frame,
+            "q",
+            general_features=["general"],
+            roof_features=["roof"],
+            pool_size=3,
+            top_k=1,
+            lambda_values=[0.8],
+        )
+
+        self.assertEqual(set(result["query_city"]), {"luxembourg"})
+        self.assertEqual(result.iloc[0]["candidate_city"], "berlin")
+        self.assertFalse(result.iloc[0]["same_city"])
+
+    def test_city_disambiguates_duplicate_block_ids(self):
+        frame = pd.DataFrame(
+            {
+                "block_id": ["q", "q", "a", "b"],
+                "city": ["berlin", "luxembourg", "berlin", "vienna"],
+                "general": [100.0, 0.0, 1.0, 2.0],
+                "roof": [100.0, 0.0, 1.0, 2.0],
+            }
+        )
+
+        result = retrieve_for_query(
+            frame,
+            "q",
+            query_city="luxembourg",
+            general_features=["general"],
+            roof_features=["roof"],
+            pool_size=3,
+            top_k=1,
+            lambda_values=[0.35],
+        )
+
+        self.assertEqual(set(result["query_city"]), {"luxembourg"})
+        self.assertEqual(result.iloc[0]["candidate_id"], "a")
+        with self.assertRaisesRegex(ValueError, "ambiguous"):
+            retrieve_for_query(
+                frame,
+                "q",
+                general_features=["general"],
+                roof_features=["roof"],
+                pool_size=3,
+                top_k=1,
+                lambda_values=[0.35],
+            )
+
     def test_development_queries_are_unique_and_named(self):
         frame = pd.DataFrame(
             {

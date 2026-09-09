@@ -6,7 +6,9 @@ from shapely.geometry import Polygon
 
 from block_metrics import (
     compute_block_metrics,
+    compute_building_metrics,
     compute_building_metric_row,
+    nearest_neighbour_distances,
     select_final_m1_features,
 )
 from database import BuildingGeometryRecord
@@ -85,6 +87,14 @@ class BlockMetricTests(unittest.TestCase):
         self.assertAlmostEqual(result["building_roof_slope_sd"], 22.5)
         self.assertTrue(result["is_usable"])
 
+    def test_nearest_neighbour_distances_use_pairwise_metric_distance(self):
+        distances = nearest_neighbour_distances(
+            np.array([0.0, 3.0, 6.0]),
+            np.array([0.0, 4.0, 8.0]),
+        )
+
+        np.testing.assert_allclose(distances, [5.0, 5.0, 5.0])
+
     def test_low_usable_footprint_coverage_excludes_block(self):
         buildings = pd.DataFrame(
             [
@@ -106,6 +116,14 @@ class BlockMetricTests(unittest.TestCase):
         self.assertAlmostEqual(result["usable_footprint_ratio"], 0.1)
         self.assertFalse(result["is_usable"])
         self.assertIn("coverage_below_80pct", result["quality_codes"])
+
+    def test_empty_building_batch_still_returns_a_quality_failure(self):
+        buildings = compute_building_metrics([])
+
+        result = compute_block_metrics(self.blocks, buildings).iloc[0]
+
+        self.assertFalse(result["is_usable"])
+        self.assertIn("no_usable_buildings", result["quality_codes"])
 
     def test_single_building_has_zero_roof_slope_sd(self):
         buildings = pd.DataFrame(

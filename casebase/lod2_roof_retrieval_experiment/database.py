@@ -37,6 +37,7 @@ class BuildingGeometryRecord:
     footprint: Polygon
     roof_polygons: tuple[Polygon, ...]
     ground_polygons: tuple[Polygon, ...]
+    source_quality_codes: tuple[str, ...] = ()
 
 
 def assert_experiment_relation(relation: str) -> str:

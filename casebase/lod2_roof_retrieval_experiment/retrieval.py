@@ -45,34 +45,58 @@ def retrieve_for_query(
     lambda_values: Iterable[float] = (0.20, 0.35, 0.50),
     general_scaler: RobustFeatureScaler | None = None,
     roof_scaler: RobustFeatureScaler | None = None,
+    query_city: str | None = None,
 ) -> pd.DataFrame:
     """Run M1 and roof-reranked M2 against one shared general-form pool."""
 
-    if query_id not in set(frame["block_id"].astype(str)):
-        raise KeyError(f"Unknown query block: {query_id}")
     if top_k <= 0 or pool_size <= 0:
         raise ValueError("pool_size and top_k must be positive")
     if top_k > pool_size:
         raise ValueError("top_k cannot exceed pool_size")
 
-    general_scaler = general_scaler or RobustFeatureScaler.fit(frame, general_features)
-    roof_scaler = roof_scaler or RobustFeatureScaler.fit(frame, roof_features)
-    general_z = general_scaler.transform(frame)
-    roof_z = roof_scaler.transform(frame)
-    query_position = frame.index[frame["block_id"].astype(str) == str(query_id)][0]
+    working = frame.reset_index(drop=True)
+    has_city_metadata = "city" in working.columns
+    matches = working["block_id"].astype(str) == str(query_id)
+    if query_city is not None:
+        if not has_city_metadata:
+            raise ValueError("query_city requires a city column")
+        matches &= working["city"].astype(str) == str(query_city)
+    match_positions = np.flatnonzero(matches.to_numpy())
+    if not len(match_positions):
+        suffix = f" in {query_city}" if query_city is not None else ""
+        raise KeyError(f"Unknown query block: {query_id}{suffix}")
+    if len(match_positions) > 1:
+        raise ValueError(
+            f"query block {query_id!r} is ambiguous; provide query_city"
+        )
+
+    general_scaler = general_scaler or RobustFeatureScaler.fit(working, general_features)
+    roof_scaler = roof_scaler or RobustFeatureScaler.fit(working, roof_features)
+    general_z = general_scaler.transform(working)
+    roof_z = roof_scaler.transform(working)
+    query_position = int(match_positions[0])
     query_general = general_z.loc[query_position].to_numpy(dtype=float)
     query_roof = roof_z.loc[query_position].to_numpy(dtype=float)
+    resolved_query_city = (
+        str(working.loc[query_position, "city"]) if has_city_metadata else None
+    )
 
-    candidates = frame.loc[frame.index != query_position, ["block_id"]].copy()
+    candidate_columns = ["block_id"] + (["city"] if has_city_metadata else [])
+    candidates = working.loc[
+        working.index != query_position, candidate_columns
+    ].copy()
     candidates["candidate_id"] = candidates["block_id"].astype(str)
+    if has_city_metadata:
+        candidates["candidate_city"] = candidates["city"].astype(str)
     candidates["d_general"] = _rmse_from_query(
         general_z.loc[candidates.index].to_numpy(dtype=float), query_general
     )
     candidates["d_roof"] = _rmse_from_query(
         roof_z.loc[candidates.index].to_numpy(dtype=float), query_roof
     )
+    tie_breakers = ["candidate_city", "candidate_id"] if has_city_metadata else ["candidate_id"]
     candidates = candidates.sort_values(
-        ["d_general", "candidate_id"], kind="mergesort"
+        ["d_general", *tie_breakers], kind="mergesort"
     ).head(pool_size)
     candidates["general_pool_rank"] = np.arange(1, len(candidates) + 1)
     actual_pool_size = len(candidates)
@@ -83,20 +107,28 @@ def retrieve_for_query(
 
     def append_ranked(ranked: pd.DataFrame, method: str, lambda_value: float) -> None:
         for rank, candidate in enumerate(ranked.itertuples(index=False), start=1):
-            rows.append(
-                {
-                    "query_id": str(query_id),
-                    "method": method,
-                    "lambda_value": float(lambda_value),
-                    "rank": rank,
-                    "candidate_id": candidate.candidate_id,
-                    "d_general": float(candidate.d_general),
-                    "d_roof": float(candidate.d_roof),
-                    "d_combined": float(candidate.d_combined),
-                    "pool_size": actual_pool_size,
-                    "general_pool_rank": int(candidate.general_pool_rank),
-                }
-            )
+            row = {
+                "query_id": str(query_id),
+                "method": method,
+                "lambda_value": float(lambda_value),
+                "rank": rank,
+                "candidate_id": candidate.candidate_id,
+                "d_general": float(candidate.d_general),
+                "d_roof": float(candidate.d_roof),
+                "d_combined": float(candidate.d_combined),
+                "pool_size": actual_pool_size,
+                "general_pool_rank": int(candidate.general_pool_rank),
+            }
+            if has_city_metadata:
+                candidate_city = str(candidate.candidate_city)
+                row.update(
+                    {
+                        "query_city": resolved_query_city,
+                        "candidate_city": candidate_city,
+                        "same_city": candidate_city == resolved_query_city,
+                    }
+                )
+            rows.append(row)
 
     baseline = candidates.copy()
     baseline["d_combined"] = baseline["d_general"]
@@ -112,7 +144,7 @@ def retrieve_for_query(
             + lambda_value * reranked["d_roof"]
         )
         reranked = reranked.sort_values(
-            ["d_combined", "candidate_id"], kind="mergesort"
+            ["d_combined", *tie_breakers], kind="mergesort"
         )
         append_ranked(reranked.head(top_k), "M2", lambda_value)
     return pd.DataFrame(rows)

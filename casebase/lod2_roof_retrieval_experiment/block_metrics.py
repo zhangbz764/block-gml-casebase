@@ -7,6 +7,7 @@ from typing import Iterable, Sequence
 
 import numpy as np
 import pandas as pd
+from scipy.spatial import cKDTree
 from shapely.geometry import Polygon
 
 from database import BuildingGeometryRecord
@@ -39,6 +40,49 @@ ROOF_FEATURES = [
     "building_roof_slope_sd",
 ]
 
+BUILDING_METRIC_COLUMNS = [
+    "building_id",
+    "block_id",
+    "footprint_area",
+    "centroid_x",
+    "centroid_y",
+    "orientation_deg",
+    "h_g1",
+    "roof_area_3d",
+    "roof_projected_area",
+    "roof_mean_slope",
+    "roof_relief_ratio",
+    "roof_surface_count",
+    "ground_surface_count",
+    "valid_triangle_count",
+    "is_usable",
+    "quality_codes",
+]
+
+BLOCK_METRIC_COLUMNS = [
+    "block_id",
+    "area_m2",
+    "compactness",
+    "elongation",
+    "bcr",
+    "volume_density",
+    "mean_h_g1",
+    "h_g1_cv",
+    "building_count",
+    "log_block_area",
+    "log_building_count",
+    "mean_footprint_area",
+    "footprint_area_cv",
+    "orientation_entropy",
+    "normalized_nn_distance",
+    "roof_mean_slope",
+    "roof_relief_ratio_median",
+    "building_roof_slope_sd",
+    "usable_footprint_ratio",
+    "is_usable",
+    "quality_codes",
+]
+
 
 def _orientation_deg(polygon: Polygon) -> float:
     rectangle = polygon.minimum_rotated_rectangle
@@ -59,7 +103,7 @@ def _semicolon_codes(codes: Iterable[str]) -> str:
 def compute_building_metric_row(record: BuildingGeometryRecord) -> dict:
     """Measure one building and retain pragmatic, auditable quality flags."""
 
-    codes: list[str] = []
+    codes: list[str] = list(record.source_quality_codes)
     footprint_area = float("nan")
     centroid_x = float("nan")
     centroid_y = float("nan")
@@ -166,7 +210,10 @@ def compute_building_metric_row(record: BuildingGeometryRecord) -> dict:
 def compute_building_metrics(records: Iterable[BuildingGeometryRecord]) -> pd.DataFrame:
     """Compute one auditable metric row per streamed building record."""
 
-    return pd.DataFrame(compute_building_metric_row(record) for record in records)
+    return pd.DataFrame(
+        (compute_building_metric_row(record) for record in records),
+        columns=BUILDING_METRIC_COLUMNS,
+    )
 
 
 def _coefficient_of_variation(values: np.ndarray) -> float:
@@ -194,16 +241,29 @@ def _orientation_entropy(values: np.ndarray, bins: int = 18) -> float:
     return entropy / math.log(bins)
 
 
+def nearest_neighbour_distances(xs: np.ndarray, ys: np.ndarray) -> np.ndarray:
+    """Return each point's Euclidean distance to its nearest other point."""
+
+    xs = np.asarray(xs, dtype=float)
+    ys = np.asarray(ys, dtype=float)
+    if xs.shape != ys.shape or xs.ndim != 1:
+        raise ValueError("xs and ys must be one-dimensional arrays of equal length")
+    if xs.size <= 1:
+        return np.zeros(xs.size, dtype=float)
+    points = np.column_stack((xs, ys))
+    if not np.isfinite(points).all():
+        raise ValueError("nearest-neighbour coordinates must be finite")
+    distances, _ = cKDTree(points).query(points, k=2)
+    return distances[:, 1]
+
+
 def _normalized_nearest_neighbour_distance(
     xs: np.ndarray, ys: np.ndarray, block_area: float
 ) -> float:
     if xs.size <= 1:
         return 0.0
-    points = np.column_stack((xs, ys))
-    differences = points[:, None, :] - points[None, :, :]
-    distances = np.sqrt(np.sum(differences**2, axis=2))
-    np.fill_diagonal(distances, np.inf)
-    return float(np.mean(np.min(distances, axis=1)) / math.sqrt(block_area))
+    distances = nearest_neighbour_distances(xs, ys)
+    return float(np.mean(distances) / math.sqrt(block_area))
 
 
 def compute_block_metrics(
@@ -291,7 +351,7 @@ def compute_block_metrics(
         metrics["is_usable"] = not codes
         metrics["quality_codes"] = _semicolon_codes(codes)
         rows.append(metrics)
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=BLOCK_METRIC_COLUMNS)
 
 
 def select_final_m1_features(
