@@ -20,6 +20,8 @@ EXPERIMENT_SCHEMA = "exp_lod2_roof_lu"
 BUILDING_TABLE = f"{EXPERIMENT_SCHEMA}.building_metrics"
 BLOCK_TABLE = f"{EXPERIMENT_SCHEMA}.block_metrics"
 RETRIEVAL_TABLE = f"{EXPERIMENT_SCHEMA}.retrieval_results"
+FORMAL_QUERY_TABLE = f"{EXPERIMENT_SCHEMA}.formal_queries"
+FORMAL_EVALUATION_TABLE = f"{EXPERIMENT_SCHEMA}.formal_evaluation_results"
 
 SOURCE_BUILDING_TABLE = "lod2.luxembourg_buildings_lod2"
 SOURCE_SURFACE_TABLE = "lod2.luxembourg_building_surfaces_lod2"
@@ -40,7 +42,13 @@ class BuildingGeometryRecord:
 def assert_experiment_relation(relation: str) -> str:
     """Reject every write target outside the dedicated experiment schema."""
 
-    allowed = {BUILDING_TABLE, BLOCK_TABLE, RETRIEVAL_TABLE}
+    allowed = {
+        BUILDING_TABLE,
+        BLOCK_TABLE,
+        RETRIEVAL_TABLE,
+        FORMAL_QUERY_TABLE,
+        FORMAL_EVALUATION_TABLE,
+    }
     if relation not in allowed:
         raise ValueError(f"Database writes are restricted to {sorted(allowed)}")
     return relation
@@ -200,7 +208,7 @@ def fetch_luxembourg_blocks(connection, metric_srid: int) -> pd.DataFrame:
 
 
 def ensure_experiment_schema(connection) -> None:
-    """Create only the isolated schema and its three result tables."""
+    """Create only the isolated schema and its five result tables."""
 
     statements = [
         f"CREATE SCHEMA IF NOT EXISTS {EXPERIMENT_SCHEMA}",
@@ -246,6 +254,29 @@ def ensure_experiment_schema(connection) -> None:
             PRIMARY KEY (query_id, method, lambda_value, rank)
         )
         """,
+        f"""
+        CREATE TABLE IF NOT EXISTS {FORMAL_QUERY_TABLE} (
+            block_id TEXT PRIMARY KEY, query_role TEXT NOT NULL,
+            stratum TEXT NOT NULL, roof_mean_slope DOUBLE PRECISION NOT NULL,
+            roof_relief_ratio_median DOUBLE PRECISION NOT NULL,
+            building_roof_slope_sd DOUBLE PRECISION NOT NULL,
+            selection_seed INTEGER NOT NULL
+        )
+        """,
+        f"""
+        CREATE TABLE IF NOT EXISTS {FORMAL_EVALUATION_TABLE} (
+            query_id TEXT NOT NULL, query_role TEXT NOT NULL,
+            stratum TEXT NOT NULL, method TEXT NOT NULL,
+            lambda_value DOUBLE PRECISION NOT NULL, rank INTEGER NOT NULL,
+            candidate_id TEXT NOT NULL, d_general DOUBLE PRECISION NOT NULL,
+            d_roof DOUBLE PRECISION NOT NULL, d_combined DOUBLE PRECISION NOT NULL,
+            pool_size INTEGER NOT NULL, general_pool_rank INTEGER NOT NULL,
+            slope_wasserstein_deg DOUBLE PRECISION NOT NULL,
+            relief_wasserstein DOUBLE PRECISION NOT NULL,
+            flat_roof_share_abs_diff DOUBLE PRECISION NOT NULL,
+            PRIMARY KEY (query_id, method, lambda_value, rank)
+        )
+        """,
     ]
     with connection.cursor() as cursor:
         for statement in statements:
@@ -270,6 +301,16 @@ _BLOCK_COLUMNS = [
 _RETRIEVAL_COLUMNS = [
     "query_id", "method", "lambda_value", "rank", "candidate_id",
     "d_general", "d_roof", "d_combined", "pool_size",
+]
+_FORMAL_QUERY_COLUMNS = [
+    "block_id", "query_role", "stratum", "roof_mean_slope",
+    "roof_relief_ratio_median", "building_roof_slope_sd", "selection_seed",
+]
+_FORMAL_EVALUATION_COLUMNS = [
+    "query_id", "query_role", "stratum", "method", "lambda_value", "rank",
+    "candidate_id", "d_general", "d_roof", "d_combined", "pool_size",
+    "general_pool_rank", "slope_wasserstein_deg", "relief_wasserstein",
+    "flat_roof_share_abs_diff",
 ]
 
 
@@ -310,3 +351,16 @@ def replace_block_metrics(connection, frame: pd.DataFrame) -> None:
 
 def replace_retrieval_results(connection, frame: pd.DataFrame) -> None:
     _replace_frame(connection, RETRIEVAL_TABLE, frame, _RETRIEVAL_COLUMNS)
+
+
+def replace_formal_queries(connection, frame: pd.DataFrame) -> None:
+    _replace_frame(connection, FORMAL_QUERY_TABLE, frame, _FORMAL_QUERY_COLUMNS)
+
+
+def replace_formal_evaluation_results(connection, frame: pd.DataFrame) -> None:
+    _replace_frame(
+        connection,
+        FORMAL_EVALUATION_TABLE,
+        frame,
+        _FORMAL_EVALUATION_COLUMNS,
+    )

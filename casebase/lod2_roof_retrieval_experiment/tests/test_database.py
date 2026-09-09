@@ -1,5 +1,7 @@
 import unittest
 
+import database
+
 from database import (
     BLOCK_TABLE,
     BUILDING_TABLE,
@@ -63,6 +65,27 @@ class DatabaseSafetyTests(unittest.TestCase):
             self.assertNotIn(f"CREATE TABLE IF NOT EXISTS {source_schema}", emitted)
             self.assertNotIn(f"TRUNCATE TABLE {source_schema}", emitted)
         self.assertEqual(connection.commits, 1)
+
+    def test_formal_evaluation_relations_are_isolated_and_created(self):
+        self.assertTrue(hasattr(database, "FORMAL_QUERY_TABLE"))
+        self.assertTrue(hasattr(database, "FORMAL_EVALUATION_TABLE"))
+        self.assertTrue(hasattr(database, "replace_formal_queries"))
+        self.assertTrue(hasattr(database, "replace_formal_evaluation_results"))
+        formal_query_table = database.FORMAL_QUERY_TABLE
+        formal_evaluation_table = database.FORMAL_EVALUATION_TABLE
+        self.assertTrue(formal_query_table.startswith(f"{EXPERIMENT_SCHEMA}."))
+        self.assertTrue(formal_evaluation_table.startswith(f"{EXPERIMENT_SCHEMA}."))
+        self.assertEqual(assert_experiment_relation(formal_query_table), formal_query_table)
+        self.assertEqual(
+            assert_experiment_relation(formal_evaluation_table),
+            formal_evaluation_table,
+        )
+
+        connection = RecordingConnection()
+        ensure_experiment_schema(connection)
+        emitted = " ".join(statement for statement, _ in connection.statements)
+        self.assertIn(f"CREATE TABLE IF NOT EXISTS {formal_query_table}", emitted)
+        self.assertIn(f"CREATE TABLE IF NOT EXISTS {formal_evaluation_table}", emitted)
 
     def test_building_stream_can_be_limited_to_sampled_blocks(self):
         connection = RecordingConnection()
