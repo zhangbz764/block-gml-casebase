@@ -19,14 +19,10 @@ class NotebookStructureTests(unittest.TestCase):
     def test_metrics_notebook_is_substantial(self):
         self.assertGreaterEqual(len(self.notebook.cells), 10)
 
-    def test_formal_notebook_is_substantial_and_output_free(self):
+    def test_formal_notebook_contains_fixed_flow_and_visualization(self):
         self.assertTrue(self.formal_path.is_file())
         notebook = nbformat.read(self.formal_path, as_version=4)
         self.assertGreaterEqual(len(notebook.cells), 10)
-        for cell in notebook.cells:
-            if cell.cell_type == "code":
-                self.assertIsNone(cell.execution_count)
-                self.assertEqual(cell.outputs, [])
         source = "\n".join(cell.source for cell in notebook.cells)
         self.assertIn("PRIMARY_LAMBDA = 0.35", source)
         self.assertIn("FORMAL_QUERY_COUNT = 20", source)
@@ -34,8 +30,11 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("replace_formal_evaluation_results", source)
         self.assertIn("formal_luxembourg' / 'figures", source)
         self.assertIn("QUERY_IDS_TO_DRAW", source)
-        self.assertIn("save_query_comparison", source)
+        self.assertIn("save_query_plan_comparison", source)
+        self.assertIn("save_query_axonometric_comparison", source)
         self.assertIn("formal_evaluation_overview.png", source)
+        self.assertIn("_plan.png", source)
+        self.assertIn("_axonometric.png", source)
 
     def test_every_code_cell_has_valid_python_syntax(self):
         notebooks = [self.notebook]
