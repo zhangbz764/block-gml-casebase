@@ -32,6 +32,10 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("FORMAL_QUERY_COUNT = 20", source)
         self.assertIn("WRITE_EXPERIMENT_SCHEMA = True", source)
         self.assertIn("replace_formal_evaluation_results", source)
+        self.assertIn("formal_luxembourg' / 'figures", source)
+        self.assertIn("QUERY_IDS_TO_DRAW", source)
+        self.assertIn("save_query_comparison", source)
+        self.assertIn("formal_evaluation_overview.png", source)
 
     def test_every_code_cell_has_valid_python_syntax(self):
         notebooks = [self.notebook]
