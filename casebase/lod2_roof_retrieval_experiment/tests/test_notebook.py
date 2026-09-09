@@ -1,3 +1,5 @@
+import ast
+import importlib.metadata as metadata
 import re
 import unittest
 from pathlib import Path
@@ -38,6 +40,29 @@ class NotebookStructureTests(unittest.TestCase):
             re.IGNORECASE,
         )
         self.assertIsNone(forbidden.search(source))
+
+    def test_every_recorded_package_has_installed_distribution_metadata(self):
+        source = "\n".join(
+            cell.source for cell in self.notebook.cells if cell.cell_type == "code"
+        )
+        tree = ast.parse(source)
+        package_names = None
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Dict):
+                continue
+            for key, value in zip(node.keys, node.values):
+                if (
+                    isinstance(key, ast.Constant)
+                    and key.value == "package_versions"
+                    and isinstance(value, ast.DictComp)
+                ):
+                    package_names = ast.literal_eval(value.generators[0].iter)
+        self.assertIsNotNone(package_names)
+        for package_name in package_names:
+            try:
+                metadata.version(package_name)
+            except metadata.PackageNotFoundError:
+                self.fail(f"No installed distribution metadata for {package_name}")
 
 
 if __name__ == "__main__":
