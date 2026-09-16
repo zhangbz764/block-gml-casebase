@@ -23,7 +23,7 @@ db_config = {
 # ==============================
 conn = psycopg2.connect(**db_config)
 
-city_name = "lyon"
+city_name = "amsterdam"
 z_scale   = 1  # 米（纽约用0.3048）
 
 block_table_name = f"block.{city_name}_blocks"

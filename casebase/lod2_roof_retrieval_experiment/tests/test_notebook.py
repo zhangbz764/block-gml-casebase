@@ -18,6 +18,15 @@ class NotebookStructureTests(unittest.TestCase):
         cls.multicity_path = (
             Path(__file__).parents[1] / "03_multicity_pool_and_retrieval.ipynb"
         )
+        cls.multicity_visual_path = (
+            Path(__file__).parents[1] / "04_multicity_visual_diagnostics.ipynb"
+        )
+        cls.global_query_path = (
+            Path(__file__).parents[1] / "05_global_query_selection_and_retrieval.ipynb"
+        )
+        cls.figure2_path = (
+            Path(__file__).parents[1] / "06_figure2_panel_export.ipynb"
+        )
 
     def test_metrics_notebook_is_substantial(self):
         self.assertGreaterEqual(len(self.notebook.cells), 10)
@@ -45,6 +54,10 @@ class NotebookStructureTests(unittest.TestCase):
             notebooks.append(nbformat.read(self.formal_path, as_version=4))
         if self.multicity_path.is_file():
             notebooks.append(nbformat.read(self.multicity_path, as_version=4))
+        if self.multicity_visual_path.is_file():
+            notebooks.append(nbformat.read(self.multicity_visual_path, as_version=4))
+        if self.global_query_path.is_file():
+            notebooks.append(nbformat.read(self.global_query_path, as_version=4))
         for notebook_index, notebook in enumerate(notebooks):
             for cell_index, cell in enumerate(notebook.cells):
                 if cell.cell_type == "code":
@@ -67,6 +80,10 @@ class NotebookStructureTests(unittest.TestCase):
             notebooks.append(nbformat.read(self.formal_path, as_version=4))
         if self.multicity_path.is_file():
             notebooks.append(nbformat.read(self.multicity_path, as_version=4))
+        if self.multicity_visual_path.is_file():
+            notebooks.append(nbformat.read(self.multicity_visual_path, as_version=4))
+        if self.global_query_path.is_file():
+            notebooks.append(nbformat.read(self.global_query_path, as_version=4))
         source = "\n".join(
             cell.source for notebook in notebooks for cell in notebook.cells
         )
@@ -127,6 +144,95 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("query_city='luxembourg'", source)
         self.assertIn("candidate_city", source)
         self.assertIn("'outputs' / 'multicity'", source)
+
+    def test_multicity_visual_notebook_is_clean_and_reads_saved_results(self):
+        self.assertTrue(self.multicity_visual_path.is_file())
+        notebook = nbformat.read(self.multicity_visual_path, as_version=4)
+        self.assertGreaterEqual(len(notebook.cells), 10)
+        for cell in notebook.cells:
+            if cell.cell_type == "code":
+                self.assertIsNone(cell.execution_count)
+                self.assertEqual(cell.outputs, [])
+
+        source = "\n".join(cell.source for cell in notebook.cells)
+        self.assertIn("global_retrieval_results.csv", source)
+        self.assertIn("global_formal_queries.csv", source)
+        self.assertIn("QUERY_IDS_TO_RENDER", source)
+        self.assertIn("select_category_examples", source)
+        self.assertIn("fetch_multicity_scenes", source)
+        self.assertIn("save_multicity_plan_comparison", source)
+        self.assertIn("save_multicity_axonometric_comparison", source)
+        self.assertIn("query_gain_cost.png", source)
+        self.assertIn("candidate_city_shift.png", source)
+        self.assertNotIn("WRITE_EXPERIMENT_SCHEMA", source)
+
+    def test_global_query_notebook_is_clean_and_builds_frozen_paired_retrieval(self):
+        self.assertTrue(self.global_query_path.is_file())
+        notebook = nbformat.read(self.global_query_path, as_version=4)
+        self.assertGreaterEqual(len(notebook.cells), 12)
+        for cell in notebook.cells:
+            if cell.cell_type == "code":
+                self.assertIsNone(cell.execution_count)
+                self.assertEqual(cell.outputs, [])
+
+        source = "\n".join(cell.source for cell in notebook.cells)
+        tree = ast.parse(
+            "\n".join(cell.source for cell in notebook.cells if cell.cell_type == "code")
+        )
+        literal_assignments = {}
+        for node in ast.walk(tree):
+            if (
+                isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+            ):
+                try:
+                    literal_assignments[node.targets[0].id] = ast.literal_eval(node.value)
+                except (ValueError, TypeError):
+                    pass
+
+        self.assertEqual(literal_assignments["QUERIES_PER_CATEGORY"], 10)
+        self.assertEqual(literal_assignments["MAX_PER_CITY_PER_CATEGORY"], 3)
+        self.assertEqual(literal_assignments["TOP_K"], 5)
+        self.assertEqual(literal_assignments["POOL_SIZE"], 50)
+        self.assertEqual(literal_assignments["PRIMARY_LAMBDA"], 0.35)
+        self.assertIn("build_global_query_set", source)
+        self.assertIn("retrieve_for_query", source)
+        self.assertIn("global_formal_queries.csv", source)
+        self.assertIn("global_retrieval_results.csv", source)
+        self.assertNotIn("WRITE_EXPERIMENT_SCHEMA", source)
+
+    def test_ranked_batch_axonometric_cell_is_independent_and_does_not_embed_images(self):
+        notebook = nbformat.read(self.multicity_visual_path, as_version=4)
+        cells = [cell for cell in notebook.cells if cell.get("id") == "batch-c4"]
+
+        self.assertEqual(len(cells), 1)
+        source = cells[0].source
+        compile(source, "04-batch-c4", "exec")
+        self.assertIn("rank_query_effects", source)
+        self.assertIn("all_queries_ranked_axonometric", source)
+        self.assertIn("ranked_axonometric_index.csv", source)
+        self.assertNotIn("display(Image", source)
+
+    def test_figure2_notebook_exports_four_clean_chinese_panels(self):
+        self.assertTrue(self.figure2_path.is_file())
+        notebook = nbformat.read(self.figure2_path, as_version=4)
+        self.assertGreaterEqual(len(notebook.cells), 8)
+        for cell in notebook.cells:
+            if cell.cell_type == "code":
+                self.assertIsNone(cell.execution_count)
+                self.assertEqual(cell.outputs, [])
+                compile(cell.source, "06-figure2-panel-export", "exec")
+
+        source = "\n".join(cell.source for cell in notebook.cells)
+        self.assertIn("Deng.ttf", source)
+        self.assertIn("query_gain_cost_scatter.png", source)
+        self.assertIn("13_heterogeneous_DE_BE_002692_axonometric.png", source)
+        self.assertIn("15_typical_CZ_PR_000849_axonometric.png", source)
+        self.assertIn("16_steep_DE_BE_008010_axonometric.png", source)
+        self.assertIn("总体形态检索", source)
+        self.assertIn("屋顶增强检索", source)
+        self.assertNotIn("display(Image", source)
 
     def test_every_recorded_package_has_installed_distribution_metadata(self):
         source = "\n".join(
