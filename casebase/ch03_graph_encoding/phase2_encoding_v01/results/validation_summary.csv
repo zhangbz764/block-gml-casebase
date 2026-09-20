@@ -1,0 +1,16 @@
+﻿sample_id,sample_category,city,block_id,is_boundary,validation_result,expected_node_count,actual_node_count,declared_node_count,unique_building_id_count,null_building_id_count,self_loop_count,duplicate_undirected_edge_count,negative_edge_distance_count,nonfinite_value_count,nonfinite_value_paths,passed,edge_count,edge_construction_status,connected_components,average_degree,median_edge_length_m,longest_edge_length_m,longest_to_median_edge_ratio,node_missing_flags_consistent,roundtrip_nodes_edges_consistent,coordinate_scale_finite_positive,passed_core_checks
+trace_berlin_small,常规追溯,Berlin,DE_BE_002071,False,通过,15,15,15,15,0,0,0,0,0,[],True,34,delaunay,1,4.533333333333333,16.688963979822447,56.65185196687883,3.394569730953518,True,True,True,True
+trace_berlin_medium,常规追溯,Berlin,DE_BE_010880,False,通过,63,63,63,63,0,0,0,0,0,[],True,176,delaunay,1,5.587301587301587,21.008930699134368,168.97336751589464,8.04293040591813,True,True,True,True
+trace_berlin_large,常规追溯,Berlin,DE_BE_005279,False,通过,167,167,167,167,0,0,0,0,0,[],True,483,delaunay,1,5.7844311377245505,20.60032429587614,239.03175895376972,11.603300779183371,True,True,True,True
+trace_luxembourg_small,常规追溯,Luxembourg,LU_LU_000408,False,通过,2,2,2,2,0,0,0,0,0,[],True,1,two_node_rule,1,1.0,27.341430453401653,27.341430453401653,1.0,True,True,True,True
+trace_luxembourg_medium,常规追溯,Luxembourg,LU_LU_000326,False,通过,10,10,10,10,0,0,0,0,0,[],True,19,delaunay,1,3.8,31.167302311227992,55.863365457322544,1.7923708924014838,True,True,True,True
+trace_luxembourg_large,常规追溯,Luxembourg,LU_LU_000454,False,通过,36,36,36,36,0,0,0,0,0,[],True,94,delaunay,1,5.222222222222222,44.07911425381704,164.06979361449172,3.7221663001153447,True,True,True,True
+trace_tokyo_small,常规追溯,Tokyo,JP_TK_047746,False,通过,7,7,7,7,0,0,0,0,0,[],True,12,delaunay,1,3.4285714285714284,10.859986545111784,46.15528294108303,4.250031319040455,True,True,True,True
+trace_tokyo_medium,常规追溯,Tokyo,JP_TK_054219,False,通过,22,22,22,22,0,0,0,0,0,[],True,56,delaunay,1,5.090909090909091,16.472923721647334,94.43465308636152,5.732719624158972,True,True,True,True
+trace_tokyo_large,常规追溯,Tokyo,JP_TK_058267,False,通过,68,68,68,68,0,0,0,0,0,[],True,191,delaunay,1,5.617647058823529,15.836883571684377,146.4182747583921,9.245396930250928,True,True,True,True
+contrast_high_coverage,形态对照,Osaka,JP_OS_004938,False,通过,70,70,70,70,0,0,0,0,0,[],True,196,delaunay,1,5.6,13.151167240161417,53.23788312540936,4.048148894558193,True,True,True,True
+contrast_low_coverage,形态对照,Winnipeg,CA_WP_000972,False,通过,16,16,16,16,0,0,0,0,0,[],True,38,delaunay,1,4.75,554.4905840814611,1621.259023616377,2.923871153379577,True,True,True,True
+contrast_orientation_irregular,形态对照,Portland,US_PO_001620,False,通过,80,80,80,80,0,0,0,0,0,[],True,229,delaunay,1,5.725,61.88444490746949,679.4547248014387,10.97941050965827,True,True,True,True
+boundary_single,边界情况,Amsterdam,NL_AM_000241,True,通过,1,1,1,1,0,0,0,0,0,[],True,0,single_node,1,0.0,,,,True,True,True,True
+boundary_large,边界情况,Sapporo,JP_SP_026935,True,通过,500,500,500,500,0,0,0,0,0,[],True,1479,delaunay,1,5.916,24.010284618923773,478.48393562346865,19.928290864421914,True,True,True,True
+boundary_duplicate_centroid,边界情况,Berlin,DE_BE_011422,True,边界异常已明确保留,2,2,2,2,0,0,0,0,0,[],True,0,degenerate_duplicate_points,2,0.0,,,,True,True,True,True

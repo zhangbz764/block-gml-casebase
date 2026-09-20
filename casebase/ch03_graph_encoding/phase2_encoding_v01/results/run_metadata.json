@@ -1,0 +1,15 @@
+{
+  "encoding_version": "0.1",
+  "phase2_started_at": "2026-09-17T10:00:43+08:00",
+  "phase2_finished_at": "2026-09-17T10:00:53+08:00",
+  "git_branch": "experiment/ch03-phase1-audit",
+  "git_head": "470c6dc470eb85b58c1975d0018b477dacf62b14",
+  "database_name": "Test20260413",
+  "database_snapshot_time": "2026-09-17T10:00:43.938400+08:00",
+  "transaction_read_only": "on",
+  "sample_count": 15,
+  "regular_sample_count": 12,
+  "boundary_sample_count": 3,
+  "phase1_frozen_file_count": 8,
+  "database_writes": 0
+}
