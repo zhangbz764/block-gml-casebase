@@ -1,0 +1,15 @@
+{
+  "run_id": "pilot-20260920T045726Z",
+  "mode": "pilot",
+  "planned_samples": 111,
+  "completed_samples": 111,
+  "failed_samples": 0,
+  "total_runtime_seconds": 210.8114421000355,
+  "total_graph_bytes": 13837788,
+  "projected_full_runtime_seconds": 1931.4886181597847,
+  "projected_full_graph_bytes": 126784057.62162162,
+  "resource_gate_runtime_limit_seconds": 28800,
+  "resource_gate_storage_limit_bytes": 21474836480,
+  "resource_gate_passed": true,
+  "sample_manifest_sha256": "8679cfcd4a95335f0b8ff4359bceef8df0d97d85c4683fc1a47f86e59f1e86bb"
+}

@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-09-20T00:00:00+08:00",
+  "experiment_id": "CH3-P3-ENCODING-SCALE-V03",
+  "python_executable": "E:\\0_python_envs\\urbanCode\\python.exe",
+  "python_version": "3.13.9",
+  "platform": "Windows 11",
+  "libraries": {
+    "shapely": "2.1.2",
+    "scipy": "1.16.3",
+    "pandas": "2.3.3",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.10.7",
+    "numpy": "2.3.5"
+  },
+  "database": {
+    "name": "Test20260413",
+    "server": "PostgreSQL 18.1",
+    "access": "read-only transaction through db_readonly.py",
+    "candidate_relation": "summary.lod1_candidate_blocks"
+  }
+}

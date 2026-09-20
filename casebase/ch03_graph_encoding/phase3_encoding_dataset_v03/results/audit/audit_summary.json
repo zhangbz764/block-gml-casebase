@@ -1,0 +1,11 @@
+{
+  "planned": 1017,
+  "completed": 1003,
+  "failed": 14,
+  "graph_rows": 1003,
+  "node_rows": 44733,
+  "cell_rows": 44425,
+  "edge_rows": 104684,
+  "quality_issue_types": 8,
+  "redundancy_review_pairs": 30
+}

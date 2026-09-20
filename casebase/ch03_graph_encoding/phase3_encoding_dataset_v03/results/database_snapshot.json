@@ -1,0 +1,202 @@
+{
+  "experiment_id": "CH3-P3-ENCODING-SCALE-V03",
+  "captured_at_utc": "2026-09-20T04:51:46.098057+00:00",
+  "database": "Test20260413",
+  "postgresql_version": "PostgreSQL 18.1 on x86_64-windows, compiled by msvc-19.44.35219, 64-bit",
+  "postgis_version": "POSTGIS=\"3.6.1 3.6.1\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"8.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=C:\\WINDOWS\\ServiceProfiles\\NetworkService\\AppData\\Local/proj DATABASE_PATH=D:\\workSoftware\\PostgreSQL\\18\\share\\contrib\\postgis-3.6\\proj\\proj.db\" (compiled against PROJ 8.2.1) LIBXML=\"2.12.5\" LIBJSON=\"0.12\" LIBPROTOBUF=\"1.2.1\" WAGYU=\"0.5.0 (Internal)\"",
+  "transaction_read_only": "on",
+  "candidate_relation": "summary.lod1_candidate_blocks",
+  "candidate_query_order": [
+    "city",
+    "block_id"
+  ],
+  "candidate_record_count": 219419,
+  "city_count": 24,
+  "metric_fields": [
+    "area_m2",
+    "elongation",
+    "compactness",
+    "lod1_building_count",
+    "bcr",
+    "convexity",
+    "rectangularity",
+    "far",
+    "bcd",
+    "osr",
+    "avh",
+    "avh_w",
+    "hsd",
+    "hcv",
+    "h_max",
+    "h_range",
+    "total_volume",
+    "avg_volume",
+    "avg_footprint",
+    "footprint_cv",
+    "avg_complexity",
+    "avg_rectangularity",
+    "avg_convexity",
+    "avg_orientation",
+    "orientation_entropy",
+    "avg_nn_distance"
+  ],
+  "per_city": [
+    {
+      "city": "Amsterdam",
+      "candidate_count": 3118,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1021
+    },
+    {
+      "city": "Berlin",
+      "candidate_count": 9191,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 3533
+    },
+    {
+      "city": "Bologna",
+      "candidate_count": 1204,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1042
+    },
+    {
+      "city": "Boston",
+      "candidate_count": 4015,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 406
+    },
+    {
+      "city": "Chicago",
+      "candidate_count": 16898,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 9445
+    },
+    {
+      "city": "Dresden",
+      "candidate_count": 2268,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 2453
+    },
+    {
+      "city": "Hamburg",
+      "candidate_count": 5157,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 2594
+    },
+    {
+      "city": "Kanazawa",
+      "candidate_count": 10052,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 527
+    },
+    {
+      "city": "Luxembourg",
+      "candidate_count": 498,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 295
+    },
+    {
+      "city": "Lyon",
+      "candidate_count": 1591,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 346
+    },
+    {
+      "city": "Marseille",
+      "candidate_count": 2536,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1441
+    },
+    {
+      "city": "New York",
+      "candidate_count": 2743,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 97
+    },
+    {
+      "city": "Osaka",
+      "candidate_count": 23443,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1234
+    },
+    {
+      "city": "Paris",
+      "candidate_count": 3614,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 515
+    },
+    {
+      "city": "Portland",
+      "candidate_count": 9377,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1030
+    },
+    {
+      "city": "Rotterdam",
+      "candidate_count": 2793,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1105
+    },
+    {
+      "city": "San Francisco",
+      "candidate_count": 4732,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 409
+    },
+    {
+      "city": "Sapporo",
+      "candidate_count": 29955,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 2078
+    },
+    {
+      "city": "Tokyo",
+      "candidate_count": 58668,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1627
+    },
+    {
+      "city": "Toronto",
+      "candidate_count": 10107,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 884
+    },
+    {
+      "city": "Vienna",
+      "candidate_count": 6002,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 5712
+    },
+    {
+      "city": "Washington D.C.",
+      "candidate_count": 4564,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 651
+    },
+    {
+      "city": "Winnipeg",
+      "candidate_count": 5414,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 1232
+    },
+    {
+      "city": "Zurich",
+      "candidate_count": 1479,
+      "min_lod1_building_count": 1,
+      "max_lod1_building_count": 704
+    }
+  ],
+  "sampling_config": {
+    "seed": 20260920,
+    "core_per_city": 40,
+    "core_min_buildings": 2,
+    "core_max_buildings": 499,
+    "strata_per_city": 4,
+    "single_stress_per_city": 1,
+    "large_target_buildings": 500
+  },
+  "selected_unique_count": 1017,
+  "sample_manifest_sha256": "8679cfcd4a95335f0b8ff4359bceef8df0d97d85c4683fc1a47f86e59f1e86bb",
+  "sampling_frame_sha256": "31a9bb3596b144baded7dd293cd3a95231a9a7241662355aecb6f8441893c1c2",
+  "building_count_mismatch_count": 0
+}
