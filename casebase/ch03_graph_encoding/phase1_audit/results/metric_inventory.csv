@@ -1,0 +1,27 @@
+﻿metric_name,chinese_label,category,definition,unit,source_fields,implementation,valid_condition,current_status,note
+area_m2,街区面积,场地边界,街区边界的大地测量面积,m²,block.geom,metrics_calculator.py:223-255,街区几何非空、有效且非空几何,核心,数据库统一存储为EPSG:4326，面积用geometry::geography
+elongation,街区伸长度,场地边界,最小旋转外接矩形短边/长边,无量纲,block.geom,metrics_calculator.py:223-255,有效街区几何；投影后外接矩形两边均大于0,核心,"范围(0,1]，越接近1越接近等边"
+compactness,街区紧凑度,场地边界,4πA/P²,无量纲,block.geom,metrics_calculator.py:223-255,有效街区几何且周长大于0,核心,面积和周长使用geography
+lod1_building_count,LOD1建筑对象数,开发强度,与街区关联的LOD1建筑记录数,个,lod1.*_buildings_lod1.block_id,metrics_calculator.py:259-280,block_id非空；候选表要求计数至少为1,核心,对象数不一定等同现实独栋建筑数，BuildingPart粒度依来源而异
+bcr,建筑覆盖率,开发强度,建筑底面积总和/街区面积,无量纲,"building.area, area_m2",metrics_calculator.py:453-495,街区面积大于0且至少一个可用正底面积,核心,86个候选街区大于1，提示跨界、重叠、重复或对象粒度问题
+convexity,街区凸度,场地边界,街区面积/街区凸包面积,无量纲,summary.geom,metrics_calculator.py:284-305,街区几何非空、有效、非空几何且凸包面积大于0,核心,按城市metric_srid临时投影
+rectangularity,街区矩形度,场地边界,街区面积/最小旋转外接矩形面积,无量纲,summary.geom,metrics_calculator.py:284-305,街区几何非空、有效、非空几何且外接矩形面积大于0,核心,按城市metric_srid临时投影
+far,容积率,开发强度,Σ(建筑底面积×层数)/街区面积,无量纲,"building.area, building.floor_count, area_m2",metrics_calculator.py:453-495,街区面积大于0；建筑底面积和层数均为正,核心,缺失层数可在现行准备流程中按height/3m估算
+bcd,建筑密度,开发强度,建筑对象数/街区面积（公顷）,个/ha,"building_count, area_m2",metrics_calculator.py:453-495,街区面积大于0,核心,计数口径为数据库建筑对象
+osr,开放空间率,开发强度,(1-BCR)/FAR,无量纲,"bcr, far",metrics_calculator.py:892-933,BCR非空且FAR大于0,核心,BCR大于1时可为负值
+avh,平均建筑高度,高度体量,街区内正高度建筑的算术平均,m,building.height,metrics_calculator.py:453-495,至少一个height>0,核心,等权建筑对象平均
+avh_w,底面积加权平均高度,高度体量,Σ(area×height)/Σarea,m,"building.area, building.height",metrics_calculator.py:453-495,至少一个height>0且area>0，面积总和大于0,核心,近似体量加权高度
+hsd,建筑高度标准差,高度体量,正高度建筑的样本标准差,m,building.height,metrics_calculator.py:453-495,至少两个height>0,核心,PostgreSQL STDDEV；单建筑等情形为NULL
+hcv,建筑高度变异系数,高度体量,高度标准差/平均高度,无量纲,"hsd, avh",metrics_calculator.py:453-495,至少两个正高度且平均高度非0,核心,单建筑等情形为NULL
+h_max,最大建筑高度,高度体量,街区内正高度最大值,m,building.height,metrics_calculator.py:453-495,至少一个height>0,核心,
+h_range,建筑高度极差,高度体量,最大正高度-最小正高度,m,building.height,metrics_calculator.py:453-495,至少一个height>0,核心,单个有效高度时为0
+total_volume,总体积近似,高度体量,Σ(底面积×高度),m³,"building.area, building.height",metrics_calculator.py:453-495,至少一个height>0且area>0,核心,按LOD1棱柱体近似
+avg_volume,平均建筑体积近似,高度体量,AVG(底面积×高度),m³/建筑对象,"building.area, building.height",metrics_calculator.py:453-495,至少一个height>0且area>0,核心,按LOD1棱柱体近似
+avg_footprint,平均建筑底面积,分布组织,有效建筑底面积的算术平均,m²,building.area,metrics_calculator.py:453-495,至少一个可用底面积,核心,
+footprint_cv,建筑底面积变异系数,分布组织,底面积样本标准差/平均底面积,无量纲,building.area,metrics_calculator.py:453-495,至少两个底面积且平均值非0,核心,单建筑等情形为NULL
+avg_complexity,平均建筑轮廓复杂度,分布组织,建筑P²/(4πA)的街区平均,无量纲,building.geom_2d,metrics_calculator.py:308-348,有效非空建筑底面，投影面积至少1m²,核心,圆为1，形状越曲折通常越大
+avg_rectangularity,平均建筑矩形度,分布组织,建筑面积/其最小旋转外接矩形面积的街区平均,无量纲,building.geom_2d,metrics_calculator.py:308-348,有效非空建筑底面，投影面积至少1m²,核心,单建筑值上限按1裁剪
+avg_convexity,平均建筑凸度,分布组织,建筑面积/其凸包面积的街区平均,无量纲,building.geom_2d,metrics_calculator.py:308-348,有效非空建筑底面，投影面积至少1m²,核心,单建筑值上限按1裁剪
+avg_orientation,平均建筑朝向,分布组织,建筑长轴方向的180°周期轴向圆平均,"度，[0,180)",building.geom_2d,metrics_calculator.py:351-416,有效正面积底面可形成长轴；合成向量非零,核心,方向高度对称时可能为NULL
+orientation_entropy,建筑朝向熵,分布组织,长轴方向按18个10°箱计算Shannon熵,nat,building.geom_2d,metrics_calculator.py:351-416,至少一个可用长轴方向,核心,使用自然对数；越大表示朝向越分散
+avg_nn_distance,平均最近邻距离,分布组织,每栋建筑质心至最近其他建筑质心距离的街区平均,m,building.geom_2d,"metrics_calculator.py:80-85,419-433,1018-1086",至少两个有效非空建筑底面,核心,按城市metric_srid投影；重复质心可产生0

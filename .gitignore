@@ -1,14 +1,39 @@
 .idea
 .vscode
-cache
-/output/
-__pycache__
 .env
+.claude
+/.codex_tmp
+
+cache/
+output/
+__pycache__
+~$*.xlsx
+
 /casebase/ai_text
 /casebase/ai_code
-.claude
-~$*.xlsx
 /casebase/output
 /casebase/archive
 /casebase/quality_checks
 /casebase/20260903_record_text
+
+# roof branch
+outputs/
+
+# Chapter 3 compressed outputs
+/casebase/ch03_graph_encoding/**/results/**/*.gz
+
+# Chapter 3 large graph batches
+/casebase/ch03_graph_encoding/**/results/dataset/graphs/
+/casebase/ch03_graph_encoding/**/results/pilot/graphs/
+
+# Generated interactive pages
+/casebase/ch03_graph_encoding/**/results/**/*.html
+
+/casebase/ch03_graph_encoding/**/results/bulk/
+
+/casebase/ch03_graph_encoding/**/results/*_evidence_pack.md
+/casebase/ch03_graph_encoding/**/results/plan_review.md
+/casebase/ch03_graph_encoding/**/results/sampling_report.md
+/casebase/ch03_graph_encoding/**/results/*_decision_summary.md
+/casebase/ch03_graph_encoding/**/results/*_spot_checks.md
+/casebase/ch03_graph_encoding/**/results/**/run_log.txt

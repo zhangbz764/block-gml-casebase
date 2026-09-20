@@ -1,0 +1,27 @@
+﻿input_name,chinese_label,graph_role,current_location,data_type_or_geometry,coverage,status,crs_or_unit,source_or_derivation,quality_risk,phase2_recommendation,evidence
+building_id,建筑稳定标识,节点ID,lod1/lod2.*_buildings_*,varchar主键,LOD1 25/25表；LOD2 19/19表,可用,无,入库时生成城市前缀唯一ID,是数据库内部ID，不等于源数据ID,直接作为节点主键并保留citygml_id追溯,sql_utils.py；数据库字段覆盖查询
+block_id,街区标识,图级ID/归属,block.*_blocks与建筑主表,varchar,LOD1/LOD2所有建筑表都有；未匹配对象可为空,可用,无,建筑底面质心落入街区后写入,边界相交但质心在外的建筑不会归入该街区,以候选表block_id定义图样本,sql_utils.py:100起；样本追溯查询
+city,城市标识,图级属性,summary表city；原始表由表名隐式表达,varchar/表名,候选表24城；city_name_map 33城,可用,无,summary.city_name_map,建筑行本身没有显式city列,编码导出时补为显式字段,数据库模式查询
+data_source,数据来源,图级元数据,casebase/statistics/record.xlsx,URL及记录字段,LOD1 25城；LOD2 19城,部分可用,无,人工来源记录,数据库行不保存source_url；许可信息多数未单独记录,阶段2样本清单附带来源记录与许可待核实标记,statistics/record.xlsx
+lod,细节层级,图级元数据,lod1/lod2 schema及统计表,分类,按schema完整区分,可用,LOD1/LOD2,表所在schema,同一来源可能标为1.2、1.4、2.1、2.2,保留原始lod_level文本及标准化lod_group,statistics/record.xlsx；数据库schema
+geom_2d,建筑二维底面,节点几何/空间边输入,lod1/lod2.*_buildings_*,"Geometry(Polygon,4326)",LOD1 25/25；LOD2 19/19,可用,数据库EPSG:4326；计算用城市metric_srid,解析或三维表面投影得到,跨界、重叠、重复质心和来源对象粒度差异,构图前按metric_srid投影，不在经纬度上算距离,geometry_columns；sql_utils.py
+block_geom,街区边界,图级边界/裁剪,block.*_blocks；summary.lod1_candidate_blocks.geom,"Geometry(Polygon,4326)","候选表219,419条均非空有效",可用,数据库EPSG:4326,OSM道路中心线围合,不是产权地块或道路红线内建设用地,保留原始边界并派生局部坐标,qa_conclusions.md；数据库查询
+centroid_xy,建筑质心坐标,空间边输入,由geom_2d派生,Point/数值对,可按需计算,可用（派生）,城市metric_srid，m,"ST_Centroid(ST_Transform(geom_2d,metric_srid))",凹多边形质心可能落在几何外，但邻接距离仍可定义,阶段2明确质心或point-on-surface口径,metrics_calculator.py:419-433
+height,建筑高度,节点属性,lod1/lod2.*_buildings_*,double precision,LOD1 25/25；LOD2 19/19字段存在,可用,通常m，个别来源有转换说明,源属性或三维表面计算,来源口径与缺失处理不完全一致,先作为核心节点属性并附质量标记,sql_utils.py；record.xlsx
+ground_z,地面高程,节点属性,lod1.*_buildings_lod1,double precision,LOD1 25/25字段存在；抽样3城非空,部分可用,来源坐标高程单位,源属性或解析派生,美国部分数据以0表示相对高程；LOD2主表无统一字段,不作为阶段2必需特征，保留可选,数据库字段覆盖；record.xlsx备注
+top_z,顶部高程,节点属性,未直接存储,派生数值,未直接记录,部分可用（派生）,与ground_z和height一致,ground_z+height,ground_z口径不一致,暂缓作为跨城市核心特征,数据库字段盘点
+floor_count,层数,节点属性,lod1/lod2.*_buildings_*,integer,LOD1 25/25；LOD2 19/19字段存在,部分可用,层,源属性；缺失时现行LOD1流程可按height/3估算,真实层数与估算层数未分字段标识,使用前增加provenance/estimated标志,metrics_calculator.py:781起；紧凑记录
+area,建筑底面积,节点属性,lod1.*_buildings_lod1,double precision,LOD1 24/25表；北京表缺失,可用（24个候选城市）,m²,有效geom_2d的geography面积,北京不在现行24城候选表；无效几何不可计算,阶段2以候选24城为范围可直接使用,数据库字段覆盖与缺口查询
+perimeter,建筑底面周长,节点属性,lod1.*_buildings_lod1,double precision,LOD1 24/25表；北京表缺失,可用（24个候选城市）,m,有效geom_2d的geography周长,同上,作为形态特征可用,数据库字段覆盖与缺口查询
+volume_lod1,LOD1体积近似,节点属性,未直接存储,派生数值,area与height可用时可算,可用（派生）,m³,area×height,棱柱近似，不是精确体积,清楚标记为近似体积,metrics_calculator.py:453-495
+function,建筑功能,节点属性,lod1/lod2.*_buildings_*,varchar,字段全覆盖；样本中Luxembourg为0/48非空,部分可用,分类,源属性,城市间分类体系和缺失率差异大,暂缓作为核心跨城市特征,数据库字段覆盖；样本查询
+citygml_id,源对象标识,追溯属性,lod1/lod2.*_buildings_*,varchar,字段全覆盖；9个样本街区全部非空,可用,无,源数据对象ID,非所有来源都是CityGML；唯一性以building_id为准,保留为追溯字段，不作为节点主键,sql_utils.py；样本查询
+geom_3d_lod1,LOD1三维表面,可选几何属性,lod1.*_building_surfaces_lod1,"Geometry(PolygonZ,4326)",25个城市有表面表,可用但非阶段2必需,数据库EPSG:4326及Z,解析或规则拉伸,数据量约1.466亿表面，不宜批量导出,阶段2只取少量样本验证,record.xlsx；geometry_columns
+geom_3d_lod2,LOD2三维表面,屋顶/表面扩展,lod2.*_building_surfaces_lod2,"Geometry(PolygonZ,4326)",19个城市有表面表,部分可用,数据库EPSG:4326及Z,源LOD2解析,表面语义和数据质量依城市不同,主线阶段2暂不依赖；单独扩展,record.xlsx；lod2支线实验
+surface_type,表面语义,屋顶/墙面输入,lod1/lod2表面表,varchar,表面表统一字段,部分可用,分类,GroundSurface/RoofSurface/WallSurface,部分城市通过法向量判断，已有已知语义问题,LOD2仅作可选扩展并按城市质检,sql_utils.py；record.xlsx备注
+roof_type,屋顶类型,屋顶扩展属性,lod2.*_buildings_lod2,varchar,19/19表有字段,部分可用,分类,源属性,值覆盖率与分类一致性未在本阶段全量核实,不进入主线图编码核心输入,数据库字段覆盖
+year_built,建造年份,节点可选属性,lod2.*_buildings_lod2,integer,19/19表有字段,部分可用,年,源属性,值覆盖率未核实,暂缓,数据库字段覆盖
+source_srid,源坐标系,图级元数据,summary.city_name_map,integer EPSG,候选24城均有LOD1 source/metric SRID,可用,EPSG,人工维护映射,北京未进入city_name_map；个别源记录含复合说明,所有距离面积操作先读取映射,数据库city_name_map
+geometry_quality,几何质量状态,节点/图质量标记,可由PostGIS函数派生,boolean/count,候选街区已全量质检；建筑可按需检查,可用（派生）,无,ST_IsValid/ST_IsEmpty/重复质心等,86个BCR>1；Berlin和Zurich各有重复质心信号,阶段2保存显式质量标志，不回写源表,qa_conclusions.md
+multipart_or_building_part,多部件与BuildingPart状态,节点粒度风险,未设置统一显式字段,未记录/来源结构隐含,未核实,未核实,无,解析器将不同来源对象映射到统一表,可能造成一栋建筑对应多个对象或合并对象,阶段2抽样确认后再决定合并规则,紧凑记录；质量警告
+duplicate_or_overlap,重复或重叠对象,节点质量标记,未直接存储,可派生,已知存在少量信号,部分可用（派生）,无,重复ID、重复几何、重复质心、BCR>1,不能仅凭BCR>1判为重复,在样本构图时保留并单独标记,qa_conclusions.md；样本查询
