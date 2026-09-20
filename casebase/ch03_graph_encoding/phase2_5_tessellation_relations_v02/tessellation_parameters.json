@@ -1,0 +1,8 @@
+{
+  "encoding_version": "0.2",
+  "shrink_m": 0.4,
+  "segment_m": 0.5,
+  "min_shared_boundary_m": 1e-06,
+  "sensitivity_segment_m": [0.5, 1.0, 2.0],
+  "long_distance_candidate_rule": "sample Tukey upper fence on footprint_gap_block_norm; descriptive flag only"
+}

@@ -1,0 +1,23 @@
+field,scope,type,unit_or_range,definition,missing_rule
+edge_id,edge,string,,Stable celladj|sorted source|sorted target,Never missing
+source,edge,string,building_id,Lexicographically first endpoint,Never missing
+target,edge,string,building_id,Lexicographically second endpoint,Never missing
+shared_cell_boundary_m,edge,float,m,Length of shared linear cell boundary,Never missing
+shared_boundary_ratio_min,edge,float,"[0,1]",Shared boundary divided by smaller cell perimeter,Never missing
+shared_boundary_ratio_mean,edge,float,"[0,1]",Shared boundary divided by mean cell perimeter,Never missing
+footprint_gap_m,edge,float,m,Minimum distance between original footprints,Never missing
+footprint_gap_block_norm,edge,float,nonnegative,Footprint gap divided by square root of block area,Never missing
+centroid_distance_m,edge,float,m,Distance between v0.1 representative points or footprint centroids,Never missing
+centroid_distance_block_norm,edge,float,nonnegative,Representative-point distance divided by square root of block area,Never missing
+orientation_diff_deg,edge,float,"[0,90] deg",Minimum axial orientation difference,Null when either orientation is invalid
+orientation_similarity,edge,float,"[0,1]","(1 + cos(2 * orientation_diff_rad)) / 2",Null when either orientation is invalid
+long_side_overlap_ratio,edge,float,"[0,1]",OMBR overlap along mean main axis divided by shorter projected length,Null with calculation reason when orientation or OMBR is invalid
+long_side_offset_norm,edge,float,nonnegative,Minimum candidate long-side separation divided by square root of mean footprint area,Null with calculation reason when orientation or OMBR is invalid
+connection_axis_alignment_i,edge,float,"[0,90] deg",Source main-axis difference from connection axis,Null when source orientation is invalid
+connection_axis_alignment_j,edge,float,"[0,90] deg",Target main-axis difference from connection axis,Null when target orientation is invalid
+log_area_ratio_abs,edge,float,nonnegative,Absolute natural log of original footprint-area ratio,Null when either area is nonpositive
+height_diff_m,edge,float,m,Absolute difference of valid endpoint heights,Null plus missing flag and reason unless both heights are positive finite values
+log_height_ratio_abs,edge,float,nonnegative,Absolute natural log of valid height ratio,Null plus missing flag and reason unless both heights are positive finite values
+volume_ratio,edge,float,"[1,infinity)",Larger over smaller area-times-height LoD1 proxy,Null plus missing flag and reason unless both heights are positive finite values
+missing,edge,object,boolean map,Per-optional-field missing flags,Never missing
+missing_reasons,edge,object,string-or-null map,Per-optional-field reason,Reason required whenever value is null
