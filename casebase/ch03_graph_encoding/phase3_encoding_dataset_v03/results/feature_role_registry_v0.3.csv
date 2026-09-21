@@ -1,104 +1,104 @@
-﻿entity,field,role,unit,transform_or_encoding,missing_rule,default_input,rationale
-graph,graph.sample_id,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.block_id,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.city,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.country,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.sample_groups,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.storage_srid,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.metric_srid,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.source_block_relation,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.source_building_relation,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.block_geometry_wkt_metric,provenance_trace,identifier,none,not allowed,no,reproduction or source lookup
-graph,graph.node_count,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.cell_count,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.edge_count,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.connected_components,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.isolated_node_count,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.average_degree,auxiliary_interpretation,count_or_ratio,none,retain null and mask,no,graph size and interpretation; not default morphology input
-graph,graph.cell_failure_count,quality_audit,count_or_flag,none,retain null and mask,no,quality screening only
-graph,graph.quality_flags,quality_audit,count_or_flag,none,retain null and mask,no,quality screening only
-graph,graph.long_distance_candidate_count,quality_audit,count_or_flag,none,retain null and mask,no,quality screening only
-graph,graph.low_shared_candidate_count,quality_audit,count_or_flag,none,retain null and mask,no,quality screening only
-graph,graph.combined_weak_candidate_count,quality_audit,count_or_flag,none,retain null and mask,no,quality screening only
-block,block.elongation,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.compactness,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.bcr,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.convexity,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.rectangularity,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.far,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.bcd,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.osr,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.avh_w,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.hcv,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.footprint_cv,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.avg_complexity,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.avg_rectangularity,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.avg_convexity,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.orientation_entropy,core_model,ratio_or_index,none,retain null and mask,yes,scale-reduced block morphology candidate
-block,block.area_m2,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.lod1_building_count,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.avh,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.hsd,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.h_max,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.h_range,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.total_volume,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.avg_volume,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.avg_footprint,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.avg_orientation,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-block,block.avg_nn_distance,auxiliary_interpretation,source_unit,none,retain null and mask,no,absolute scale or duplicate-friendly interpretation field
-node,node.building_id,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.citygml_id,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.representative_point_x_m,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.representative_point_y_m,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.geometry_wkt_metric,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.source_index,provenance_trace,identifier_or_projected_m,none,retain null and mask,no,traceability or absolute projected location
-node,node.footprint_compactness,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.footprint_rectangularity,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.footprint_convexity,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.orientation_sin_2theta,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.orientation_cos_2theta,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.local_x_normalized,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.local_y_normalized,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.boundary_distance_normalized,core_model,normalized_or_ratio,none,retain null and mask,yes,normalized position and footprint form
-node,node.height_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.source_area_m2,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.source_perimeter_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.footprint_area_m2,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.footprint_perimeter_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.orientation_deg,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.local_x_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.local_y_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.boundary_distance_m,auxiliary_interpretation,m_or_m2_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-node,node.missing,quality_audit,mask_or_flag,none,retain null and mask,no,missingness and geometry quality
-node,node.missing_reasons,quality_audit,mask_or_flag,none,retain null and mask,no,missingness and geometry quality
-node,node.quality,quality_audit,mask_or_flag,none,retain null and mask,no,missingness and geometry quality
-cell,cell.building_id,provenance_trace,identifier_or_wkt,none,retain null and mask,no,cell-to-building traceability
-cell,cell.geometry_wkt_metric,provenance_trace,identifier_or_wkt,none,retain null and mask,no,cell-to-building traceability
-cell,cell.area_m2,auxiliary_interpretation,m2_or_m,none,retain null and mask,no,absolute cell size for interpretation
-cell,cell.perimeter_m,auxiliary_interpretation,m2_or_m,none,retain null and mask,no,absolute cell size for interpretation
-cell,cell.geometry_valid,quality_audit,flag,none,retain null and mask,no,geometry check
-edge,edge.edge_id,provenance_trace,identifier,none,retain null and mask,no,stable edge lookup
-edge,edge.source,provenance_trace,identifier,none,retain null and mask,no,stable edge lookup
-edge,edge.target,provenance_trace,identifier,none,retain null and mask,no,stable edge lookup
-edge,edge.shared_boundary_ratio_min,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.shared_boundary_ratio_mean,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.footprint_gap_block_norm,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.centroid_distance_block_norm,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.orientation_similarity,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.long_side_overlap_ratio,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.long_side_offset_norm,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.connection_axis_alignment_i,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.connection_axis_alignment_j,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.log_area_ratio_abs,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.log_height_ratio_abs,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.volume_ratio,core_model,normalized_ratio_or_degree,none,retain null and mask,yes,relative relation candidate
-edge,edge.shared_cell_boundary_m,auxiliary_interpretation,m_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-edge,edge.footprint_gap_m,auxiliary_interpretation,m_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-edge,edge.centroid_distance_m,auxiliary_interpretation,m_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-edge,edge.orientation_diff_deg,auxiliary_interpretation,m_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-edge,edge.height_diff_m,auxiliary_interpretation,m_or_degree,none,retain null and mask,no,absolute or human-readable counterpart
-edge,edge.missing,quality_audit,mask_or_flag,none,retain null and mask,no,review flags never delete edges
-edge,edge.missing_reasons,quality_audit,mask_or_flag,none,retain null and mask,no,review flags never delete edges
-edge,edge.long_distance_candidate,quality_audit,mask_or_flag,none,retain null and mask,no,review flags never delete edges
-edge,edge.low_shared_candidate,quality_audit,mask_or_flag,none,retain null and mask,no,review flags never delete edges
-edge,edge.combined_weak_candidate,quality_audit,mask_or_flag,none,retain null and mask,no,review flags never delete edges
+entity	field	role	unit	transform_or_encoding	missing_rule	default_input	rationale
+graph	graph.sample_id	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.block_id	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.city	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.country	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.sample_groups	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.storage_srid	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.metric_srid	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.source_block_relation	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.source_building_relation	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.block_geometry_wkt_metric	provenance_trace	identifier	none	not allowed	no	reproduction or source lookup
+graph	graph.node_count	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.cell_count	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.edge_count	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.connected_components	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.isolated_node_count	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.average_degree	auxiliary_interpretation	count_or_ratio	none	retain null and mask	no	graph size and interpretation; not default morphology input
+graph	graph.cell_failure_count	quality_audit	count_or_flag	none	retain null and mask	no	quality screening only
+graph	graph.quality_flags	quality_audit	count_or_flag	none	retain null and mask	no	quality screening only
+graph	graph.long_distance_candidate_count	quality_audit	count_or_flag	none	retain null and mask	no	quality screening only
+graph	graph.low_shared_candidate_count	quality_audit	count_or_flag	none	retain null and mask	no	quality screening only
+graph	graph.combined_weak_candidate_count	quality_audit	count_or_flag	none	retain null and mask	no	quality screening only
+block	block.elongation	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.compactness	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.bcr	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.convexity	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.rectangularity	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.far	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.bcd	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.osr	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.avh_w	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.hcv	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.footprint_cv	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.avg_complexity	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.avg_rectangularity	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.avg_convexity	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.orientation_entropy	core_model	ratio_or_index	none	retain null and mask	yes	scale-reduced block morphology candidate
+block	block.area_m2	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.lod1_building_count	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.avh	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.hsd	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.h_max	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.h_range	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.total_volume	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.avg_volume	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.avg_footprint	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.avg_orientation	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+block	block.avg_nn_distance	auxiliary_interpretation	source_unit	none	retain null and mask	no	absolute scale or duplicate-friendly interpretation field
+node	node.building_id	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.citygml_id	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.representative_point_x_m	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.representative_point_y_m	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.geometry_wkt_metric	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.source_index	provenance_trace	identifier_or_projected_m	none	retain null and mask	no	traceability or absolute projected location
+node	node.footprint_compactness	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.footprint_rectangularity	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.footprint_convexity	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.orientation_sin_2theta	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.orientation_cos_2theta	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.local_x_normalized	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.local_y_normalized	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.boundary_distance_normalized	core_model	normalized_or_ratio	none	retain null and mask	yes	normalized position and footprint form
+node	node.height_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.source_area_m2	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.source_perimeter_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.footprint_area_m2	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.footprint_perimeter_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.orientation_deg	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.local_x_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.local_y_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.boundary_distance_m	auxiliary_interpretation	m_or_m2_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+node	node.missing	quality_audit	mask_or_flag	none	retain null and mask	no	missingness and geometry quality
+node	node.missing_reasons	quality_audit	mask_or_flag	none	retain null and mask	no	missingness and geometry quality
+node	node.quality	quality_audit	mask_or_flag	none	retain null and mask	no	missingness and geometry quality
+cell	cell.building_id	provenance_trace	identifier_or_wkt	none	retain null and mask	no	cell-to-building traceability
+cell	cell.geometry_wkt_metric	provenance_trace	identifier_or_wkt	none	retain null and mask	no	cell-to-building traceability
+cell	cell.area_m2	auxiliary_interpretation	m2_or_m	none	retain null and mask	no	absolute cell size for interpretation
+cell	cell.perimeter_m	auxiliary_interpretation	m2_or_m	none	retain null and mask	no	absolute cell size for interpretation
+cell	cell.geometry_valid	quality_audit	flag	none	retain null and mask	no	geometry check
+edge	edge.edge_id	provenance_trace	identifier	none	retain null and mask	no	stable edge lookup
+edge	edge.source	provenance_trace	identifier	none	retain null and mask	no	stable edge lookup
+edge	edge.target	provenance_trace	identifier	none	retain null and mask	no	stable edge lookup
+edge	edge.shared_boundary_ratio_min	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.shared_boundary_ratio_mean	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.footprint_gap_block_norm	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.centroid_distance_block_norm	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.orientation_similarity	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.long_side_overlap_ratio	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.long_side_offset_norm	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.connection_axis_alignment_i	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.connection_axis_alignment_j	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.log_area_ratio_abs	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.log_height_ratio_abs	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.volume_ratio	core_model	normalized_ratio_or_degree	none	retain null and mask	yes	relative relation candidate
+edge	edge.shared_cell_boundary_m	auxiliary_interpretation	m_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+edge	edge.footprint_gap_m	auxiliary_interpretation	m_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+edge	edge.centroid_distance_m	auxiliary_interpretation	m_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+edge	edge.orientation_diff_deg	auxiliary_interpretation	m_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+edge	edge.height_diff_m	auxiliary_interpretation	m_or_degree	none	retain null and mask	no	absolute or human-readable counterpart
+edge	edge.missing	quality_audit	mask_or_flag	none	retain null and mask	no	review flags never delete edges
+edge	edge.missing_reasons	quality_audit	mask_or_flag	none	retain null and mask	no	review flags never delete edges
+edge	edge.long_distance_candidate	quality_audit	mask_or_flag	none	retain null and mask	no	review flags never delete edges
+edge	edge.low_shared_candidate	quality_audit	mask_or_flag	none	retain null and mask	no	review flags never delete edges
+edge	edge.combined_weak_candidate	quality_audit	mask_or_flag	none	retain null and mask	no	review flags never delete edges
