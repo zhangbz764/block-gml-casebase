@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-09-21T16:21:03.486307+08:00",
+  "experiment_id": "CH3-P3.1-NODE-CLEANUP-V031",
+  "python_executable": "E:\\0_python_envs\\urbanCode\\python.exe",
+  "python_version": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "libraries": {
+    "shapely": "2.1.2",
+    "scipy": "1.16.3",
+    "pandas": "2.3.3",
+    "geopandas": "1.1.1",
+    "matplotlib": "3.10.7",
+    "numpy": "2.3.5"
+  },
+  "database": {
+    "name": "Test20260413",
+    "server": "PostgreSQL 18.1 on x86_64-windows, compiled by msvc-19.44.35219, 64-bit",
+    "access": "read-only transaction through shared/db_readonly.py",
+    "candidate_relation": "summary.lod1_candidate_blocks"
+  }
+}

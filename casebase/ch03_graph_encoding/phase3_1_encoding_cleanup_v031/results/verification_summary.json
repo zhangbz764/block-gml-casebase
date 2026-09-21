@@ -1,0 +1,15 @@
+{
+  "experiment_id": "CH3-P3.1-NODE-CLEANUP-V031",
+  "status": "VERIFIED",
+  "passed": true,
+  "affected_block_count": 57,
+  "excluded_building_count": 308,
+  "completed_graph_count": 56,
+  "excluded_graph_count": 1,
+  "execution_failure_count": 0,
+  "regression_case_count": 3,
+  "regression_match_count": 3,
+  "unchanged_invalid_footprint_failure_count": 14,
+  "issue_count": 0,
+  "issues": []
+}
