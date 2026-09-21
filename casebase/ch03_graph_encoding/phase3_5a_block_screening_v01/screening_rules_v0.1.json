@@ -1,0 +1,55 @@
+{
+  "experiment_id": "CH3-P3.5A-BLOCK-SCREEN-V01",
+  "rule_version": "0.1",
+  "source_relation": "summary.lod1_candidate_blocks",
+  "expected_rows": 219419,
+  "expected_cities": 24,
+  "metric_fields": [
+    "area_m2", "elongation", "compactness", "lod1_building_count", "bcr",
+    "convexity", "rectangularity", "far", "bcd", "osr", "avh", "avh_w",
+    "hsd", "hcv", "h_max", "h_range", "total_volume", "avg_volume",
+    "avg_footprint", "footprint_cv", "avg_complexity", "avg_rectangularity",
+    "avg_convexity", "avg_orientation", "orientation_entropy", "avg_nn_distance"
+  ],
+  "single_building_expected_nulls": [
+    "hsd", "hcv", "footprint_cv", "avg_nn_distance"
+  ],
+  "scope_quantiles": {
+    "lower": 0.01,
+    "upper": 0.99
+  },
+  "hard_rule_priority": ["H01", "H02", "H03", "H04", "H05"],
+  "hard_rule_names": {
+    "H01": "key_or_block_geometry_invalid",
+    "H02": "candidate_contract_broken",
+    "H03": "coverage_inconsistent",
+    "H04": "unexpected_metric_missing",
+    "H05": "duplicate_centroid_signal"
+  },
+  "scope_rule_names": {
+    "S01": "area_upper_tail",
+    "S02": "elongation_lower_tail",
+    "S03": "compactness_lower_tail",
+    "S04": "building_count_upper_tail",
+    "S05": "bcr_lower_tail",
+    "S06": "large_sparse_combination"
+  },
+  "qa_reuse_source": "casebase/quality_checks/lod1_candidate_20260907/lod1_candidate_qa.py",
+  "qa_error_rules": [
+    "nonpositive_block_area", "elongation_outside_0_1", "compactness_outside_0_1",
+    "candidate_without_building", "negative_bcr", "convexity_outside_0_1",
+    "rectangularity_outside_0_1", "negative_far", "nonpositive_bcd",
+    "nonpositive_average_height", "nonpositive_weighted_height", "negative_height_sd",
+    "negative_height_cv", "nonpositive_max_height", "negative_height_range",
+    "nonpositive_total_volume", "nonpositive_average_volume",
+    "nonpositive_average_footprint", "negative_footprint_cv", "complexity_below_1",
+    "building_rectangularity_outside_0_1", "building_convexity_outside_0_1",
+    "orientation_outside_0_180", "orientation_entropy_outside_range",
+    "negative_nn_distance", "osr_formula_mismatch", "average_height_above_max",
+    "weighted_height_above_max", "average_volume_above_total"
+  ],
+  "known_qa_regression_counts": {
+    "coverage_inconsistent_unique_blocks": 86,
+    "duplicate_centroid_signal_blocks": 2
+  }
+}

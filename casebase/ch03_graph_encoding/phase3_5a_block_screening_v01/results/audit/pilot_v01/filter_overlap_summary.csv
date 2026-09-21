@@ -1,0 +1,12 @@
+﻿machine_status,rule_overlap,block_count
+exclude_hard,H03,86
+exclude_hard,H04,6
+exclude_hard,H05,2
+keep_provisional,none,228
+review_scope,S01,1
+review_scope,S01;S04,2
+review_scope,S02,2
+review_scope,S02;S03,1
+review_scope,S03,2
+review_scope,S04,1
+review_scope,S05,3

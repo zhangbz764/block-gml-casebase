@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-09-21T19:58:14.411465+08:00",
+  "experiment_id": "CH3-P3.5A-BLOCK-SCREEN-V01",
+  "python_executable": "E:\\0_python_envs\\urbanCode\\python.exe",
+  "python_version": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "libraries": {
+    "pandas": "2.3.3",
+    "numpy": "2.3.5",
+    "psycopg2": "2.9.11",
+    "matplotlib": "3.10.7",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.1"
+  },
+  "database": {
+    "name": "Test20260413",
+    "server": "PostgreSQL 18.1 on x86_64-windows, compiled by msvc-19.44.35219, 64-bit",
+    "transaction_read_only": "on",
+    "access": "shared/db_readonly.py"
+  }
+}

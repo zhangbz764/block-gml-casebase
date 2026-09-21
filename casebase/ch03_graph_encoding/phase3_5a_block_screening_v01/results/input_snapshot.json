@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-09-21T19:58:14.411465+08:00",
+  "run_id": "pilot_v01",
+  "mode": "pilot",
+  "source_relation": "summary.lod1_candidate_blocks",
+  "transaction_read_only": "on",
+  "candidate_record_count": 219419,
+  "city_count": 24,
+  "unique_city_block_count": 219419,
+  "geometry_field": "geom",
+  "metric_field_count": 26,
+  "query_sha256": "02758d3b42e59db1aa2a9cd7e26cedc7f09a915d108890ce619c2ac8b8b6080a",
+  "screening_rules_sha256": "ab0955ced22fcd5f43d939311b5a2eb19bde73d29448362fb5cb883cbf954dff"
+}
