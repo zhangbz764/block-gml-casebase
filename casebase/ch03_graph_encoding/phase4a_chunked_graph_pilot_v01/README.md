@@ -46,7 +46,13 @@ smoke 每层只有 1 例，因此外推时在 pilot 权重 `stratum_population /
 - 图文件总大小：13,533,625,759 字节，约 12.60 GiB
 - 查询约占总时间 12.12%，主要耗时来自图编码
 
-本次没有查询超时或城市集中失败，CSV 驱动的只读分块查询足够稳定；当前建议是不建立数据库辅助表。上述估算来自每个城市×层 1 个 smoke 案例，正式资源决策仍应在研究者手动运行 2,400 例 pilot 后更新。
+本次没有查询超时或城市集中失败，CSV 驱动的只读分块查询足够稳定；当前建议是不建立数据库辅助表。
+
+## 2,400 例 pilot 补充结果
+
+研究者随后手动完成了 `pilot_v01`：2,400 例全部进入账本，2,398 例完成，2 例因单栋建筑存在无有效面状面积而失败，分别为 Boston `US_BO_003310` 和 San Francisco `US_SF_000689`。没有查询超时或批次缺失；这两例成为后续 v0.3.2 建筑级容错的冻结回归案例。
+
+pilot 加权估算为：数据库查询约 2.20 小时、编码约 83.83 小时、总计约 86.03 小时，图文件约 18.78 GiB。查询只占预计总时间约 2.55%，因此继续采用 CSV 驱动的只读分块查询，不建立数据库辅助表。
 
 ## 恢复与输出策略
 
@@ -56,7 +62,7 @@ smoke 每层只有 1 例，因此外推时在 pilot 权重 `stratum_population /
 - 每个案例立即刷新 `encoding_status.csv`，每个城市批次原子刷新 `chunk_status.csv`。
 - `results/smoke/` 和 `results/pilot/` 是可重新生成的阶段数据包，不进入 Git；抽样清单、输入快照及 `results/audit/` 紧凑摘要进入 Git。
 
-研究者确认 smoke 后可手动运行：
+pilot 的手动运行命令为：
 
 ```powershell
 E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase4a_chunked_graph_pilot_v01\run_phase4a.py --mode pilot --run-id pilot_v01 --chunk-size 100
