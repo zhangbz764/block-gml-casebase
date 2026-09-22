@@ -1,0 +1,5 @@
+﻿cohort,block_count,building_node_count,min_building_count,median_building_count,p95_building_count,p99_building_count,p995_building_count,max_building_count
+input_all,219419,8249765,1,23,105,254,368.910000000003,9445
+hard_eligible,219325,8249155,1,23,105,254,369,9445
+graph_scale_excluded_p995,1098,772271,369,529,1551.25,2912.06,3412.23500000003,9445
+final_eligible,213054,7158522,1,23,95,185,230,368

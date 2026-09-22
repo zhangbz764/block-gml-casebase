@@ -1,0 +1,14 @@
+﻿rule_id,reason,independent_hit_count,triggers_exclusion
+H01,H01,0,True
+H02,H02,0,True
+H03,H03,86,True
+H04,H04,6,True
+H05,H05,2,True
+H01-H05,any_hard_rule,94,True
+S01,area_upper_tail_p99,2194,True
+S02,elongation_lower_tail_p01_retain,2194,False
+S03,compactness_lower_tail_p01,2194,True
+S04,building_count_upper_tail_p99_retain,2197,False
+S05,bcr_lower_tail_p01,2194,True
+S06,large_sparse_combination,172,False
+P995,building_count_upper_tail_p995,1098,True

@@ -1,0 +1,42 @@
+{
+  "experiment_id": "CH3-P3.5B-FINAL-FREEZE-V01",
+  "final_rule_version": "0.2",
+  "source_phase": "phase3_5a_block_screening_v01",
+  "source_run_id": "full_v01",
+  "expected_source_sha256": "e2eb993b7bf1b096e0e94dd42976d05046c7d72ea69be512581a63985c44cb9a",
+  "expected_input_rows": 219419,
+  "expected_input_cities": 24,
+  "expected_hard_eligible_rows": 219325,
+  "graph_scale_quantile": 0.995,
+  "expected_building_count_p995_threshold": 369.0,
+  "exclusion_rules": {
+    "H01_H05_any": "exclude",
+    "S01": "exclude",
+    "S02": "retain_flag_only",
+    "S03": "exclude",
+    "S04": "retain_flag_only",
+    "S05": "exclude",
+    "S06": "retain_composite_reason",
+    "building_count_p995": "exclude"
+  },
+  "primary_reason_priority": [
+    "primary_hard_reason",
+    "area_upper_tail_p99",
+    "compactness_lower_tail_p01",
+    "bcr_lower_tail_p01",
+    "building_count_upper_tail_p995"
+  ],
+  "expected_frozen_counts": {
+    "final_excluded": 6365,
+    "final_eligible": 213054,
+    "final_eligible_building_nodes": 7158522,
+    "eligible_original_S04": 755,
+    "eligible_S02": 1054,
+    "graph_scale_p995_hits": 1098,
+    "hard_any_hits": 94,
+    "S01_hits": 2194,
+    "S03_hits": 2194,
+    "S05_hits": 2194,
+    "eligible_cities": 24
+  }
+}

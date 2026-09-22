@@ -1,0 +1,15 @@
+{
+  "source_phase": "phase3_5a_block_screening_v01",
+  "source_run_id": "full_v01",
+  "source_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase3_5a_block_screening_v01\\results\\bulk\\full_v01\\block_screening_ledger.csv.gz",
+  "source_sha256": "e2eb993b7bf1b096e0e94dd42976d05046c7d72ea69be512581a63985c44cb9a",
+  "source_size_bytes": 60874648,
+  "source_rows": 219419,
+  "source_cities": 24,
+  "source_unique_city_block_keys": 219419,
+  "source_key_is_unique": true,
+  "source_rule_versions": [
+    "0.1"
+  ],
+  "captured_at_utc": "2026-09-22T06:55:07.191548+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "experiment_id": "CH3-P3.5B-FINAL-FREEZE-V01",
+  "status": "FROZEN",
+  "final_rule_version": "0.2",
+  "source_run_id": "full_v01",
+  "run_id": "final_v01",
+  "input_rows": 219419,
+  "input_cities": 24,
+  "hard_eligible_rows": 219325,
+  "building_count_p995_threshold": 369.0,
+  "final_excluded": 6365,
+  "final_eligible": 213054,
+  "final_eligible_ratio": 0.9709915732001331,
+  "final_eligible_building_nodes": 7158522,
+  "hard_any_hits": 94,
+  "S01_hits": 2194,
+  "S03_hits": 2194,
+  "S05_hits": 2194,
+  "graph_scale_p995_hits": 1098,
+  "eligible_original_S04": 755,
+  "eligible_S02": 1054,
+  "eligible_cities": 24,
+  "artifact_sha256": {
+    "final_screening_ledger": "51f3e844c8deeedac4e1eb2091767cd5a76c00a9d3ea8da36d923a26c389315d",
+    "excluded_blocks": "d3514ab64fda312afe3a171e0bfb48d87b22b84a570afe0366358e72311da979",
+    "graph_encoding_manifest": "fe98fadbe6880bdffe92bd3dcac250265aaefbb1c13d90a7f4698a384ce4e9e7"
+  },
+  "generated_at_utc": "2026-09-22T06:55:07.191548+00:00",
+  "graph_construction_started": false
+}
