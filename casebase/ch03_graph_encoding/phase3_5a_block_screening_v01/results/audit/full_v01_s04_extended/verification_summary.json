@@ -1,0 +1,21 @@
+{
+  "candidate_city_count": 20,
+  "candidate_pool_count": 1184,
+  "expected_candidate_pool_count": 1184,
+  "metric_grid_cell_count": 16,
+  "metric_grid_min_per_cell": 2,
+  "metric_grid_sample_count": 32,
+  "new_sample_count": 48,
+  "passed": true,
+  "prior_cases_retained": true,
+  "prior_sample_count": 12,
+  "sample_count": 60,
+  "sample_origin_counts": {
+    "city_balance": 5,
+    "city_coverage": 11,
+    "metric_grid": 32,
+    "prior_12": 12
+  },
+  "sampled_city_count": 20,
+  "unique_block_count": 60
+}

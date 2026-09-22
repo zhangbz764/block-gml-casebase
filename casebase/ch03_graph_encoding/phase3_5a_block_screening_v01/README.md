@@ -42,3 +42,14 @@ E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_blo
 ```
 
 可提交的小型结果位于 `results/audit/full_v01_solo/`；可重新生成且默认忽略的联系表与交互式页面位于 `results/visual_review/full_v01_solo/`。
+
+## S04-only 扩大抽样复核
+
+以下命令保留 `full_v01_solo` 中已经查看的 12 个 S04-only 案例，并从冻结的 1,184 个候选中补抽 48 个，形成覆盖 20 城的 60 例复核集。固定种子和稳定排序保证结果可复现。
+
+```powershell
+E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_block_screening_v01\build_s04_extended_review.py --source-run-id full_v01 --prior-run-id full_v01_solo --output-run-id full_v01_s04_extended --new-sample-size 48 --seed 20260922
+E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_block_screening_v01\render_review_cases.py --run-id full_v01_s04_extended --page-size 20
+```
+
+60 例清单、采样摘要、空白人工判断表和核验摘要位于 `results/audit/full_v01_s04_extended/`；三页联系表及完整 HTML 位于可重新生成、默认忽略的 `results/visual_review/full_v01_s04_extended/`。

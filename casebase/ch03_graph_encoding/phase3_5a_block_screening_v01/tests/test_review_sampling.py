@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -11,7 +12,7 @@ PHASE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PHASE_DIR))
 
 from build_review_sample import build_review_manifest
-from render_review_cases import build_review_html
+from render_review_cases import _case_title, _render_contact_sheets, build_review_html
 
 
 def review_fixture() -> pd.DataFrame:
@@ -63,6 +64,78 @@ THRESHOLDS = {
 
 
 class ReviewSamplingTests(unittest.TestCase):
+    def test_paginated_title_adds_extended_review_fields_without_changing_default_title(self):
+        case = pd.DataFrame(
+            [
+                {
+                    "extended_case_no": 7,
+                    "city": "Test City",
+                    "block_id": "B007",
+                    "lod1_building_count": 321,
+                    "area_m2": 4567.8,
+                    "sample_origin": "city_balance",
+                    "hard_reasons": "",
+                    "scope_reasons": "building_count_upper_tail",
+                }
+            ]
+        ).itertuples(index=False).__next__()
+
+        self.assertEqual(_case_title(case, paginated=False), "Test City | B007\nbuilding_count_upper_tail")
+        paginated = _case_title(case, paginated=True)
+        for text in ("#7", "Test City", "B007", "buildings=321", "area=4567.8", "city_balance"):
+            self.assertIn(text, paginated)
+
+    def test_contact_sheet_pagination_preserves_default_and_splits_sixty_cases(self):
+        rows = []
+        block_features = []
+        for index in range(60):
+            city = f"City{index % 20:02d}"
+            block_id = f"B{index:03d}"
+            rows.append(
+                {
+                    "extended_case_no": index + 1,
+                    "city": city,
+                    "block_id": block_id,
+                    "lod1_building_count": 100 + index,
+                    "area_m2": 1000.0 + index,
+                    "sample_origin": "metric_grid",
+                    "hard_reasons": "",
+                    "scope_reasons": "building_count_upper_tail",
+                    **{f"H{i:02d}": False for i in range(3, 6)},
+                    **{f"S{i:02d}": i == 4 for i in range(1, 7)},
+                }
+            )
+            block_features.append(
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 0]]],
+                    },
+                    "properties": {"city": city, "block_id": block_id},
+                }
+            )
+        manifest = pd.DataFrame(rows)
+        blocks = {"type": "FeatureCollection", "features": block_features}
+        buildings = {"type": "FeatureCollection", "features": []}
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            default_dir = root / "default"
+            paged_dir = root / "paged"
+            _render_contact_sheets(manifest, blocks, buildings, default_dir)
+            _render_contact_sheets(manifest, blocks, buildings, paged_dir, page_size=20)
+
+            self.assertEqual([path.name for path in default_dir.glob("*.png")], ["S04_contact_sheet.png"])
+            self.assertEqual(
+                sorted(path.name for path in paged_dir.glob("*.png")),
+                [
+                    "S04_contact_sheet_p01.png",
+                    "S04_contact_sheet_p02.png",
+                    "S04_contact_sheet_p03.png",
+                ],
+            )
+
     def test_review_html_contains_case_identity_and_rule_context(self):
         blocks = {
             "type": "FeatureCollection",

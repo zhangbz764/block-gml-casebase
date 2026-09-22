@@ -71,7 +71,8 @@ def _fetch_geojson(connection, manifest: pd.DataFrame) -> tuple[dict[str, Any], 
             if key in {
                 "city", "block_id", "machine_status", "hard_reasons", "scope_reasons",
                 "review_sample_roles", "area_m2", "elongation", "compactness",
-                "lod1_building_count", "bcr",
+                "lod1_building_count", "bcr", "extended_case_no", "sample_origin",
+                "count_band", "area_band",
             }
         }
         for row in manifest.itertuples(index=False)
@@ -118,12 +119,28 @@ def _plot_geometry(ax, geometry, *, color: str, linewidth: float, fill: bool = F
             _plot_geometry(ax, part, color=color, linewidth=linewidth, fill=fill)
 
 
+def _case_title(case: Any, *, paginated: bool) -> str:
+    reasons = case.hard_reasons if case.hard_reasons else case.scope_reasons
+    if not paginated:
+        return f"{case.city} | {case.block_id}\n{reasons}"
+    building_count = f"{float(case.lod1_building_count):g}"
+    area_m2 = f"{float(case.area_m2):g}"
+    return (
+        f"#{case.extended_case_no} {case.city} | {case.block_id}\n"
+        f"buildings={building_count} | area={area_m2} m² | {case.sample_origin}"
+    )
+
+
 def _render_contact_sheets(
     manifest: pd.DataFrame,
     blocks: dict[str, Any],
     buildings: dict[str, Any],
     output_dir: Path,
+    *,
+    page_size: int | None = None,
 ) -> None:
+    if page_size is not None and page_size < 1:
+        raise ValueError("page_size must be positive")
     output_dir.mkdir(parents=True, exist_ok=True)
     block_by_key = {
         (str(feature["properties"]["city"]), str(feature["properties"]["block_id"])): feature
@@ -134,33 +151,43 @@ def _render_contact_sheets(
         key = (str(feature["properties"]["city"]), str(feature["properties"]["block_id"]))
         buildings_by_key.setdefault(key, []).append(feature)
     for rule in (*[f"H{i:02d}" for i in range(3, 6)], *[f"S{i:02d}" for i in range(1, 7)]):
-        cases = manifest.loc[manifest[rule].astype("string").str.lower().eq("true")].head(12)
-        if cases.empty:
+        rule_cases = manifest.loc[manifest[rule].astype("string").str.lower().eq("true")]
+        if rule_cases.empty:
             continue
-        columns = 4
-        rows = math.ceil(len(cases) / columns)
-        fig, axes = plt.subplots(rows, columns, figsize=(16, 4 * rows), squeeze=False)
-        for ax in axes.ravel():
-            ax.axis("off")
-        for ax, case in zip(axes.ravel(), cases.itertuples(index=False)):
-            key = (str(case.city), str(case.block_id))
-            block = block_by_key.get(key)
-            if block:
-                _plot_geometry(ax, shape(block["geometry"]), color="#d7301f", linewidth=1.5)
-            for feature in buildings_by_key.get(key, []):
-                _plot_geometry(ax, shape(feature["geometry"]), color="#777777", linewidth=0.35, fill=True)
-            reasons = case.hard_reasons if case.hard_reasons else case.scope_reasons
-            ax.set_title(f"{case.city} | {case.block_id}\n{reasons}", fontsize=8)
-            ax.set_aspect("equal", adjustable="datalim")
-            ax.axis("off")
-        fig.tight_layout()
-        fig.savefig(output_dir / f"{rule}_contact_sheet.png", dpi=160, bbox_inches="tight")
-        plt.close(fig)
+        if page_size is None:
+            pages = [rule_cases.head(12)]
+        else:
+            pages = [rule_cases.iloc[start:start + page_size] for start in range(0, len(rule_cases), page_size)]
+        for page_index, cases in enumerate(pages, start=1):
+            columns = 4
+            rows = math.ceil(len(cases) / columns)
+            fig, axes = plt.subplots(rows, columns, figsize=(16, 4 * rows), squeeze=False)
+            for ax in axes.ravel():
+                ax.axis("off")
+            for ax, case in zip(axes.ravel(), cases.itertuples(index=False)):
+                key = (str(case.city), str(case.block_id))
+                block = block_by_key.get(key)
+                if block:
+                    _plot_geometry(ax, shape(block["geometry"]), color="#d7301f", linewidth=1.5)
+                for feature in buildings_by_key.get(key, []):
+                    _plot_geometry(ax, shape(feature["geometry"]), color="#777777", linewidth=0.35, fill=True)
+                ax.set_title(_case_title(case, paginated=page_size is not None), fontsize=8)
+                ax.set_aspect("equal", adjustable="datalim")
+                ax.axis("off")
+            fig.tight_layout()
+            filename = (
+                f"{rule}_contact_sheet.png"
+                if page_size is None
+                else f"{rule}_contact_sheet_p{page_index:02d}.png"
+            )
+            fig.savefig(output_dir / filename, dpi=160, bbox_inches="tight")
+            plt.close(fig)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-id", required=True)
+    parser.add_argument("--page-size", type=int)
     args = parser.parse_args()
     validate_run_id(args.run_id)
     manifest_path = RESULTS_DIR / "audit" / args.run_id / "review_manifest.csv"
@@ -176,7 +203,13 @@ def main() -> int:
     (output_dir / "review_cases.html").write_text(
         build_review_html(blocks, buildings), encoding="utf-8"
     )
-    _render_contact_sheets(manifest, blocks, buildings, output_dir / "contact_sheets")
+    _render_contact_sheets(
+        manifest,
+        blocks,
+        buildings,
+        output_dir / "contact_sheets",
+        page_size=args.page_size,
+    )
     print(json.dumps({"run_id": args.run_id, "case_count": len(manifest), "output": str(output_dir)}, ensure_ascii=False))
     return 0
 
