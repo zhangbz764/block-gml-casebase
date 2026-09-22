@@ -1,0 +1,21 @@
+{
+  "experiment_id": "CH3-P4B-FULL-GRAPH-V032",
+  "encoding_version": "0.3.2",
+  "source_manifest_sha256": "fe98fadbe6880bdffe92bd3dcac250265aaefbb1c13d90a7f4698a384ce4e9e7",
+  "source_manifest_rows": 213054,
+  "chunk_size": 100,
+  "tessellation_parameters": {
+    "shrink_m": 0.4,
+    "segment_m": 0.5,
+    "min_shared_boundary_m": 0.000001
+  },
+  "building_exclusion_reasons": [
+    "invalid_polygonal_area_before_shrink",
+    "empty_after_shrink"
+  ],
+  "allowed_case_statuses": [
+    "completed",
+    "excluded_no_valid_building",
+    "failed"
+  ]
+}

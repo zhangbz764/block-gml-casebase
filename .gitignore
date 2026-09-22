@@ -44,3 +44,8 @@ outputs/
 # Phase 4A regenerable run ledgers and graph batches
 /casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/smoke/
 /casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/pilot/
+
+# Phase 4B frozen data package and regenerable formal run outputs
+/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/dataset/
+/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/runs/
+/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/regression/graphs/

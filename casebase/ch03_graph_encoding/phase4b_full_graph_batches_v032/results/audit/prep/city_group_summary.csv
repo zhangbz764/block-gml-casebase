@@ -1,0 +1,13 @@
+﻿part_id,cities,subset_rule,expected_block_count,pilot_estimated_hours,actual_block_count
+part_01,Tokyo,tokyo_block_id_odd_1based,28892,8.62,28892
+part_02,Tokyo,tokyo_block_id_even_1based,28891,8.62,28891
+part_03,Sapporo,whole_city,29362,5.37,29362
+part_04,Osaka,whole_city,23073,6.67,23073
+part_05,Chicago,whole_city,16610,11.87,16610
+part_06,Kanazawa;Lyon;Zurich,whole_city,12620,3.68,12620
+part_07,Toronto;Dresden;Bologna,whole_city,12878,7.73,12878
+part_08,Portland;Amsterdam,whole_city,12085,3.93,12085
+part_09,Berlin;Paris,whole_city,12180,9.0,12180
+part_10,Vienna;Boston;New York,whole_city,12002,6.27,12002
+part_11,Winnipeg;Washington D.C.;Marseille,whole_city,12014,6.37,12014
+part_12,Hamburg;San Francisco;Rotterdam;Luxembourg,whole_city,12447,7.91,12447
