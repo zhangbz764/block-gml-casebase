@@ -1,7 +1,7 @@
 {
-  "captured_at": "2026-09-21T19:58:14.411465+08:00",
-  "run_id": "pilot_v01",
-  "mode": "pilot",
+  "captured_at": "2026-09-21T21:11:36.037275+08:00",
+  "run_id": "full_v01",
+  "mode": "full",
   "source_relation": "summary.lod1_candidate_blocks",
   "transaction_read_only": "on",
   "candidate_record_count": 219419,

@@ -165,7 +165,7 @@ def verify(mode: str, run_id: str) -> dict[str, Any]:
         "rule_version": RULES["rule_version"],
         "run_id": run_id,
         "mode": mode,
-        "status": "PILOT_VERIFIED" if mode == "pilot" and not issues else ("VERIFIED" if not issues else "FAILED"),
+        "status": "PILOT_VERIFIED" if mode == "pilot" and not issues else ("ANALYZED" if mode == "full" and not issues else "FAILED"),
         "passed": not issues,
         "ledger_rows": len(ledger),
         "city_count": int(ledger["city"].nunique(dropna=True)),

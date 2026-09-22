@@ -1,7 +1,7 @@
 {
-  "captured_at": "2026-09-21T19:58:14.411465+08:00",
-  "run_id": "pilot_v01",
-  "mode": "pilot",
+  "captured_at": "2026-09-21T21:11:36.037275+08:00",
+  "run_id": "full_v01",
+  "mode": "full",
   "experiment_id": "CH3-P3.5A-BLOCK-SCREEN-V01",
   "rule_version": "0.1",
   "source_sha256": {
@@ -9,11 +9,11 @@
     "query_candidate_blocks.sql": "02758d3b42e59db1aa2a9cd7e26cedc7f09a915d108890ce619c2ac8b8b6080a",
     "screen_blocks.py": "d22fbc9d0b4ade5b9c5f6a2be48d4e5ada86ab756a79a1bf42c7a177cf0b4a6a",
     "run_phase3_5a.py": "e1cad61532d57d0897ae4cc995e671bef8e98fa80fc88513df307fae4bb71371",
-    "verify_screening.py": "6ac86e1caefe68874f22fb1c1d3514b4082d1d40d9b3133a03ba1eabf9d031ad",
+    "verify_screening.py": "1c2582f0eaa13da65d37033044e36a349e09f83b2d86ffd7372643f59ff43453",
     "build_review_sample.py": "01313befd0c3e5fc2a332bedc0876810fedef36d9eb18567d3c6e38a1e7fe161",
     "render_review_cases.py": "2ba5e727adf5fd4f3a2e1fda95d214b93e8b25fd7961f08f5d7224e34a35a9a0"
   },
-  "ledger_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase3_5a_block_screening_v01\\results\\pilot\\pilot_screening_ledger.csv",
-  "ledger_sha256": "c3d07d96bf63f90b6d1b9674d8a205270e4d630e0e0d01b86435c31c2c0df692",
-  "verification_sha256": "001a55412fbd563ae4bb41b07689eb00695f0c68eb3bc623b603be7254e54fce"
+  "ledger_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase3_5a_block_screening_v01\\results\\bulk\\full_v01\\block_screening_ledger.csv.gz",
+  "ledger_sha256": "e2eb993b7bf1b096e0e94dd42976d05046c7d72ea69be512581a63985c44cb9a",
+  "verification_sha256": "3fae023e2468b909237b2cfb09cf6da0ba9dd13f32a5fb8b6be89d5574cce809"
 }

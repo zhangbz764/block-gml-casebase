@@ -1,0 +1,12 @@
+﻿rule_id,rule_name,rule_type,matched_count
+H01,key_or_block_geometry_invalid,hard,0
+H02,candidate_contract_broken,hard,0
+H03,coverage_inconsistent,hard,86
+H04,unexpected_metric_missing,hard,6
+H05,duplicate_centroid_signal,hard,2
+S01,area_upper_tail,scope,2194
+S02,elongation_lower_tail,scope,2194
+S03,compactness_lower_tail,scope,2194
+S04,building_count_upper_tail,scope,2197
+S05,bcr_lower_tail,scope,2194
+S06,large_sparse_combination,scope,172
