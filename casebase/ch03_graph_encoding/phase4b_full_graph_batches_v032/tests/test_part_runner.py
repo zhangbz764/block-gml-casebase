@@ -16,7 +16,7 @@ META = {
     "source_manifest_sha256": "source", "full_manifest_sha256": "full",
     "part_manifest_sha256": "part", "encoding_spec_sha256": "spec",
     "encoding_version": "0.3.2", "part_id": "part_01", "run_id": "run",
-    "parameter_sha256": "parameters",
+    "parameter_sha256": "parameters", "code_bundle_sha256": "code-v1",
 }
 
 
@@ -43,6 +43,8 @@ class PartRunnerTests(unittest.TestCase):
             self.assertEqual(resume_action({"status": "failed", "attempt": 2}, path.with_name("missing.gz"), META, True), ("run", 3))
             with self.assertRaises(RuntimeError):
                 resume_action({"status": "completed", "attempt": 1}, path, {**META, "part_id": "part_02"}, False)
+            with self.assertRaises(RuntimeError):
+                resume_action({"status": "completed", "attempt": 1}, path, {**META, "code_bundle_sha256": "code-v2"}, False)
 
 
 if __name__ == "__main__":

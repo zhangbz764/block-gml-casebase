@@ -1,0 +1,16 @@
+{
+  "hash_algorithm": "sha256",
+  "root": "casebase/ch03_graph_encoding",
+  "files": {
+    "phase2_5_tessellation_relations_v02/tessellation_encoding.py": "c6d9fbfc9afafb2b5f344783bfe2853ca6cae2cb0091f87073449a71986b1f17",
+    "phase3_encoding_dataset_v03/export_phase3.py": "39fdfd1fe84b54b23ca50f4068503cecdb80e9206ef8a58380b6f78746ff7e95",
+    "phase4a_chunked_graph_pilot_v01/batch_db_reader.py": "05b2a9cd6cfdba41457a4baaeb8d4dbf968e46eaa290b93d8ce43b4a1ab777a3",
+    "phase4b_full_graph_batches_v032/analyze_phase4b.py": "dfd2ba0df5c62dc1b4c28e0cab9e883383fac515a45a2dcc83767a9272eeceb7",
+    "phase4b_full_graph_batches_v032/code_integrity.py": "1f8cd49568b080a3b99c84076a3008a708ab6d5ecf3965c5e7be4720dd2d2ebd",
+    "phase4b_full_graph_batches_v032/export_phase4b_v032.py": "f995ad7bf05326f37677f53917692356f50c19ad0c2666b84fd19b5811a78028",
+    "phase4b_full_graph_batches_v032/filter_buildings_v032.py": "00cde555e3ae2fbf4c9df17f51dcde56ba7c43d49bf877abd427cbb6ad10275e",
+    "phase4b_full_graph_batches_v032/run_phase4b.py": "cead15cbcc4865c7c5c8da8a590691fd269b7f73cbdc066c0b9e81042113109d",
+    "shared/db_readonly.py": "4e43ca3a90b5d4e441e599113f9a0cb8b3a7bea7c03e6a19b3f8991d11f2c33c"
+  },
+  "code_bundle_sha256": "aec73426e4b9a7ec31d329ada9ed2051971a07fc359eb6907bc4f79c1a9011f0"
+}

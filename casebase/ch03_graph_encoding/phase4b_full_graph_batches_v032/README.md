@@ -29,18 +29,19 @@
 E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase4b_full_graph_batches_v032\run_phase4b.py --part-id part_01 --run-id full_v032_part_01 --chunk-size 100
 ```
 
-运行其他分组时同时替换命令中的两处 `part_01`。同一命令再次执行会核对清单、参数和编码散列，跳过已有且一致的成功图，继续尚未处理的案例。失败案例默认保留；只有明确加入 `--retry-failed` 才会增加一次尝试：
+运行其他分组时同时替换命令中的两处 `part_01`。启动前会重新核对 Phase 3.5B 母清单、Phase 4B 总清单、当前 part 清单和关键代码组合散列；已存在的其他 part 也必须使用同一代码组合。同一命令再次执行会跳过已有且一致的成功图，继续尚未处理的案例。失败案例默认保留；只有明确加入 `--retry-failed` 才会增加一次尝试：
 
 ```powershell
 E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase4b_full_graph_batches_v032\run_phase4b.py --part-id part_01 --run-id full_v032_part_01 --chunk-size 100 --retry-failed
 ```
 
-数据库连接沿用项目 `.env`，事务强制只读。每个 part 正常结束后会自动生成紧凑摘要，不需要另跑分析命令。
+数据库连接沿用项目 `.env`，事务强制只读。数据库返回的建筑数与冻结清单不一致时，该案例直接记为 `failed`，不会生成 Graph。每个 part 正常结束后会自动生成紧凑摘要，不需要另跑分析命令；摘要中只要仍有 `failed` 或 `interrupted`，进程就返回非零状态。
 
 ## 输出与核验
 
 - 图：`results/dataset/graphs/<part_id>/<city>/<chunk_id>/`
-- 状态账本：`results/runs/full_v032/<part_id>/`
+- 追加式案例账本：`results/runs/full_v032/<part_id>/encoding_status.csv`和`building_exclusions.csv`
+- chunk结束时的原子快照：同目录下对应的`*_snapshot.csv`
 - part 审计摘要：`results/audit/full_v032/<part_id>/`
 - 冻结清单：`results/dataset/`（默认不进入 Git）
 - 准备态摘要：`results/audit/prep/`
@@ -51,4 +52,4 @@ E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase4b_full_
 E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase4b_full_graph_batches_v032\verify_phase4b.py --all-parts
 ```
 
-若任何 part 缺失、状态未闭合或成功图缺失，命令会列明问题并以非零状态退出；它不会补跑或生成 Graph。全量核验通过前保留 Phase 4A pilot Graph。
+若任何 part 缺失、状态未闭合、成功图缺失，或者Graph的v0.3.2版本、part、清单散列、代码组合散列和`validation.passed`不一致，命令会列明问题并以非零状态退出；它不会补跑或生成 Graph。全量核验通过前保留 Phase 4A pilot Graph。

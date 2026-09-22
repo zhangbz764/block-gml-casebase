@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-import gzip
+import csv
 import hashlib
 import json
 import os
@@ -30,11 +30,16 @@ from export_phase3 import DEFAULT_TESSELLATION_CONFIG, read_graph, write_graph
 from shared.db_readonly import readonly_connection
 
 from analyze_phase4b import analyze_part
+from code_integrity import load_and_verify_frozen_code
 from export_phase4b_v032 import ENCODING_VERSION, encode_block_to_v032
 
 
 SPEC_PATH = PHASE_DIR / "encoding_spec_v032.json"
 SPEC = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
+SOURCE_MANIFEST_PATH = CH03_DIR / "phase3_5b_final_sample_freeze_v01" / "results" / "dataset" / "graph_encoding_manifest.csv.gz"
+FULL_MANIFEST_PATH = RESULTS_DIR / "dataset" / "full_run_manifest_v032.csv.gz"
+MANIFEST_HASHES_PATH = RESULTS_DIR / "audit" / "prep" / "manifest_hashes.json"
+CODE_HASHES_PATH = RESULTS_DIR / "audit" / "prep" / "code_hashes.json"
 PART_IDS = tuple(f"part_{index:02d}" for index in range(1, 13))
 STATUS_FIELDS = [
     "run_id", "part_id", "attempt", "sample_id", "city", "block_id", "chunk_id",
@@ -77,6 +82,26 @@ def _atomic_json(path: Path, value: dict) -> None:
     os.replace(temporary, path)
 
 
+def append_csv_row(path: Path, row: dict, fields: list[str]) -> None:
+    """Append and fsync one ledger row without rewriting earlier cases."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_header = not path.exists() or path.stat().st_size == 0
+    with path.open("a", encoding="utf-8", newline="") as handle:
+        if write_header:
+            handle.write("\ufeff")
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
+        if write_header:
+            writer.writeheader()
+        writer.writerow({field: row.get(field, "") for field in fields})
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def snapshot_csv_ledger(ledger_path: Path, snapshot_path: Path, fields: list[str]) -> None:
+    rows = _read_csv_rows(ledger_path) if ledger_path.exists() else []
+    _atomic_csv(snapshot_path, rows, fields)
+
+
 def _read_csv_rows(path: Path) -> list[dict[str, str]]:
     return pd.read_csv(path, encoding="utf-8-sig", dtype=str, keep_default_na=False).to_dict("records")
 
@@ -102,8 +127,61 @@ def validate_part_rows(rows: list[dict], part_id: str) -> None:
         raise RuntimeError("Part manifest contains duplicate city + block_id")
 
 
+def verify_frozen_manifest_files(
+    source_path: Path,
+    full_path: Path,
+    part_path: Path,
+    part_id: str,
+    recorded: dict,
+) -> None:
+    expected = {
+        "source manifest": recorded["source_manifest_sha256"],
+        "full manifest": recorded["full_run_manifest_v032.csv.gz"],
+        f"{part_id} manifest": recorded["parts"][part_id],
+    }
+    actual = {
+        "source manifest": sha256_file(source_path),
+        "full manifest": sha256_file(full_path),
+        f"{part_id} manifest": sha256_file(part_path),
+    }
+    changed = [name for name in expected if actual[name] != expected[name]]
+    if changed:
+        raise RuntimeError(f"Frozen manifest SHA256 mismatch: {', '.join(changed)}")
+
+
+def verify_existing_part_code_hashes(run_root: Path, code_bundle_sha256: str) -> None:
+    if not run_root.exists():
+        return
+    for part_dir in sorted(path for path in run_root.glob("part_*") if path.is_dir()):
+        preflight_path = part_dir / "preflight.json"
+        if not preflight_path.is_file():
+            raise RuntimeError(f"Existing formal part is missing preflight: {part_dir.name}")
+        existing = json.loads(preflight_path.read_text(encoding="utf-8")).get("phase4b", {})
+        if existing.get("code_bundle_sha256") != code_bundle_sha256:
+            raise RuntimeError(f"Existing formal part uses a different code bundle: {part_dir.name}")
+
+
+class BuildingCountMismatch(RuntimeError):
+    pass
+
+
+def require_matching_building_count(planned: int, buildings: list[dict]) -> None:
+    actual = len(buildings)
+    if actual != int(planned):
+        raise BuildingCountMismatch(f"Frozen building count is {planned}, database returned {actual}")
+
+
+def summary_exit_code(summary: dict) -> int:
+    return 1 if int(summary.get("failed", 0)) > 0 or int(summary.get("interrupted", 0)) > 0 else 0
+
+
 def _metadata(part_id: str, run_id: str, chunk_size: int, part_path: Path) -> dict:
-    hashes = json.loads((RESULTS_DIR / "audit" / "prep" / "manifest_hashes.json").read_text(encoding="utf-8"))
+    hashes = json.loads(MANIFEST_HASHES_PATH.read_text(encoding="utf-8"))
+    if hashes.get("source_manifest_sha256") != SPEC["source_manifest_sha256"]:
+        raise RuntimeError("Frozen source manifest SHA256 disagrees with encoding specification")
+    verify_frozen_manifest_files(SOURCE_MANIFEST_PATH, FULL_MANIFEST_PATH, part_path, part_id, hashes)
+    code = load_and_verify_frozen_code(CODE_HASHES_PATH)
+    verify_existing_part_code_hashes(RESULTS_DIR / "runs" / "full_v032", code["code_bundle_sha256"])
     parameters = {"chunk_size": chunk_size, "tessellation": dict(DEFAULT_TESSELLATION_CONFIG.__dict__)}
     return {
         "source_manifest_sha256": SPEC["source_manifest_sha256"],
@@ -111,6 +189,7 @@ def _metadata(part_id: str, run_id: str, chunk_size: int, part_path: Path) -> di
         "part_manifest_sha256": sha256_file(part_path),
         "encoding_spec_sha256": sha256_file(SPEC_PATH),
         "encoding_version": ENCODING_VERSION,
+        "code_bundle_sha256": code["code_bundle_sha256"],
         "part_id": part_id,
         "run_id": run_id,
         "parameter_sha256": hashlib.sha256(json.dumps(parameters, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
@@ -150,7 +229,7 @@ def resume_action(status_row: dict | None, graph_path: Path, expected: dict, ret
         if not graph_path.is_file():
             raise RuntimeError(f"Completed graph is missing: {graph_path}")
         actual = read_graph(graph_path).get("phase4b", {})
-        for key in ("source_manifest_sha256", "full_manifest_sha256", "part_manifest_sha256", "encoding_spec_sha256", "encoding_version", "part_id", "run_id", "parameter_sha256"):
+        for key in ("source_manifest_sha256", "full_manifest_sha256", "part_manifest_sha256", "encoding_spec_sha256", "encoding_version", "code_bundle_sha256", "part_id", "run_id", "parameter_sha256"):
             if actual.get(key) != expected.get(key):
                 raise RuntimeError(f"Completed graph metadata mismatch for {key}")
         return "skip", attempt
@@ -165,11 +244,13 @@ def resume_action(status_row: dict | None, graph_path: Path, expected: dict, ret
     raise RuntimeError(f"Unsupported status: {status}")
 
 
-def _failure(sample: dict, run_id: str, part_id: str, attempt: int, chunk_id: str, error: Exception, query: float = 0.0) -> dict:
+def _failure(sample: dict, run_id: str, part_id: str, attempt: int, chunk_id: str, error: Exception, query: float = 0.0, actual_building_count: int | None = None) -> dict:
     return {
         "run_id": run_id, "part_id": part_id, "attempt": attempt,
         "sample_id": sample["sample_id"], "city": sample["city"], "block_id": sample["block_id"],
         "chunk_id": chunk_id, "status": "failed", "planned_building_count": sample["lod1_building_count"],
+        "actual_building_count": "" if actual_building_count is None else actual_building_count,
+        "building_count_matches": "" if actual_building_count is None else actual_building_count == int(sample["lod1_building_count"]),
         "query_seconds": round(query, 6), "runtime_seconds": round(query, 6),
         "failure_type": type(error).__name__, "failure_message": str(error),
     }
@@ -181,9 +262,9 @@ def run_part(part_id: str, run_id: str, chunk_size: int, retry_failed: bool) -> 
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", run_id):
         raise ValueError("run_id contains unsupported characters")
     part_path = RESULTS_DIR / "dataset" / "parts" / f"{part_id}_manifest.csv.gz"
+    metadata = _metadata(part_id, run_id, chunk_size, part_path)
     rows = _read_csv_rows(part_path)
     validate_part_rows(rows, part_id)
-    metadata = _metadata(part_id, run_id, chunk_size, part_path)
     run_dir = RESULTS_DIR / "runs" / "full_v032" / part_id
     preflight = run_dir / "preflight.json"
     if run_dir.exists():
@@ -195,10 +276,16 @@ def run_part(part_id: str, run_id: str, chunk_size: int, retry_failed: bool) -> 
     status_path = run_dir / "encoding_status.csv"
     chunk_path = run_dir / "chunk_status.csv"
     exclusion_path = run_dir / "building_exclusions.csv"
+    status_snapshot_path = run_dir / "encoding_status_snapshot.csv"
+    exclusion_snapshot_path = run_dir / "building_exclusions_snapshot.csv"
+    if not status_path.exists():
+        _atomic_csv(status_path, [], STATUS_FIELDS)
+    if not exclusion_path.exists():
+        _atomic_csv(exclusion_path, [], EXCLUSION_FIELDS)
     statuses = _read_csv_rows(status_path) if status_path.exists() else []
     chunks = _read_csv_rows(chunk_path) if chunk_path.exists() else []
-    exclusions = _read_csv_rows(exclusion_path) if exclusion_path.exists() else []
     latest = _latest(statuses)
+    del statuses
     skipped = 0
     log = (run_dir / "run_log.txt").open("a", encoding="utf-8")
     try:
@@ -228,9 +315,12 @@ def run_part(part_id: str, run_id: str, chunk_size: int, retry_failed: bool) -> 
                     elapsed = time.perf_counter() - query_started
                     for sample, _, attempt in pending:
                         row = _failure(sample, run_id, part_id, attempt, chunk_id, error, elapsed / len(pending))
-                        statuses.append(row); latest[sample["sample_id"]] = row; _atomic_csv(status_path, statuses, STATUS_FIELDS)
+                        append_csv_row(status_path, row, STATUS_FIELDS)
+                        latest[sample["sample_id"]] = row
                     chunks.append({"run_id": run_id, "part_id": part_id, "city": city, "chunk_id": chunk_id, "planned_blocks": len(pending), "returned_blocks": 0, "returned_buildings": 0, "query_seconds": round(elapsed, 6), "status": "failed", "failure_message": str(error)})
                     _atomic_csv(chunk_path, chunks, CHUNK_FIELDS)
+                    snapshot_csv_ledger(status_path, status_snapshot_path, STATUS_FIELDS)
+                    snapshot_csv_ledger(exclusion_path, exclusion_snapshot_path, EXCLUSION_FIELDS)
                     continue
                 chunks.append({"run_id": run_id, "part_id": part_id, "city": city, "chunk_id": chunk_id, "planned_blocks": len(pending), "returned_blocks": len(blocks), "returned_buildings": sum(map(len, buildings.values())), "block_query_seconds": round(block_s, 6), "building_query_seconds": round(building_s, 6), "query_seconds": round(block_s + building_s, 6), "estimated_transfer_bytes": transfer, "status": "completed", "failure_message": ""})
                 _atomic_csv(chunk_path, chunks, CHUNK_FIELDS)
@@ -239,10 +329,11 @@ def run_part(part_id: str, run_id: str, chunk_size: int, retry_failed: bool) -> 
                     planned = int(sample["lod1_building_count"])
                     query_s = block_s / len(pending) + building_s * max(1, planned) / weight_total
                     started = time.perf_counter()
+                    case_buildings = buildings.get(sample["block_id"], [])
                     try:
                         if sample["block_id"] not in blocks:
                             raise RuntimeError("Manifest block missing from database")
-                        case_buildings = buildings.get(sample["block_id"], [])
+                        require_matching_building_count(planned, case_buildings)
                         outcome = encode_block_to_v032(sample, blocks[sample["block_id"]], case_buildings, sample_manifest_sha256=metadata["full_manifest_sha256"], tessellation_config=DEFAULT_TESSELLATION_CONFIG)
                         encoding_s = time.perf_counter() - started
                         graph_rel = ""; output_bytes = 0; nodes = cells = edges = 0
@@ -254,15 +345,18 @@ def run_part(part_id: str, run_id: str, chunk_size: int, retry_failed: bool) -> 
                             graph_rel = graph_path.relative_to(PHASE_DIR).as_posix(); output_bytes = graph_path.stat().st_size
                             nodes = len(outcome.record["nodes"]); cells = len(outcome.record["cells"]); edges = len(outcome.record["edges"])
                         for item in outcome.excluded_buildings:
-                            exclusions.append({"run_id": run_id, "part_id": part_id, "attempt": attempt, **item})
+                            exclusion_row = {"run_id": run_id, "part_id": part_id, "attempt": attempt, **item}
+                            append_csv_row(exclusion_path, exclusion_row, EXCLUSION_FIELDS)
                         row = {"run_id": run_id, "part_id": part_id, "attempt": attempt, "sample_id": sample["sample_id"], "city": city, "block_id": sample["block_id"], "chunk_id": chunk_id, "status": outcome.status, "planned_building_count": planned, "actual_building_count": len(case_buildings), "building_count_matches": len(case_buildings) == planned, "query_seconds": round(query_s, 6), "encoding_seconds": round(encoding_s, 6), "runtime_seconds": round(query_s + encoding_s, 6), "node_count": nodes, "cell_count": cells, "edge_count": edges, "excluded_building_count": len(outcome.excluded_buildings), "output_bytes": output_bytes, "graph_path": graph_rel, "failure_type": "", "failure_message": ""}
                     except Exception as error:
                         encoding_s = time.perf_counter() - started
-                        row = _failure(sample, run_id, part_id, attempt, chunk_id, error, query_s)
+                        row = _failure(sample, run_id, part_id, attempt, chunk_id, error, query_s, len(case_buildings))
                         row.update({"encoding_seconds": round(encoding_s, 6), "runtime_seconds": round(query_s + encoding_s, 6)})
-                    statuses.append(row); latest[sample["sample_id"]] = row
-                    _atomic_csv(status_path, statuses, STATUS_FIELDS); _atomic_csv(exclusion_path, exclusions, EXCLUSION_FIELDS)
+                    append_csv_row(status_path, row, STATUS_FIELDS)
+                    latest[sample["sample_id"]] = row
                     message = f"{part_id} {city}/{chunk_id} {sample['sample_id']} {row['status']}"; print(message, flush=True); log.write(message + "\n"); log.flush()
+                snapshot_csv_ledger(status_path, status_snapshot_path, STATUS_FIELDS)
+                snapshot_csv_ledger(exclusion_path, exclusion_snapshot_path, EXCLUSION_FIELDS)
     finally:
         log.close()
     summary = analyze_part(part_id, len(rows), skipped=skipped)
@@ -283,7 +377,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
     result = run_part(args.part_id, args.run_id, args.chunk_size, args.retry_failed)
-    return 0 if result["interrupted"] == 0 else 1
+    return summary_exit_code(result)
 
 
 if __name__ == "__main__":

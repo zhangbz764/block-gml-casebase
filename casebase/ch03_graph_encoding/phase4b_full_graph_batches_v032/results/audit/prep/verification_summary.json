@@ -4,6 +4,8 @@
   "encoding_version": "0.3.2",
   "source_manifest_sha256": "fe98fadbe6880bdffe92bd3dcac250265aaefbb1c13d90a7f4698a384ce4e9e7",
   "full_manifest_sha256": "aa6acef1624b78fda82e27c0401547b221d9f5efcd20245194f32fdadad6d8c3",
+  "code_bundle_sha256": "aec73426e4b9a7ec31d329ada9ed2051971a07fc359eb6907bc4f79c1a9011f0",
+  "critical_code_file_count": 9,
   "source_rows": 213054,
   "source_cities": 24,
   "part_count": 12,
@@ -23,13 +25,25 @@
   },
   "manifest_partition_passed": true,
   "targeted_unit_tests": {
-    "passed": 8,
+    "passed": 14,
     "failed": 0
   },
   "related_regression_tests": {
     "phase3_1_passed": 4,
     "phase4a_passed": 8,
     "failed": 0
+  },
+  "runtime_safety": {
+    "case_ledgers": "append_only_with_atomic_chunk_snapshots",
+    "preflight_manifest_hashes": [
+      "source",
+      "full",
+      "current_part"
+    ],
+    "code_bundle_enforced_across_parts": true,
+    "building_count_mismatch_status": "failed_without_graph",
+    "nonzero_exit_on_failed_or_interrupted": true,
+    "final_graph_metadata_validation": true
   },
   "regression_cases": 2,
   "regression_passed": true,

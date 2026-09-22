@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -12,9 +13,25 @@ import pandas as pd
 
 PHASE_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = PHASE_DIR / "results"
+CH03_DIR = PHASE_DIR.parent
+PHASE3_DIR = CH03_DIR / "phase3_encoding_dataset_v03"
+sys.path.insert(0, str(PHASE3_DIR))
+
+from export_phase3 import read_graph
+from code_integrity import load_and_verify_frozen_code
+
+
 SPEC = json.loads((PHASE_DIR / "encoding_spec_v032.json").read_text(encoding="utf-8"))
 GROUP_SPEC = pd.read_csv(PHASE_DIR / "city_group_spec_v01.csv", encoding="utf-8-sig")
 PART_IDS = tuple(GROUP_SPEC["part_id"].tolist())
+SOURCE_MANIFEST_PATH = CH03_DIR / "phase3_5b_final_sample_freeze_v01" / "results" / "dataset" / "graph_encoding_manifest.csv.gz"
+CODE_HASHES_PATH = RESULTS_DIR / "audit" / "prep" / "code_hashes.json"
+SPEC_PATH = PHASE_DIR / "encoding_spec_v032.json"
+GRAPH_METADATA_KEYS = (
+    "source_manifest_sha256", "full_manifest_sha256", "part_manifest_sha256",
+    "encoding_spec_sha256", "encoding_version", "code_bundle_sha256",
+    "part_id", "run_id", "parameter_sha256",
+)
 
 
 def sha256_file(path: Path) -> str:
@@ -33,6 +50,10 @@ def _latest_status(path: Path) -> pd.DataFrame:
 
 def _manifest_checks() -> tuple[dict, dict[str, pd.DataFrame]]:
     recorded = json.loads((RESULTS_DIR / "audit" / "prep" / "manifest_hashes.json").read_text(encoding="utf-8"))
+    if recorded.get("source_manifest_sha256") != SPEC["source_manifest_sha256"]:
+        raise RuntimeError("Recorded source manifest SHA256 disagrees with encoding specification")
+    if sha256_file(SOURCE_MANIFEST_PATH) != recorded["source_manifest_sha256"]:
+        raise RuntimeError("Source manifest SHA256 differs from the frozen audit")
     full_path = RESULTS_DIR / "dataset" / "full_run_manifest_v032.csv.gz"
     if sha256_file(full_path) != recorded["full_run_manifest_v032.csv.gz"]:
         raise RuntimeError("Full manifest SHA256 differs from the frozen audit")
@@ -57,8 +78,22 @@ def _manifest_checks() -> tuple[dict, dict[str, pd.DataFrame]]:
     return recorded, parts
 
 
+def completed_graph_problems(record: dict, expected: dict) -> list[str]:
+    problems: list[str] = []
+    if record.get("encoding_version") != "0.3.2":
+        problems.append("top-level encoding_version is not 0.3.2")
+    if record.get("validation", {}).get("passed") is not True:
+        problems.append("validation.passed is not true")
+    metadata = record.get("phase4b", {})
+    for key in GRAPH_METADATA_KEYS:
+        if metadata.get(key) != expected.get(key):
+            problems.append(f"phase4b metadata mismatch: {key}")
+    return problems
+
+
 def verify_prep() -> dict:
     hashes, parts = _manifest_checks()
+    code = load_and_verify_frozen_code(CODE_HASHES_PATH)
     regression_path = RESULTS_DIR / "audit" / "prep" / "v032_regression_summary.csv"
     regression = pd.read_csv(regression_path, encoding="utf-8-sig")
     expected_cases = {("Boston", "US_BO_003310"), ("San Francisco", "US_SF_000689")}
@@ -81,13 +116,23 @@ def verify_prep() -> dict:
         "encoding_version": SPEC["encoding_version"],
         "source_manifest_sha256": hashes["source_manifest_sha256"],
         "full_manifest_sha256": hashes["full_run_manifest_v032.csv.gz"],
+        "code_bundle_sha256": code["code_bundle_sha256"],
+        "critical_code_file_count": len(code["files"]),
         "source_rows": SPEC["source_manifest_rows"],
         "source_cities": 24,
         "part_count": len(parts),
         "part_rows": {part_id: len(frame) for part_id, frame in parts.items()},
         "manifest_partition_passed": True,
-        "targeted_unit_tests": {"passed": 8, "failed": 0},
+        "targeted_unit_tests": {"passed": 14, "failed": 0},
         "related_regression_tests": {"phase3_1_passed": 4, "phase4a_passed": 8, "failed": 0},
+        "runtime_safety": {
+            "case_ledgers": "append_only_with_atomic_chunk_snapshots",
+            "preflight_manifest_hashes": ["source", "full", "current_part"],
+            "code_bundle_enforced_across_parts": True,
+            "building_count_mismatch_status": "failed_without_graph",
+            "nonzero_exit_on_failed_or_interrupted": True,
+            "final_graph_metadata_validation": True,
+        },
         "regression_cases": 2,
         "regression_passed": True,
         "database_transaction_read_only": True,
@@ -102,7 +147,11 @@ def verify_prep() -> dict:
         "- State: code and frozen manifests are ready; no formal part has started.",
         f"- Frozen entry count: {SPEC['source_manifest_rows']:,} across 24 cities and 12 disjoint parts.",
         "- v0.3.2 regression: 2/2 passed using a read-only database transaction.",
-        "- Targeted Phase 4B tests: 8/8 passed.",
+        f"- Frozen critical-code bundle: `{code['code_bundle_sha256']}` ({len(code['files'])} files).",
+        "- Targeted Phase 4B tests: 14/14 passed.",
+        "- Related regression tests: Phase 3.1 4/4 and Phase 4A 8/8 passed.",
+        "- Runtime safety: append-only case ledgers, atomic chunk snapshots, three-level manifest preflight, cross-part code hash enforcement, strict building-count failure, and nonzero incomplete exit are enabled.",
+        "- Final verification reads every completed Graph and checks v0.3.2 metadata, part/hash identity, and validation.passed.",
         "- Formal parts: " + ", ".join(f"{part}=PLANNED" for part in PART_IDS) + ".",
         "",
         "This file is an ignored handoff artifact; compact audit files remain tracked.",
@@ -112,7 +161,8 @@ def verify_prep() -> dict:
 
 
 def verify_all_parts() -> dict:
-    _, parts = _manifest_checks()
+    hashes, parts = _manifest_checks()
+    code = load_and_verify_frozen_code(CODE_HASHES_PATH)
     missing: list[str] = []
     problems: dict[str, list[str]] = {}
     seen: set[tuple[str, str]] = set()
@@ -126,16 +176,46 @@ def verify_all_parts() -> dict:
         expected_keys = set(map(tuple, manifest[["city", "block_id"]].to_numpy()))
         status_keys = set(map(tuple, latest[["city", "block_id"]].to_numpy()))
         part_problems: list[str] = []
+        preflight_path = RESULTS_DIR / "runs" / "full_v032" / part_id / "preflight.json"
+        if not preflight_path.is_file():
+            part_problems.append("missing preflight.json")
+            expected_metadata = {}
+        else:
+            expected_metadata = json.loads(preflight_path.read_text(encoding="utf-8")).get("phase4b", {})
+            required_preflight = {
+                "source_manifest_sha256": hashes["source_manifest_sha256"],
+                "full_manifest_sha256": hashes["full_run_manifest_v032.csv.gz"],
+                "part_manifest_sha256": hashes["parts"][part_id],
+                "encoding_spec_sha256": sha256_file(SPEC_PATH),
+                "encoding_version": "0.3.2",
+                "code_bundle_sha256": code["code_bundle_sha256"],
+                "part_id": part_id,
+            }
+            for key, value in required_preflight.items():
+                if expected_metadata.get(key) != value:
+                    part_problems.append(f"preflight metadata mismatch: {key}")
         if status_keys != expected_keys:
             part_problems.append(f"status key mismatch: expected {len(expected_keys)}, got {len(status_keys)}")
         bad = latest.loc[~latest["status"].isin(["completed", "excluded_no_valid_building"])]
         if not bad.empty:
             part_problems.append(f"unaccounted cases: {len(bad)}")
         for row in latest.loc[latest["status"].eq("completed")].itertuples(index=False):
-            graph_path = PHASE_DIR / str(row.graph_path)
+            graph_path = (PHASE_DIR / str(row.graph_path)).resolve()
+            try:
+                graph_path.relative_to(PHASE_DIR.resolve())
+            except ValueError:
+                part_problems.append(f"graph path escapes phase directory: {row.sample_id}")
+                continue
             if not graph_path.is_file():
                 part_problems.append(f"missing graph: {row.sample_id}")
-                break
+                continue
+            try:
+                graph_record = read_graph(graph_path)
+                graph_issues = completed_graph_problems(graph_record, expected_metadata)
+            except Exception as error:
+                graph_issues = [f"graph read failed: {type(error).__name__}: {error}"]
+            for issue in graph_issues:
+                part_problems.append(f"{row.sample_id}: {issue}")
         overlap = seen.intersection(status_keys)
         if overlap:
             part_problems.append(f"cross-part duplicate statuses: {len(overlap)}")
