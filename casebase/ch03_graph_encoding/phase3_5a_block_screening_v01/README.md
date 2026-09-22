@@ -31,3 +31,14 @@ E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_blo
 ```
 
 预期完整台账路径：`results/bulk/full_v01/block_screening_ledger.csv.gz`；紧凑审计结果路径：`results/audit/full_v01/`；有限可视化路径：`results/visual_review/full_v01/`。
+
+## S02/S04 单独命中补充复核
+
+以下命令从既有 `full_v01` 台账确定性抽取 S02-only 与 S04-only 各 12 个案例，不重跑筛选规则；绘图步骤只查询入选的 24 个街区及其建筑几何。
+
+```powershell
+E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_block_screening_v01\build_solo_flag_review.py --source-run-id full_v01 --output-run-id full_v01_solo --per-rule 12
+E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase3_5a_block_screening_v01\render_review_cases.py --run-id full_v01_solo
+```
+
+可提交的小型结果位于 `results/audit/full_v01_solo/`；可重新生成且默认忽略的联系表与交互式页面位于 `results/visual_review/full_v01_solo/`。

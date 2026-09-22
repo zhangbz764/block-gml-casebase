@@ -29,6 +29,9 @@ outputs/
 # Generated interactive pages
 /casebase/ch03_graph_encoding/**/results/**/*.html
 
+# Regenerable Chapter 3 visual-review data packages
+/casebase/ch03_graph_encoding/**/results/visual_review/
+
 /casebase/ch03_graph_encoding/**/results/bulk/
 
 /casebase/ch03_graph_encoding/**/results/*_evidence_pack.md
