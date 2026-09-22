@@ -40,3 +40,7 @@ outputs/
 /casebase/ch03_graph_encoding/**/results/*_decision_summary.md
 /casebase/ch03_graph_encoding/**/results/*_spot_checks.md
 /casebase/ch03_graph_encoding/**/results/**/run_log.txt
+
+# Phase 4A regenerable run ledgers and graph batches
+/casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/smoke/
+/casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/pilot/

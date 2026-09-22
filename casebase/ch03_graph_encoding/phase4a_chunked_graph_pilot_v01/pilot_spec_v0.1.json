@@ -1,0 +1,19 @@
+{
+  "experiment_id": "CH3-P4A-CHUNKED-GRAPH-PILOT-V01",
+  "spec_version": "0.1",
+  "source_manifest_sha256": "fe98fadbe6880bdffe92bd3dcac250265aaefbb1c13d90a7f4698a384ce4e9e7",
+  "source_manifest_rows": 213054,
+  "city_count": 24,
+  "strata_per_city": 4,
+  "pilot_per_city_stratum": 25,
+  "pilot_rows": 2400,
+  "smoke_rows": 96,
+  "selection_seed": 20260922,
+  "chunk_size": 100,
+  "encoding_version": "0.3.1",
+  "tessellation_parameters": {
+    "shrink_m": 0.4,
+    "segment_m": 0.5,
+    "min_shared_boundary_m": 0.000001
+  }
+}

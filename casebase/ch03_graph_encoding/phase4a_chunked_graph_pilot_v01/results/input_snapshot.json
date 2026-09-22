@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-09-22T08:27:42.471247+00:00",
+  "source_manifest_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase3_5b_final_sample_freeze_v01\\results\\dataset\\graph_encoding_manifest.csv.gz",
+  "source_manifest_sha256": "fe98fadbe6880bdffe92bd3dcac250265aaefbb1c13d90a7f4698a384ce4e9e7",
+  "source_manifest_rows": 213054,
+  "source_city_count": 24,
+  "pilot_rows": 2400,
+  "smoke_rows": 96,
+  "pilot_manifest_sha256": "90a845a92e57a20df92748099d6a75576bd98ce2b677c17ffc3a19191572aae5",
+  "smoke_manifest_sha256": "009903c6b64bfc859989b637ef5e46d9d4fd900d338b45deb7d31af0707f9e60"
+}
