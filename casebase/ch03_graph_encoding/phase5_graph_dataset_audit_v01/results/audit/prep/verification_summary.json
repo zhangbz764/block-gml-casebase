@@ -1,0 +1,57 @@
+{
+  "phase": "5",
+  "experiment_id": "CH03-P5-GRAPH-AUDIT-V01",
+  "state": "PLANNED/CODE_READY",
+  "formal_phase5_run_started": false,
+  "formal_graphs_read": 0,
+  "phase4b_gate_captured": false,
+  "test_runner": "python -m unittest",
+  "tests_passed": 27,
+  "tests_failed": 0,
+  "fixture_scope": [
+    "normal_two_node_graph",
+    "single_node_zero_edge_graph",
+    "hard_error_mutations",
+    "allowed_missing_value",
+    "building_exclusion",
+    "latest_attempt_and_shard_resume",
+    "merge_and_review_selection",
+    "synthetic_visual_render_and_offline_html",
+    "cell_failure_node_coverage",
+    "building_exclusion_ledger_conservation",
+    "phase5_code_bundle_shard_compatibility",
+    "manual_review_manifest_binding",
+    "researcher_summary_generation",
+    "standalone_verifier_code_bundle_rejection"
+  ],
+  "audit_spec_sha256": "67ac2524a87e279d7ebec7bd28e4b7a97f1937b4e3b89fc1ad1b24d7de90170e",
+  "registry_sha256": "88b0ed3b019161c32077672057f8d696b06ef8d1ee480159a0744f874cc7253a",
+  "source_hashes": {
+    "build_graph_index.py": "53c50b3d6b59825d8b515ced164aeb17e26ff5e4c092dba22b7d1ed96518ce35",
+    "graph_audit.py": "eeff476154f5d281308bbc543364f8c52bea229bfebd4996926525ed02722a7f",
+    "merge_graph_audit.py": "4c2db085d7df3f6d77fa1b0426bbe79ae882b56448a8ed7692fb92378e283f4b",
+    "phase4b_gate.py": "6af46fa082edbefb17ded94dec4aab5bfa4b0239dbb77bff50ccef29471cd783",
+    "registry.py": "d69895b20414cc04409f3ab73c6f874cf15918f164595aed02e840ee6676e75b",
+    "render_visual_review.py": "9161c1be1396d3ba3055063f3af98a1dfb8080fdc62d185ddc268c356af8dc55",
+    "run_phase5.py": "09e66f7d380d5418104ac37267c6199fbb2fcd8363e4381906fb07cd2cb45eb7",
+    "select_review_sample.py": "eb4d07d4b990dcbe981337e5c491dc6fbb0da104fa53111f478a77ecb5323898",
+    "verify_phase5.py": "d293b67907eb8256a59040ad02c9afb05abc8837001c29c90403ab43da88fe60",
+    "write_researcher_summary.py": "91309bf3c03d0171d3541d38674b383ed753ff145b79c4cc5a60f32ea6b061b7"
+  },
+  "fixture_and_test_hashes": {
+    "fixtures.py": "771968b7dae6c34a9798e0c7aebaa2e4bd33f6ef47fd38435a800392650ea1d1",
+    "test_graph_audit.py": "301b62fa849d331525e80e17a7add8b77f89246c15893a16e1a733d3347d8c47",
+    "test_merge_graph_audit.py": "71319999a549ee42054f750f0f943d2d0715acc34f8e68879d9756fc1a292a44",
+    "test_part_index.py": "7069a970a16c9f464c2e95554e2d107f19653655362e6f9d143ee0e103ef7418",
+    "test_phase4b_gate.py": "84f86e45d919acaf4ac3054fd1f62273b460154f6781498cd8427af4504d6162",
+    "test_phase5_verification.py": "d445fac99ca9a3187790cb149ad784d2e3afe2cf518c4462948e8fdc2d638b30",
+    "test_registry.py": "629d9276951b34785cd7ca9de4500f9126be52931be2ab5a349e8a9d019c948e",
+    "test_review_sample.py": "b18aa2710d2facad5f630f90098261c969567b14c879d077e03e028818021e37"
+  },
+  "notes": [
+    "Phase 4B part_06 run_id metadata was repaired and verified separately; no Phase 5 formal run was started.",
+    "No database connection was made.",
+    "pytest is not installed in the current urbanCode environment; the same unittest-compatible suite was run with the Python standard library.",
+    "This preparation record is not formal audit evidence and is not CLAIM_READY."
+  ]
+}
