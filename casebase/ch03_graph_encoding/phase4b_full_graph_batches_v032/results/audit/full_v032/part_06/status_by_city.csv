@@ -1,0 +1,5 @@
+﻿city,status,case_count
+Kanazawa,completed,9744
+Lyon,completed,1558
+Zurich,completed,1316
+Zurich,excluded_no_valid_building,2

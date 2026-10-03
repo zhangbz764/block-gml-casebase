@@ -1,0 +1,15 @@
+{
+  "part_id": "part_06",
+  "planned": 12620,
+  "completed": 12618,
+  "excluded_no_valid_building": 2,
+  "failed": 0,
+  "interrupted": 0,
+  "skipped": 0,
+  "building_exclusions": 727,
+  "query_seconds": 27.894621,
+  "encoding_seconds": 9536.013893,
+  "runtime_seconds": 9563.908464,
+  "output_bytes": 831064599,
+  "query_share": 0.002916654953882043
+}
