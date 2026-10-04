@@ -1,0 +1,6 @@
+{
+  "automated_audit_passed": true,
+  "manual_visual_review_status": "PENDING",
+  "evidence_state": "ANALYZED_AUTOMATED_MANUAL_REVIEW_PENDING",
+  "issues": []
+}

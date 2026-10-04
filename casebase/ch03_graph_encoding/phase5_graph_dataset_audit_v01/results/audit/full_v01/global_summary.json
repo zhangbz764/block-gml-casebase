@@ -1,0 +1,15 @@
+{
+  "entry_count": 213054,
+  "city_count": 24,
+  "completed_graph_count": 213052,
+  "excluded_no_valid_building_count": 2,
+  "hard_issue_entry_count": 0,
+  "node_total": 7107740,
+  "edge_total": 16100006,
+  "cell_failure_total": 2,
+  "excluded_building_total": 50782,
+  "status_counts": {
+    "completed": 213052,
+    "excluded_no_valid_building": 2
+  }
+}
