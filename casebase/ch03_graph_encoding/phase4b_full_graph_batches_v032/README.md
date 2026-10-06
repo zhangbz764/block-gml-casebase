@@ -1,6 +1,8 @@
 # Phase 4B：v0.3.2 全量构图准备与手动分批运行
 
-本目录是 Phase 3.5B 冻结清单的正式构图入口。编码版本固定为 `0.3.2`，只新增建筑级几何容错，不改变既有 Tessellation 和图连接规则。当前交付状态是：代码、12 份冻结清单和两个只读回归案例已准备完成，正式 part 尚未启动。
+本目录是 Phase 3.5B 冻结清单的正式构图入口。编码版本固定为 `0.3.2`，只新增建筑级几何容错，不改变既有 Tessellation 和图连接规则。
+
+整理后，12份分批摘要合并为`results/audit/full_v032/part_summary.csv`与`status_by_city.csv`；原分批记录及部分准备态汇总保存在`results/records.zip`。正式Graph、冻结清单、代码散列和运行账本保留原路径。若需运行旧的part_06修复脚本，先按[统一整理说明](../README.md)恢复该阶段的records；准备态证据包合入`../evidence_pack.zip`。
 
 ## 冻结数据与分组
 

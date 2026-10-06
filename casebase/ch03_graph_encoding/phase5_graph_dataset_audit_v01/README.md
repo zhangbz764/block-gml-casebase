@@ -39,7 +39,7 @@ E:\0_python_envs\urbanCode\python.exe casebase\ch03_graph_encoding\phase5_graph_
 
 - `results/dataset/index_parts/`：12个可恢复索引分片；
 - `results/dataset/graph_dataset_index.csv.gz`：213,054行冻结入口索引；
-- `results/audit/full_v01/`：总体、城市、结构分位数、字段完整性、问题与自动核验摘要；
+- `results/audit/full_v01/`：总体、城市、结构分位数、字段完整性、问题与自动核验摘要；这些当前正式结果保持原路径，历史阶段的归档方式见[统一整理说明](../README.md)；
 - `results/review/full_v01/`：48例清单、图片、离线HTML和人工复核空表；
 - `results/input_snapshot.json`、`environment.json`、`freeze.json`：输入、环境与最终散列。
 
@@ -59,4 +59,4 @@ E:\0_python_envs\urbanCode\python.exe -m unittest discover -s casebase\ch03_grap
 
 ## Git范围
 
-源代码、测试、README、审计规范、注册表快照和`results/audit/prep/verification_summary.json`适合进入Git。全量索引、part中间分片、图片、HTML、pilot、运行日志、证据包和内部判断文档由`.gitignore`排除；正式完成后的紧凑总体审计摘要可单独纳入版本记录。
+源代码、测试、README、审计规范、注册表快照和`results/audit/prep/verification_summary.json`适合进入Git。全量索引、part中间分片、图片、HTML、pilot、运行日志和内部判断文档由`.gitignore`排除；准备态证据包已合入被忽略的`../evidence_pack.zip`。正式完成后的紧凑总体审计摘要可纳入版本记录，不需要默认排除所有CSV/JSON。

@@ -1,7 +1,0 @@
-{
-  "run_id": "smoke_v01",
-  "timeout_failure_count": 0,
-  "query_share_of_projected_runtime": 0.12124958374281015,
-  "recommendation": "continue_csv_driven_readonly_batches",
-  "table_created_in_phase4a": false
-}

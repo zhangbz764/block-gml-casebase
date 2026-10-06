@@ -22,9 +22,15 @@ outputs/
 # Chapter 3 compressed outputs
 /casebase/ch03_graph_encoding/**/results/**/*.gz
 
-# Chapter 3 large graph batches
-/casebase/ch03_graph_encoding/**/results/dataset/graphs/
-/casebase/ch03_graph_encoding/**/results/pilot/graphs/
+# Chapter 3 generated graphs, cells and images (all phases)
+/casebase/ch03_graph_encoding/**/results/**/graphs/
+/casebase/ch03_graph_encoding/**/results/**/cells/
+/casebase/ch03_graph_encoding/**/results/**/visual_checks/
+
+# Permanent compact archives: historical generated data and AI handoffs
+# Lightweight records.zip bundles remain eligible for Git.
+/casebase/ch03_graph_encoding/**/results/history.zip
+/casebase/ch03_graph_encoding/evidence_pack.zip
 
 # Generated interactive pages
 /casebase/ch03_graph_encoding/**/results/**/*.html

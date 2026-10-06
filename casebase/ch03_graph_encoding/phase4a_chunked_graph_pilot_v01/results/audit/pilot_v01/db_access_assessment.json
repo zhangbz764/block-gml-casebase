@@ -1,7 +1,0 @@
-{
-  "run_id": "pilot_v01",
-  "timeout_failure_count": 0,
-  "query_share_of_projected_runtime": 0.025528893053713964,
-  "recommendation": "continue_csv_driven_readonly_batches",
-  "table_created_in_phase4a": false
-}

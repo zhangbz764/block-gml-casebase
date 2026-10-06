@@ -2,6 +2,8 @@
 
 本阶段以 Phase 3.5B 冻结的 213,054 个街区入口清单为唯一选择来源，按城市和至多 100 个街区一批进行只读数据库查询，并直接复用 Phase 3.1 的 `encode_block_to_v031` 与固定 Tessellation 参数。本阶段不创建数据库对象、不修改编码语义、不训练模型，也不启动全量构图。
 
+整理后，pilot/smoke资源估算和核验记录合并在`results/records.zip`；2,494个试跑Graph及其原账本合并在`results/history.zip`。抽样清单和输入快照保留原路径。复跑旧分析前按[统一整理说明](../README.md)恢复文件，无需重新查询数据库或重新构图。
+
 ## 冻结输入与抽样
 
 - 输入：`../phase3_5b_final_sample_freeze_v01/results/dataset/graph_encoding_manifest.csv.gz`

@@ -2,6 +2,8 @@
 
 本目录保存编码规范v0.1与运行代码；运行产物统一写入`results/`。数据库操作只读，连接参数从仓库根目录`.env`读取。
 
+整理后，历史核验记录在`results/records.zip`，22张旧图片在`results/history.zip`；样本清单、人工判断表和作为阶段2.5输入的15个Graph保留原路径。下文的历史输出路径可通过[统一整理说明](../README.md)中的恢复命令还原；证据包已合入`../evidence_pack.zip`。
+
 ## 运行
 
 使用项目现有的`urbanCode` Python环境：

@@ -1,6 +1,0 @@
-﻿metric,quantile,threshold,eligible_count,rule_version
-area_m2,0.99,3417458.40376579,240,0.1
-elongation,0.01,0.103066022005451,240,0.1
-compactness,0.01,0.073341724085581,240,0.1
-lod1_building_count,0.99,669.979999999998,240,0.1
-bcr,0.01,0.000878006312347769,240,0.1

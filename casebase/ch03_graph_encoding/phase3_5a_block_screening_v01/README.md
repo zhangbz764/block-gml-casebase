@@ -1,6 +1,8 @@
 # 第三章阶段3.5A：全量候选街区筛选与台账
 
-本阶段为`summary.lod1_candidate_blocks`冻结可解释的街区级筛选规则、确定性pilot和正式全量运行入口。执行工作区只运行测试与pilot；219,419行正式全量台账由研究者审查代码后手动生成。
+本阶段为`summary.lod1_candidate_blocks`冻结可解释的街区级筛选规则、确定性pilot和正式全量运行入口。
+
+整理后，pilot记录与部分历史汇总在`results/records.zip`，旧复核图页在`results/history.zip`。正式全量台账、后续核验读取的汇总、补充复核清单和人工判断表保留原路径。旧记录恢复方式见[统一整理说明](../README.md)；交接文档合入`../evidence_pack.zip`。
 
 ## 约束
 
