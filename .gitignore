@@ -63,3 +63,11 @@ outputs/
 /casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/pilot/
 /casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/audit/full_v01/parts/
 /casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/audit/full_v01/researcher_summary.md
+
+# Phase 6A: regenerable sampling/previews; retain compact candidate records
+/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/sampling/
+/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/smoke_*/
+/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/images/
+/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/phase6a_evidence_pack.md
+# Empty review templates are ignored; explicitly add only completed human judgments.
+/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/pair_review.csv

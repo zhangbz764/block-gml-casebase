@@ -1,0 +1,84 @@
+{
+  "experiment_id": "CH03-P6A-RELATION-SETUP-V01",
+  "mode": "candidates",
+  "run_id": "candidate_v01",
+  "generated_at_utc": "2026-10-06T06:02:56.875379+00:00",
+  "encoding_version": "0.3.2",
+  "index_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\results\\dataset\\graph_dataset_index.csv.gz",
+  "index_sha256": "3b728b0e2a4d5dbeb192b30af16c352127b95abe9e09fccf77a0a9f8b7711a33",
+  "freeze_path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\results\\freeze.json",
+  "freeze_sha256": "33373b398468f4fd5d88243d12c556b11b033c30b9532b337f4542e2105a6604",
+  "accepted_counts": {
+    "entries": 213054,
+    "completed": 213052,
+    "excluded_no_valid_building": 2,
+    "cities": 24
+  },
+  "historical_manual_review": "Accepted by 2026-10-04 review; do not reinterpret PENDING or mutate freeze",
+  "graph_path_base": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032",
+  "pairing_spec": {
+    "experiment_id": "CH03-P6A-RELATION-SETUP-V01",
+    "encoding_version": "0.3.2",
+    "expected_entries": 213054,
+    "expected_completed": 213052,
+    "expected_excluded": 2,
+    "expected_cities": 24,
+    "seed_material": "ch03-p6a-v01|",
+    "max_per_city": 1000,
+    "smoke_per_city": 100,
+    "min_active_fields": 6,
+    "nearest_neighbors": 3,
+    "close_max": 0.5,
+    "relaxed_max": 1.0,
+    "max_pairs": 30,
+    "max_pairs_per_city": 3,
+    "nearest_only_min_pairs": 20,
+    "pair_fields": {
+      "area_m2": {
+        "label": "街区面积",
+        "unit": "m²",
+        "transform": "log"
+      },
+      "node_count": {
+        "label": "编码后建筑数",
+        "unit": "个",
+        "transform": "log"
+      },
+      "bcr": {
+        "label": "建筑覆盖率",
+        "unit": "无量纲",
+        "transform": "identity"
+      },
+      "far": {
+        "label": "容积率",
+        "unit": "无量纲",
+        "transform": "identity"
+      },
+      "compactness": {
+        "label": "街区紧凑度",
+        "unit": "无量纲",
+        "transform": "identity"
+      },
+      "elongation": {
+        "label": "街区延伸度",
+        "unit": "沿用项目定义",
+        "transform": "identity"
+      },
+      "avh_w": {
+        "label": "面积加权平均高度",
+        "unit": "m",
+        "transform": "log"
+      },
+      "orientation_entropy": {
+        "label": "建筑朝向离散程度",
+        "unit": "nat",
+        "transform": "identity"
+      }
+    }
+  },
+  "pairing_spec_sha256": "a155c9044178c9ba6eb6ad6c8944a4762241ab649b3f291a1cf85b436145bac3",
+  "generator_interface": "interface_unavailable",
+  "ready_for_phase6b": false,
+  "model_executed": false,
+  "researcher_judgment": "not supplied"
+}

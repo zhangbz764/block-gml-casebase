@@ -1,0 +1,28 @@
+{
+  "experiment_id": "CH03-P6A-RELATION-SETUP-V01",
+  "encoding_version": "0.3.2",
+  "expected_entries": 213054,
+  "expected_completed": 213052,
+  "expected_excluded": 2,
+  "expected_cities": 24,
+  "seed_material": "ch03-p6a-v01|",
+  "max_per_city": 1000,
+  "smoke_per_city": 100,
+  "min_active_fields": 6,
+  "nearest_neighbors": 3,
+  "close_max": 0.5,
+  "relaxed_max": 1.0,
+  "max_pairs": 30,
+  "max_pairs_per_city": 3,
+  "nearest_only_min_pairs": 20,
+  "pair_fields": {
+    "area_m2": {"label": "街区面积", "unit": "m²", "transform": "log"},
+    "node_count": {"label": "编码后建筑数", "unit": "个", "transform": "log"},
+    "bcr": {"label": "建筑覆盖率", "unit": "无量纲", "transform": "identity"},
+    "far": {"label": "容积率", "unit": "无量纲", "transform": "identity"},
+    "compactness": {"label": "街区紧凑度", "unit": "无量纲", "transform": "identity"},
+    "elongation": {"label": "街区延伸度", "unit": "沿用项目定义", "transform": "identity"},
+    "avh_w": {"label": "面积加权平均高度", "unit": "m", "transform": "log"},
+    "orientation_entropy": {"label": "建筑朝向离散程度", "unit": "nat", "transform": "identity"}
+  }
+}
