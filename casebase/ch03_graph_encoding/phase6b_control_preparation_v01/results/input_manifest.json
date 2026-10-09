@@ -1,0 +1,252 @@
+{
+  "task_id": "CH03-P6B-PREP-CONTROL-V01",
+  "run_id": "preview_v01",
+  "started_at_utc": "2026-10-09T01:46:02.786669+00:00",
+  "state": "EXECUTED",
+  "encoding_version": "0.3.2",
+  "source_kind": "synthetic_local",
+  "graph_path_base": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032",
+  "interface_status": "interface_unavailable",
+  "layout_definition_sha256": "c5352ca049f1c8d33a1de32c818a2c6be56b1021bdb338de46b1b28262022b57",
+  "model_or_generator_run": false,
+  "ready_for_formal_phase6b": false,
+  "source_graphs_copied": false,
+  "researcher_judgment": "not supplied",
+  "read_inputs": [
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6b_control_preparation_v01\\probe_layouts_v01.json",
+      "sha256": "9da8392f84482f7c00b862f3c8c38e705a8be7b9a17411fe1720353db265c571"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6a_relation_validation_setup_v01\\results\\review\\candidate_v01\\pair_manifest.csv",
+      "sha256": "a75311bc9ece765c37abd0f053329ed18a7d3a352f6e7664353e6f59f76a8872"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6a_relation_validation_setup_v01\\results\\generator_interface_inventory.csv",
+      "sha256": "ddd4e1b66ddf7ed6e046aa12f8d0f7c76d879a9c772d0b5feeb76031658be9ce"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6a_relation_validation_setup_v01\\model_input_fields_v01.csv",
+      "sha256": "90296e28b3dac0a67f0b69946958af1a6edcf7a94f3eb956b1196f41fea96068"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\export_phase4b_v032.py",
+      "sha256": "f995ad7bf05326f37677f53917692356f50c19ad0c2666b84fd19b5811a78028"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\feature_registry_snapshot_v03.tsv",
+      "sha256": "88b0ed3b019161c32077672057f8d696b06ef8d1ee480159a0744f874cc7253a"
+    }
+  ],
+  "read_real_sources": [
+    {
+      "city": "Amsterdam",
+      "sample_id": "P4B_NL_AM_001623",
+      "block_id": "NL_AM_001623",
+      "graph_path": "results/dataset/graphs/part_08/Amsterdam/chunk_0010/P4B_NL_AM_001623.graph.json.gz",
+      "sha256": "496239a3c5c2d5844db9b1fabaa6f622f189b1b74a46e79deb21b8630c10ff6f"
+    }
+  ],
+  "selected_real_ids": {
+    "gap": "P4B_NL_AM_001623",
+    "offset": "P4B_NL_AM_001623",
+    "height": "P4B_NL_AM_001623"
+  },
+  "real_selection_notes": {
+    "gap": "按当前清单顺序取首个有两条有效记录的案例，仅供阅读，未自动确认组织类型",
+    "offset": "按当前清单顺序取首个有两条有效记录的案例，仅供阅读，未自动确认组织类型",
+    "height": "按当前清单顺序取首个有两条有效记录的案例，仅供阅读，未自动确认组织类型"
+  },
+  "drawing_checks": {
+    "gap": {
+      "axis_ranges": [
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ],
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ],
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.24276377217553688,
+        0.24276377217553688,
+        0.24276377217553688
+      ],
+      "height_range_m": [
+        8.0,
+        24.0
+      ],
+      "equal_aspect": true
+    },
+    "offset": {
+      "axis_ranges": [
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ],
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ],
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.24276377217553688,
+        0.24276377217553688,
+        0.24276377217553688
+      ],
+      "height_range_m": [
+        8.0,
+        24.0
+      ],
+      "equal_aspect": true
+    },
+    "height": {
+      "axis_ranges": [
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ],
+        [
+          [
+            -5,
+            125
+          ],
+          [
+            -5,
+            85
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.2292768959435626,
+        0.2292768959435626
+      ],
+      "height_range_m": [
+        8.0,
+        24.0
+      ],
+      "equal_aspect": true
+    },
+    "real_gap": {
+      "axis_ranges": [
+        [
+          [
+            118992.10649288753,
+            119151.34286082852
+          ],
+          [
+            482134.92803501023,
+            482294.16440295125
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.3554383212969176
+      ],
+      "height_range_m": [
+        2.689999997615814,
+        9.028999984264374
+      ],
+      "equal_aspect": true
+    },
+    "real_offset": {
+      "axis_ranges": [
+        [
+          [
+            118992.10649288753,
+            119151.34286082852
+          ],
+          [
+            482134.92803501023,
+            482294.16440295125
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.3554383212969176
+      ],
+      "height_range_m": [
+        2.689999997615814,
+        9.028999984264374
+      ],
+      "equal_aspect": true
+    },
+    "real_height": {
+      "axis_ranges": [
+        [
+          [
+            118992.10649288753,
+            119151.34286082852
+          ],
+          [
+            482134.92803501023,
+            482294.16440295125
+          ]
+        ]
+      ],
+      "meters_per_pixel": [
+        0.3554383212969176
+      ],
+      "height_range_m": [
+        2.689999997615814,
+        9.028999984264374
+      ],
+      "equal_aspect": true
+    }
+  },
+  "encoded_probe_count": 7,
+  "failures": [],
+  "finished_at_utc": "2026-10-09T01:46:04.983492+00:00"
+}

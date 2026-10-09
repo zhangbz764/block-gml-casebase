@@ -71,3 +71,9 @@ outputs/
 /casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/phase6a_evidence_pack.md
 # Empty review templates are ignored; explicitly add only completed human judgments.
 /casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/pair_review.csv
+
+# Phase 6B preparation: small regenerable pictures and per-run AI handoffs
+# Seven synthetic graphs stay covered by the generic graphs/ rule above.
+/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/review/*/images/
+/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/probes/*/*_decision_summary.md
+/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/probes/*/*_evidence_pack.md
