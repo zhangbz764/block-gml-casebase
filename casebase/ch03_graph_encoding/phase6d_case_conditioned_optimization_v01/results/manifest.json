@@ -1,0 +1,1617 @@
+{
+  "experiment_id": "CH3-P6D-V01",
+  "run_id": "adapt_v01",
+  "state": "PREPARED_PENDING_CONFIRMATION",
+  "confirmed_at": null,
+  "config": {
+    "experiment_id": "CH3-P6D-V01",
+    "index": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\results\\dataset\\graph_dataset_index.csv.gz",
+    "registry": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\feature_registry_snapshot_v03.tsv",
+    "graph_root": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032",
+    "priority_cases": [
+      "P4B_IT_BO_000304",
+      "P4B_NL_AM_000249",
+      "P4B_DE_BE_000370",
+      "P4B_US_BO_000046",
+      "P4B_US_CH_000219",
+      "P4B_DE_DD_000053"
+    ],
+    "selected_case_ids": [],
+    "organization_descriptions": {},
+    "max_candidate_reads": 60,
+    "seeds": [
+      20261013,
+      20261014,
+      20261015,
+      20261016,
+      20261017
+    ],
+    "boundary_compression": 0.15,
+    "far_increase": 0.25,
+    "floor_height_m": 3.0,
+    "height_min_m": 3.0,
+    "rotation_bound_deg": 30.0,
+    "scale_bounds": [
+      0.85,
+      1.15
+    ],
+    "gap_tolerance_absolute": 0.01,
+    "gap_tolerance_relative": 0.25,
+    "relation_tolerance": 0.1,
+    "feasibility_weight": 1000.0,
+    "scale_weight": 0.01,
+    "relation_weight": 1.0,
+    "outside_max": 0.0001,
+    "overlap_max": 0.0001,
+    "far_relative_max": 0.02,
+    "height_tolerance_m": 1e-06,
+    "duplicate_center_rms_max": 0.02,
+    "duplicate_scale_max": 0.05,
+    "max_evaluations": 6000,
+    "max_seconds": 600,
+    "xtol": 0.0001,
+    "ftol": 0.0001,
+    "relation_check_tolerance": 1e-06
+  },
+  "config_hash": "2c2d10083f30a83bcae7663e3d360a1581af5deb369a89d896464e11e3f37eef",
+  "code_hash": "ff176d9f904ac1779c39811e733970a56d27e26f126218a1195c60551b5883a1",
+  "cases": [
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "city": "Bologna",
+      "node_count": 13,
+      "input_path": "inputs/case_01.json",
+      "graph_path": "results/dataset/graphs/part_07/Bologna/chunk_0002/P4B_IT_BO_000304.graph.json.gz",
+      "source_sha256": "defdff2983bd5bacbdda93a94bd87d9feacd1860a06ae09dd2e2251be82e344f",
+      "role": "proposed",
+      "organization_description": "",
+      "original_far": 0.5751951347443601,
+      "target_far": 0.7189939184304501,
+      "height_cap_m": 6.7,
+      "optimistic_far_upper": 1.1022047143134845,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 199.43588617797437,
+          "common_loss": 199.43588617797437,
+          "relation_loss": 6.430215151733557,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 2.0461434828248506,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 17.244501972375822
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.025211267205759304,
+            "orientation_similarity": 0.003958751476802859,
+            "long_side_overlap_ratio": 0.26406955089438333
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 28,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.6383116060451947,
+          "target_far": 0.7189939184304501,
+          "far_relative_error": 0.11221557000284982,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.08722030897312283,
+          "height_cap_m": 6.7,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.041703044607555355
+        },
+        "20261014": {
+          "objective": 214.03557235239688,
+          "common_loss": 214.03557235239688,
+          "relation_loss": 4.255296726722996,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 1.9461161923785188,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 10.81977398779047
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.032795118296075745,
+            "orientation_similarity": 0.004080530422308861,
+            "long_side_overlap_ratio": 0.20071747319585434
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 28,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.6629498009265913,
+          "target_far": 0.7189939184304501,
+          "far_relative_error": 0.07794797155753706,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.13608759359822678,
+          "height_cap_m": 6.7,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.06275965895210338
+        },
+        "20261015": {
+          "objective": 188.43066596585027,
+          "common_loss": 188.43066596585027,
+          "relation_loss": 5.888682959245348,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 4.0292026085049715,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 13.636846269231075
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04040143315048432,
+            "orientation_similarity": 0.0027715325497697945,
+            "long_side_overlap_ratio": 0.23916104720772216
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 28,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.6661122289910827,
+          "target_far": 0.7189939184304501,
+          "far_relative_error": 0.07354956430620047,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.1148810896871368,
+          "height_cap_m": 6.7,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05410653194139811
+        },
+        "20261016": {
+          "objective": 203.61144095325582,
+          "common_loss": 203.61144095325582,
+          "relation_loss": 8.459242983246044,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 5.317721641350999,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 20.060007308387135
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.03072858235095982,
+            "orientation_similarity": 0.002800779160508871,
+            "long_side_overlap_ratio": 0.33227477875795014
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 28,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.6765602868969636,
+          "target_far": 0.7189939184304501,
+          "far_relative_error": 0.059018067393557874,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.14459335982768218,
+          "height_cap_m": 6.7,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.06385363216445546
+        },
+        "20261017": {
+          "objective": 125.5206102974937,
+          "common_loss": 125.5206102974937,
+          "relation_loss": 6.348266699082754,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 4.992849832357737,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 14.051950264890525
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.03821135101505011,
+            "orientation_similarity": 0.002724148489512107,
+            "long_side_overlap_ratio": 0.25060659970585775
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 28,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 28,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.676546720442683,
+          "target_far": 0.7189939184304501,
+          "far_relative_error": 0.05903693605702326,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.06648366364384538,
+          "height_cap_m": 6.7,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05020386907047009
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 130.03305370438315,
+        "common_loss": 130.03305370438315,
+        "relation_loss": 0.0,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.0
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.012063641789916448,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.017961802003100612
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 28,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 28,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 28,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.6767001585225838,
+        "target_far": 0.7189939184304501,
+        "far_relative_error": 0.05882352941203284,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.0712095242923503,
+        "height_cap_m": 6.7,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.03604900001807078
+      }
+    },
+    {
+      "case_id": "P4B_NL_AM_000249",
+      "city": "Amsterdam",
+      "node_count": 11,
+      "input_path": "inputs/case_02.json",
+      "graph_path": "results/dataset/graphs/part_08/Amsterdam/chunk_0002/P4B_NL_AM_000249.graph.json.gz",
+      "source_sha256": "ee67906261c6cb8ae63c839db37dd9795da0503ee443d1117175c11f9ea88e65",
+      "role": "proposed",
+      "organization_description": "",
+      "original_far": 0.09624402303259283,
+      "target_far": 0.12030502879074104,
+      "height_cap_m": 9.508000016212463,
+      "optimistic_far_upper": 0.1962732810258471,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 124.73021202198167,
+          "common_loss": 124.73021202198167,
+          "relation_loss": 13.816730386509313,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 28.440475263814328,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 13.009715895713613
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.08063564262892525,
+            "orientation_similarity": 0.008455825763059208,
+            "long_side_overlap_ratio": 0.2038852361066502
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 18,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.10599898951963828,
+          "target_far": 0.12030502879074104,
+          "far_relative_error": 0.11891472380582468,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.005815480563848606,
+          "height_cap_m": 9.508000016212463,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.06314193646004429
+        },
+        "20261014": {
+          "objective": 80.2931838030659,
+          "common_loss": 80.2931838030659,
+          "relation_loss": 29.008599516715872,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 66.56110000228125,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 20.464698547866355
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.1259055805206503,
+            "orientation_similarity": 0.022761527779267775,
+            "long_side_overlap_ratio": 0.3369701577158075
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 18,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.11699040361812389,
+          "target_far": 0.12030502879074104,
+          "far_relative_error": 0.027551842229160798,
+          "outside_ratio": 0.05241831491239453,
+          "overlap_ratio": 0.00032301841594123323,
+          "height_cap_m": 9.508000016212463,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.07558624410365672
+        },
+        "20261015": {
+          "objective": 165.21240940944222,
+          "common_loss": 165.21240940944222,
+          "relation_loss": 15.356561937950287,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 27.51984297234755,
+            "orientation_similarity": 1.500444497024926e-07,
+            "long_side_overlap_ratio": 18.54984269145886
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.08853227734384257,
+            "orientation_similarity": 0.026406616039426532,
+            "long_side_overlap_ratio": 0.2965336928255775
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 18,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.1130069416641299,
+          "target_far": 0.12030502879074104,
+          "far_relative_error": 0.06066319255286867,
+          "outside_ratio": 0.07038431152781281,
+          "overlap_ratio": 0.0341648990164144,
+          "height_cap_m": 9.508000016212463,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.0660395136977945
+        },
+        "20261016": {
+          "objective": 200.43110037694396,
+          "common_loss": 200.43110037694396,
+          "relation_loss": 10.722137264664715,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 14.049301415855682,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 18.117110378138463
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.09180076957323165,
+            "orientation_similarity": 0.028587251753278364,
+            "long_side_overlap_ratio": 0.29472993696911504
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 18,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.11160814577097132,
+          "target_far": 0.12030502879074104,
+          "far_relative_error": 0.07229027005094778,
+          "outside_ratio": 0.11883010978096481,
+          "overlap_ratio": 0.009310710042869631,
+          "height_cap_m": 9.508000016212463,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.06981135173953446
+        },
+        "20261017": {
+          "objective": 160.24891138276305,
+          "common_loss": 160.24891138276305,
+          "relation_loss": 22.708523741371124,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 57.61006873881677,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 10.515502485296608
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.1062198020780908,
+            "orientation_similarity": 0.014364568956339259,
+            "long_side_overlap_ratio": 0.20765372651121197
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 18,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 18,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.11855508390563217,
+          "target_far": 0.12030502879074104,
+          "far_relative_error": 0.014545899724214557,
+          "outside_ratio": 0.14570300174817194,
+          "overlap_ratio": 0.0,
+          "height_cap_m": 9.508000016212463,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.07023552313159714
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 72.07207942132969,
+        "common_loss": 72.07207942132969,
+        "relation_loss": 0.3599191887106498,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.006847762897097855,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 1.0729098032348516
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.011406763591583,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.07255716457081678
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 18,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 18,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 18,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.1123124804022619,
+        "target_far": 0.12030502879074104,
+        "far_relative_error": 0.06643569656910522,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.005636382852224463,
+        "height_cap_m": 9.508000016212463,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.053345806715194566
+      }
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "city": "Berlin",
+      "node_count": 15,
+      "input_path": "inputs/case_03.json",
+      "graph_path": "results/dataset/graphs/part_09/Berlin/chunk_0003/P4B_DE_BE_000370.graph.json.gz",
+      "source_sha256": "434d6a7c8323af6c3ecd33e4e5faa1abf11769da63dc32b9399c301aa60d73c5",
+      "role": "proposed",
+      "organization_description": "",
+      "original_far": 0.4463367399542943,
+      "target_far": 0.5579209249428678,
+      "height_cap_m": 7.771599999999999,
+      "optimistic_far_upper": 0.766001771909401,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 402.41079628149095,
+          "common_loss": 402.41079628149095,
+          "relation_loss": 7.6807889869295565,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 14.310997001508731,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 8.73136995927994
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04116711017695846,
+            "orientation_similarity": 0.008797110101802376,
+            "long_side_overlap_ratio": 0.20570213083511454
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 27,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.45905527937959956,
+          "target_far": 0.5579209249428678,
+          "far_relative_error": 0.17720368809144826,
+          "outside_ratio": 0.020632051782606676,
+          "overlap_ratio": 0.20457504839477808,
+          "height_cap_m": 7.771599999999999,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.044146714522712134
+        },
+        "20261014": {
+          "objective": 303.71193174642565,
+          "common_loss": 303.71193174642565,
+          "relation_loss": 9.544878464202524,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 17.099686187015298,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 11.534949205592275
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04191477156279553,
+            "orientation_similarity": 0.00692557108507702,
+            "long_side_overlap_ratio": 0.2624597675654944
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 27,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4549937546116518,
+          "target_far": 0.5579209249428678,
+          "far_relative_error": 0.18448343793837083,
+          "outside_ratio": 0.006831881946690071,
+          "overlap_ratio": 0.1123966052720332,
+          "height_cap_m": 7.771599999999999,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05392707286822122
+        },
+        "20261015": {
+          "objective": 242.5017648171047,
+          "common_loss": 242.5017648171047,
+          "relation_loss": 6.483776253493331,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 13.42709110930331,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 6.024237651176683
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.045959623925368016,
+            "orientation_similarity": 0.005682416797406736,
+            "long_side_overlap_ratio": 0.1947855012295323
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 27,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.45462769793458757,
+          "target_far": 0.5579209249428678,
+          "far_relative_error": 0.18513954646683609,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.0573622087173178,
+          "height_cap_m": 7.771599999999999,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.04370424998923549
+        },
+        "20261016": {
+          "objective": 256.78479049645813,
+          "common_loss": 256.78479049645813,
+          "relation_loss": 18.517235021381648,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 43.977425441115145,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 11.5742796230298
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.07015865066410197,
+            "orientation_similarity": 0.00907062637777685,
+            "long_side_overlap_ratio": 0.2260999420233184
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 27,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4617552859194711,
+          "target_far": 0.5579209249428678,
+          "far_relative_error": 0.17236428089382783,
+          "outside_ratio": 0.005862019160874642,
+          "overlap_ratio": 0.07855847795875154,
+          "height_cap_m": 7.771599999999999,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05499115009546929
+        },
+        "20261017": {
+          "objective": 312.983906281871,
+          "common_loss": 312.983906281871,
+          "relation_loss": 4.615584085352792,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 7.25007501639979,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 6.596677239658585
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.031696271828722304,
+            "orientation_similarity": 0.009006976687838472,
+            "long_side_overlap_ratio": 0.16428855176995996
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 27,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 27,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.46158440388704763,
+          "target_far": 0.5579209249428678,
+          "far_relative_error": 0.1726705644992348,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.1403133336595572,
+          "height_cap_m": 7.771599999999999,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.047171134712319915
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 216.84571189361034,
+        "common_loss": 216.84571189361034,
+        "relation_loss": 0.0,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.0
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.009463034093475922,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.005355653453934393
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 27,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 27,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 27,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.4682203199143342,
+        "target_far": 0.5579209249428678,
+        "far_relative_error": 0.16077655635109783,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.05606915554251252,
+        "height_cap_m": 7.771599999999999,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.02987673958802337
+      }
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "city": "Boston",
+      "node_count": 9,
+      "input_path": "inputs/case_04.json",
+      "graph_path": "results/dataset/graphs/part_10/Boston/chunk_0001/P4B_US_BO_000046.graph.json.gz",
+      "source_sha256": "6e2dcd4ea1221aa7e7dabf3965e6ab7afd55a33bc6e1a34935a5b44da836b30c",
+      "role": "alternative",
+      "organization_description": "",
+      "original_far": 0.1940916286403968,
+      "target_far": 0.24261453580049602,
+      "height_cap_m": 5.226,
+      "optimistic_far_upper": 0.33587370892761526,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 79.67437972743318,
+          "common_loss": 79.67437972743318,
+          "relation_loss": 3.019313443737094,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 0.2556937657238235,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 8.80224656548746
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04051186997463629,
+            "orientation_similarity": 0.0042595506187038425,
+            "long_side_overlap_ratio": 0.17696055296287672
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 16,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.22328437489288164,
+          "target_far": 0.24261453580049602,
+          "far_relative_error": 0.07967437253433875,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.0,
+          "height_cap_m": 5.226,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05080692169267549
+        },
+        "20261014": {
+          "objective": 20.12183560998937,
+          "common_loss": 20.12183560998937,
+          "relation_loss": 2.9024090108174647,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 0.5483237742825078,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 8.158903258169886
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.05426951540265777,
+            "orientation_similarity": 0.002344035630133405,
+            "long_side_overlap_ratio": 0.18018799302314836
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 16,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.2377326882517696,
+          "target_far": 0.24261453580049602,
+          "far_relative_error": 0.02012182630615671,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.0,
+          "height_cap_m": 5.226,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.0618496040893
+        },
+        "20261015": {
+          "objective": 59.944442476876894,
+          "common_loss": 59.944442476876894,
+          "relation_loss": 2.9747024732052165,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 1.3459395809017256,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 7.578167838713924
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.049977480537858845,
+            "orientation_similarity": 0.007287954119723227,
+            "long_side_overlap_ratio": 0.16917848529442236
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 16,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.22807114465445347,
+          "target_far": 0.24261453580049602,
+          "far_relative_error": 0.05994443448352043,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.0,
+          "height_cap_m": 5.226,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.03601812088440238
+        },
+        "20261016": {
+          "objective": 67.42312357911845,
+          "common_loss": 67.42312357911845,
+          "relation_loss": 0.7731875659712819,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 0.26815877704875357,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 2.0514039208650923
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.0539234450951014,
+            "orientation_similarity": 0.0037745070184201507,
+            "long_side_overlap_ratio": 0.11003300770812827
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 16,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.22706307918632315,
+          "target_far": 0.24261453580049602,
+          "far_relative_error": 0.06409944302331895,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.003323673398762043,
+          "height_cap_m": 5.226,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05902263005364263
+        },
+        "20261017": {
+          "objective": 86.81149264190852,
+          "common_loss": 86.81149264190852,
+          "relation_loss": 3.9479325005781134,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 0.8389640075507042,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 11.004833494183636
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04874665775565463,
+            "orientation_similarity": 0.010077767016314711,
+            "long_side_overlap_ratio": 0.21167802648531509
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 16,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 16,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.22155280735178676,
+          "target_far": 0.24261453580049602,
+          "far_relative_error": 0.08681148629127688,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.0,
+          "height_cap_m": 5.226,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.04714857330709953
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 66.5145564034516,
+        "common_loss": 66.5145564034516,
+        "relation_loss": 0.15815063074494923,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.4744518922348477
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.014215105025724527,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.04904320883503197
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 16,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 16,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 16,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.2264771375746967,
+        "target_far": 0.24261453580049602,
+        "far_relative_error": 0.06651455640345161,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.0,
+        "height_cap_m": 5.226,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.03055062007308598
+      }
+    },
+    {
+      "case_id": "P4B_US_CH_000219",
+      "city": "Chicago",
+      "node_count": 20,
+      "input_path": "inputs/case_05.json",
+      "graph_path": "results/dataset/graphs/part_05/Chicago/chunk_0002/P4B_US_CH_000219.graph.json.gz",
+      "source_sha256": "9565f2936f22ca67678a111b99d3226609ccc1934aae970dd6be4896aaec48ff",
+      "role": "alternative",
+      "organization_description": "",
+      "original_far": 0.37801051049740525,
+      "target_far": 0.47251313812175655,
+      "height_cap_m": 5.73,
+      "optimistic_far_upper": 0.5859773629259951,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 104.61265742953307,
+          "common_loss": 104.61265742953307,
+          "relation_loss": 4.428070394243998,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 1.7061459827625125,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 11.578065199969483
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04103519896355003,
+            "orientation_similarity": 0.004833630167275202,
+            "long_side_overlap_ratio": 0.24736082622803368
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 37,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4410894540324192,
+          "target_far": 0.47251313812175655,
+          "far_relative_error": 0.06650330235101339,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.03810934463007286,
+          "height_cap_m": 5.73,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.051233818914705624
+        },
+        "20261014": {
+          "objective": 176.62283370307995,
+          "common_loss": 176.62283370307995,
+          "relation_loss": 5.92541992428528,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 4.284549141104864,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 13.491710631750978
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.06094428207293641,
+            "orientation_similarity": 0.0043902739374454686,
+            "long_side_overlap_ratio": 0.28822241476432997
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 37,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.43700689848872254,
+          "target_far": 0.47251313812175655,
+          "far_relative_error": 0.07514339130160823,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.10147943778300945,
+          "height_cap_m": 5.73,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.061221735826831485
+        },
+        "20261015": {
+          "objective": 132.82879637631984,
+          "common_loss": 132.82879637631984,
+          "relation_loss": 4.277387124167537,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 2.441075104355945,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 10.391086268146665
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.03941980158591404,
+            "orientation_similarity": 0.005912806791752017,
+            "long_side_overlap_ratio": 0.2553555552725252
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 37,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4380784580546138,
+          "target_far": 0.47251313812175655,
+          "far_relative_error": 0.0728756034255912,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.05995318260570379,
+          "height_cap_m": 5.73,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.0615547354569159
+        },
+        "20261016": {
+          "objective": 184.8461254866482,
+          "common_loss": 184.8461254866482,
+          "relation_loss": 6.0702705330445745,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 4.529432488182682,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 13.681379110951042
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04383816593258442,
+            "orientation_similarity": 0.006721340425695513,
+            "long_side_overlap_ratio": 0.3030463646401523
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 37,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4335119337322441,
+          "target_far": 0.47251313812175655,
+          "far_relative_error": 0.08253993644397388,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.1023061831852349,
+          "height_cap_m": 5.73,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.07009095748538155
+        },
+        "20261017": {
+          "objective": 147.8273697335195,
+          "common_loss": 147.8273697335195,
+          "relation_loss": 3.4475945073252823,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 0.6397652486796435,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 9.703018273296204
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04126987806919518,
+            "orientation_similarity": 0.006382026272322208,
+            "long_side_overlap_ratio": 0.21398667025590376
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 37,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 37,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.4412713677087519,
+          "target_far": 0.47251313812175655,
+          "far_relative_error": 0.0661183105663282,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.08170905449994753,
+          "height_cap_m": 5.73,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.061546964297334854
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 64.00611220401233,
+        "common_loss": 64.00611220401233,
+        "relation_loss": 0.018296725051941156,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.03936794894333829,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.015522226212485175
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.0158454325365737,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.02048940987519804
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 37,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 37,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 37,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.4430244857914679,
+        "target_far": 0.47251313812175655,
+        "far_relative_error": 0.06240811090990244,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.0015980012941098842,
+        "height_cap_m": 5.73,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.04628641197412394
+      }
+    },
+    {
+      "case_id": "P4B_DE_DD_000053",
+      "city": "Dresden",
+      "node_count": 12,
+      "input_path": "inputs/case_06.json",
+      "graph_path": "results/dataset/graphs/part_07/Dresden/chunk_0001/P4B_DE_DD_000053.graph.json.gz",
+      "source_sha256": "0da716b1be5bfb94105c924650cf75c4c161f4e39b449febe78043b4ad869c24",
+      "role": "alternative",
+      "organization_description": "",
+      "original_far": 0.799059673394886,
+      "target_far": 0.9988245917436076,
+      "height_cap_m": 13.524,
+      "optimistic_far_upper": 1.4619211740342681,
+      "condition_warnings": [],
+      "relation_check": {
+        "footprint_gap_block_norm": 0.0,
+        "orientation_similarity": 0.0,
+        "long_side_overlap_ratio": 0.0
+      },
+      "initial_diagnostics": {
+        "20261013": {
+          "objective": 178.6361588596408,
+          "common_loss": 178.6361588596408,
+          "relation_loss": 5.414498585448679,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 3.9864852856840733,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 12.257010470661964
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.039005638716892825,
+            "orientation_similarity": 0.004336083039811829,
+            "long_side_overlap_ratio": 0.31075579645403845
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 21,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.9255136751213182,
+          "target_far": 0.9988245917436076,
+          "far_relative_error": 0.07339718828339367,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.10523896414800808,
+          "height_cap_m": 13.524,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05066464989660235
+        },
+        "20261014": {
+          "objective": 175.28243433044022,
+          "common_loss": 175.28243433044022,
+          "relation_loss": 5.665782657440823,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 7.7089174343215445,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 9.288430538000924
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.04079172359351281,
+            "orientation_similarity": 0.0033487776980493603,
+            "long_side_overlap_ratio": 0.30278038044108113
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 21,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.9174707757136563,
+          "target_far": 0.9988245917436076,
+          "far_relative_error": 0.08144955250644684,
+          "outside_ratio": 0.0007615778946963714,
+          "overlap_ratio": 0.09307129723202362,
+          "height_cap_m": 13.524,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05945449248372977
+        },
+        "20261015": {
+          "objective": 140.13061257437843,
+          "common_loss": 140.13061257437843,
+          "relation_loss": 6.243360243483284,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 8.827942396599006,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 9.902138333850846
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.0434816614100516,
+            "orientation_similarity": 0.004254389387227154,
+            "long_side_overlap_ratio": 0.28386976041867584
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 21,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.9552773489902973,
+          "target_far": 0.9988245917436076,
+          "far_relative_error": 0.043598488776985043,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.09653211653817327,
+          "height_cap_m": 13.524,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.059452266395273776
+        },
+        "20261016": {
+          "objective": 134.94672739396384,
+          "common_loss": 134.94672739396384,
+          "relation_loss": 8.718406036141797,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 13.130747491074052,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 13.024470617351339
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.03884732847632721,
+            "orientation_similarity": 0.004078995569465502,
+            "long_side_overlap_ratio": 0.31597383940954615
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 21,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.9258847872392432,
+          "target_far": 0.9988245917436076,
+          "far_relative_error": 0.07302563944389512,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.06192107615660996,
+          "height_cap_m": 13.524,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.06774841674680308
+        },
+        "20261017": {
+          "objective": 126.78190809002452,
+          "common_loss": 126.78190809002452,
+          "relation_loss": 4.214350711571191,
+          "relation_field_losses": {
+            "footprint_gap_block_norm": 1.7810279748017646,
+            "orientation_similarity": 0.0,
+            "long_side_overlap_ratio": 10.862024159911808
+          },
+          "relation_deviation": {
+            "footprint_gap_block_norm": 0.032239741010744914,
+            "orientation_similarity": 0.004091352141664649,
+            "long_side_overlap_ratio": 0.26950936075051246
+          },
+          "relation_counts": {
+            "footprint_gap_block_norm": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "orientation_similarity": {
+              "valid": 21,
+              "skipped": 0
+            },
+            "long_side_overlap_ratio": {
+              "valid": 21,
+              "skipped": 0
+            }
+          },
+          "equivalent_far": 0.9239469123748055,
+          "target_far": 0.9988245917436076,
+          "far_relative_error": 0.07496579478293695,
+          "outside_ratio": 0.0,
+          "overlap_ratio": 0.05181610249173908,
+          "height_cap_m": 13.524,
+          "height_valid": true,
+          "bounds_valid": true,
+          "feasible": false,
+          "center_change_rms_L": 0.05311100872131306
+        }
+      },
+      "mapped_initial_diagnostics": {
+        "objective": 98.81529317386425,
+        "common_loss": 98.81529317386425,
+        "relation_loss": 0.024143755815593183,
+        "relation_field_losses": {
+          "footprint_gap_block_norm": 0.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.07243126744677955
+        },
+        "relation_deviation": {
+          "footprint_gap_block_norm": 0.016510674895345596,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.07384160076818994
+        },
+        "relation_counts": {
+          "footprint_gap_block_norm": {
+            "valid": 21,
+            "skipped": 0
+          },
+          "orientation_similarity": {
+            "valid": 21,
+            "skipped": 0
+          },
+          "long_side_overlap_ratio": {
+            "valid": 21,
+            "skipped": 0
+          }
+        },
+        "equivalent_far": 0.9394987774110473,
+        "target_far": 0.9988245917436076,
+        "far_relative_error": 0.05939562844462778,
+        "outside_ratio": 0.0,
+        "overlap_ratio": 0.039419664729236484,
+        "height_cap_m": 13.524,
+        "height_valid": true,
+        "bounds_valid": true,
+        "feasible": false,
+        "center_change_rms_L": 0.03431244042007669
+      }
+    }
+  ],
+  "source_sha256": {
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\results\\dataset\\graph_dataset_index.csv.gz": "3b728b0e2a4d5dbeb192b30af16c352127b95abe9e09fccf77a0a9f8b7711a33",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\feature_registry_snapshot_v03.tsv": "88b0ed3b019161c32077672057f8d696b06ef8d1ee480159a0744f874cc7253a",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_07\\Bologna\\chunk_0002\\P4B_IT_BO_000304.graph.json.gz": "defdff2983bd5bacbdda93a94bd87d9feacd1860a06ae09dd2e2251be82e344f",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_08\\Amsterdam\\chunk_0002\\P4B_NL_AM_000249.graph.json.gz": "ee67906261c6cb8ae63c839db37dd9795da0503ee443d1117175c11f9ea88e65",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_09\\Berlin\\chunk_0003\\P4B_DE_BE_000370.graph.json.gz": "434d6a7c8323af6c3ecd33e4e5faa1abf11769da63dc32b9399c301aa60d73c5",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_10\\Boston\\chunk_0001\\P4B_US_BO_000046.graph.json.gz": "6e2dcd4ea1221aa7e7dabf3965e6ab7afd55a33bc6e1a34935a5b44da836b30c",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_05\\Chicago\\chunk_0002\\P4B_US_CH_000219.graph.json.gz": "9565f2936f22ca67678a111b99d3226609ccc1934aae970dd6be4896aaec48ff",
+    "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032\\results\\dataset\\graphs\\part_07\\Dresden\\chunk_0001\\P4B_DE_DD_000053.graph.json.gz": "0da716b1be5bfb94105c924650cf75c4c161f4e39b449febe78043b4ad869c24"
+  },
+  "input_sha256": {
+    "inputs/case_01.json": "af6f6427d3e1ecebc7e3debf4410ede8d4be8b6a7e60963257fba9501f973634",
+    "inputs/case_02.json": "d20d046d6934bcba38184456cd9a7eb7c4c5f7c02d25e6c1e403fe34c3c59b8d",
+    "inputs/case_03.json": "9dac1746c46edf14593b9ec87626818a1150278cc8b8a852a3b14fc1ffa662d9",
+    "inputs/case_04.json": "3a6727142d6595456ff8cca6676ae3a94a07e4302212dbc00c43ab45b35b2964",
+    "inputs/case_05.json": "6b8303ab2f6a6135dfb92078c71fc4f2910f3920befbd7fc4d4ecb1afbc30fad",
+    "inputs/case_06.json": "64dd7846e65496d76df864d1e2e5218212ddb37c5e026204f060bf5fa3c14991"
+  },
+  "candidate_reads": 6,
+  "rejected": [],
+  "selection_basis": "Purposeful proposals from prior 6A/6C manifests, then stable index order; not generated-result selection"
+}

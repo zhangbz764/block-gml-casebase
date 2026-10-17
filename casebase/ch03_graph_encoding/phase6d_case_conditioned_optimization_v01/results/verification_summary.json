@@ -1,0 +1,45 @@
+{
+  "state": "CODE_SHORT_CHECK_ONLY",
+  "formal_prepare": false,
+  "formal_solves": 0,
+  "real_cases": 1,
+  "case_id": "P4B_IT_BO_000304",
+  "unit_tests": {
+    "run": 11,
+    "failures": 0,
+    "errors": 0
+  },
+  "code_hash": "ff176d9f904ac1779c39811e733970a56d27e26f126218a1195c60551b5883a1",
+  "source_sha256": "defdff2983bd5bacbdda93a94bd87d9feacd1860a06ae09dd2e2251be82e344f",
+  "config_hash": "2c2d10083f30a83bcae7663e3d360a1581af5deb369a89d896464e11e3f37eef",
+  "source_relation_max_errors": {
+    "footprint_gap_block_norm": 0.0,
+    "orientation_similarity": 0.0,
+    "long_side_overlap_ratio": 0.0
+  },
+  "initial_sha256_both_modes": "8eecab93b2b7c535d5f5fc3f1f90f82a7949c8a078be0fdee7a165a15c1cabcd",
+  "modes": {
+    "R": {
+      "evaluations": 20,
+      "elapsed_seconds": 0.1400415999814868,
+      "stop_reason": "evaluation_limit",
+      "outcome": "no_feasible"
+    },
+    "B": {
+      "evaluations": 20,
+      "elapsed_seconds": 0.1266489999834448,
+      "stop_reason": "evaluation_limit",
+      "outcome": "no_feasible"
+    }
+  },
+  "seconds_per_evaluation": [
+    0.00700207999907434,
+    0.00633244999917224
+  ],
+  "rough_seconds_6000_evaluations": 42.01247999444604,
+  "budget_note": "Short-case timing only; geometry changes can change cost. Formal cap remains 600 seconds per attempt.",
+  "elapsed_seconds": 5.428355299984105,
+  "condition_warnings": [],
+  "solver_short_check_code_hash": "7dc154ee85d438604c41896675f1151b566f50d5b9af6479bf581daad245a3ee",
+  "render_only_recheck": "Coordinate tick density only; no extra real-case objective evaluations"
+}

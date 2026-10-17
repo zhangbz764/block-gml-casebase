@@ -1,0 +1,1047 @@
+{
+  "run_id": "adapt_v02_light",
+  "level_id": "light",
+  "state": "EXECUTED",
+  "counts": {
+    "planned": 30,
+    "recorded": 30,
+    "not_run": 0,
+    "feasible": 17,
+    "failed": 13,
+    "timeouts": 0,
+    "exceptions": 0
+  },
+  "case_summaries": [
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "feasible": 2,
+      "nonduplicate_feasible": 2,
+      "position_change_median_L": 0.17533978114246476,
+      "relation_loss_median": 15.436546991524049,
+      "near_duplicate_seed_groups": [
+        [
+          20261013
+        ],
+        [
+          20261017
+        ]
+      ]
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "feasible": 3,
+      "nonduplicate_feasible": 3,
+      "position_change_median_L": 0.21562502974859174,
+      "relation_loss_median": 109.2648806767592,
+      "near_duplicate_seed_groups": [
+        [
+          20261013
+        ],
+        [
+          20261014
+        ],
+        [
+          20261017
+        ]
+      ]
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "feasible": 5,
+      "nonduplicate_feasible": 5,
+      "position_change_median_L": 0.06699916942436343,
+      "relation_loss_median": 0.16569727942829807,
+      "near_duplicate_seed_groups": [
+        [
+          20261013
+        ],
+        [
+          20261014
+        ],
+        [
+          20261015
+        ],
+        [
+          20261016
+        ],
+        [
+          20261017
+        ]
+      ]
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "feasible": 5,
+      "nonduplicate_feasible": 5,
+      "position_change_median_L": 0.26981297665914417,
+      "relation_loss_median": 28.632461216771958,
+      "near_duplicate_seed_groups": [
+        [
+          20261013
+        ],
+        [
+          20261014
+        ],
+        [
+          20261015
+        ],
+        [
+          20261016
+        ],
+        [
+          20261017
+        ]
+      ]
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "feasible": 1,
+      "nonduplicate_feasible": 1,
+      "position_change_median_L": 0.08765440750407975,
+      "relation_loss_median": 5.506461412732773,
+      "near_duplicate_seed_groups": [
+        [
+          20261017
+        ]
+      ]
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "feasible": 1,
+      "nonduplicate_feasible": 1,
+      "position_change_median_L": 0.17985976066753664,
+      "relation_loss_median": 254.1455832494762,
+      "near_duplicate_seed_groups": [
+        [
+          20261017
+        ]
+      ]
+    }
+  ],
+  "all_rows": [
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "seed": 20261013,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2316,
+      "elapsed_seconds": 12.160677900072187,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.6327146879911227,
+      "far_relative_error": 6.28598162777676e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 3.486482496880018e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 17.773211401198242,
+      "center_change_rms_L": 0.1578158910739273,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.08483831399116706,
+        "orientation_similarity": 0.09419080130763592,
+        "long_side_overlap_ratio": 0.19057107514231472
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "seed": 20261014,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2231,
+      "elapsed_seconds": 11.303770900005475,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.6327146874506967,
+      "far_relative_error": 6.200567762493928e-08,
+      "outside_ratio": 0.0008496548005316461,
+      "overlap_ratio": 0.005883261227317254,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 14.973387750098487,
+      "center_change_rms_L": 0.17388854838215254,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.08703878946680295,
+        "orientation_similarity": 0.07807769155618015,
+        "long_side_overlap_ratio": 0.32046368453619095
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "seed": 20261015,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2267,
+      "elapsed_seconds": 11.343658300000243,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.6327145634768551,
+      "far_relative_error": 1.3393390111879632e-07,
+      "outside_ratio": 1.9605878899424427e-05,
+      "overlap_ratio": 0.00023708164069096812,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 5.457531025533382,
+      "center_change_rms_L": 0.15240448247472654,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.05282915821446949,
+        "orientation_similarity": 0.04370843002733993,
+        "long_side_overlap_ratio": 0.15164041960041866
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "seed": 20261016,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2328,
+      "elapsed_seconds": 12.08733599993866,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.6327145720304903,
+      "far_relative_error": 1.2041495498940624e-07,
+      "outside_ratio": 8.105397658473136e-06,
+      "overlap_ratio": 0.0011340534106378398,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 7.245650063541558,
+      "center_change_rms_L": 0.14411143419262687,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.06946919954239768,
+        "orientation_similarity": 0.059597007112077716,
+        "long_side_overlap_ratio": 0.3044892541369153
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "R",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2200,
+      "elapsed_seconds": 11.093517700093798,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.6327146177050152,
+      "far_relative_error": 4.8226765465806936e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 2.732676688564699e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 13.099882581849855,
+      "center_change_rms_L": 0.19286367121100223,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.12709464807519005,
+        "orientation_similarity": 0.11512674594665416,
+        "long_side_overlap_ratio": 0.24197841117437827
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "seed": 20261013,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2384,
+      "elapsed_seconds": 12.332430399954319,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.632714638491243,
+      "far_relative_error": 1.5374313262334776e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 129.8691846089632,
+      "center_change_rms_L": 0.2604576665135118,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.17746235904119337,
+        "orientation_similarity": 0.06786327572118536,
+        "long_side_overlap_ratio": 0.607777971415358
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "seed": 20261014,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2296,
+      "elapsed_seconds": 11.247227699961513,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.6327146537230108,
+      "far_relative_error": 8.699363378300553e-09,
+      "outside_ratio": 7.699772266837369e-05,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 90.87856057559263,
+      "center_change_rms_L": 0.2093840514305558,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.21313317892648806,
+        "orientation_similarity": 0.062387350613017624,
+        "long_side_overlap_ratio": 0.4487773773552047
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "seed": 20261015,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2296,
+      "elapsed_seconds": 11.963567900005728,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.632714661133748,
+      "far_relative_error": 2.041196898324936e-08,
+      "outside_ratio": 0.0002562537459703418,
+      "overlap_ratio": 0.00028341915492708606,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 200.28617782149854,
+      "center_change_rms_L": 0.25794459558825666,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.20894336950935816,
+        "orientation_similarity": 0.040583521945484355,
+        "long_side_overlap_ratio": 0.463735512673698
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "seed": 20261016,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2274,
+      "elapsed_seconds": 11.23893719993066,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.6327146612276274,
+      "far_relative_error": 2.0560344653112335e-08,
+      "outside_ratio": 0.000790632068175368,
+      "overlap_ratio": 0.0038182172189015515,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 43.953624444746744,
+      "center_change_rms_L": 0.18742130030522713,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.15270888716094427,
+        "orientation_similarity": 0.055536017179638124,
+        "long_side_overlap_ratio": 0.39088119787825093
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "mode": "B",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2270,
+      "elapsed_seconds": 11.66289780009538,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.6327146472604271,
+      "far_relative_error": 1.5146939516625037e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 109.2648806767592,
+      "center_change_rms_L": 0.21562502974859174,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.20771659225816724,
+        "orientation_similarity": 0.05780160820116226,
+        "long_side_overlap_ratio": 0.41129008493782365
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "seed": 20261013,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1491,
+      "elapsed_seconds": 4.923830999992788,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135008004198642,
+      "far_relative_error": 4.175828862774622e-08,
+      "outside_ratio": 1.2616683701362914e-07,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 0.0659609240466152,
+      "center_change_rms_L": 0.06699916942436343,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.050578198702034644,
+        "orientation_similarity": 0.010576813853966346,
+        "long_side_overlap_ratio": 0.03777164208023399
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "seed": 20261014,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1447,
+      "elapsed_seconds": 4.269690499990247,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.21350082119403765,
+      "far_relative_error": 1.3906084810967476e-07,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 0.16569727942829807,
+      "center_change_rms_L": 0.06579742024867886,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.06074964713067335,
+        "orientation_similarity": 0.016458372589966682,
+        "long_side_overlap_ratio": 0.04610887854742585
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "seed": 20261015,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 4499,
+      "elapsed_seconds": 13.574207300087437,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.21350073766239447,
+      "far_relative_error": 2.5218661564512204e-07,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 0.8218216193423258,
+      "center_change_rms_L": 0.1201497865391225,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.08819370168491442,
+        "orientation_similarity": 0.0072037528396123145,
+        "long_side_overlap_ratio": 0.04894173505142517
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "seed": 20261016,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1560,
+      "elapsed_seconds": 4.764285100041889,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135007963272391,
+      "far_relative_error": 2.2589155477987767e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 0.04008586926968968,
+      "center_change_rms_L": 0.053095126423282554,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.03770890571136404,
+        "orientation_similarity": 0.01480400108711195,
+        "long_side_overlap_ratio": 0.027835877957216388
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "R",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1437,
+      "elapsed_seconds": 4.340904799988493,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135008002158356,
+      "far_relative_error": 4.0802654701833746e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 0.254020779371139,
+      "center_change_rms_L": 0.13839661354261437,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.06636142582117785,
+        "orientation_similarity": 0.057870770540491195,
+        "long_side_overlap_ratio": 0.05727434320640386
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "seed": 20261013,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1631,
+      "elapsed_seconds": 4.817671600030735,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.21350080041632846,
+      "far_relative_error": 4.17417279056917e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 35.13950586997865,
+      "center_change_rms_L": 0.29278096300810535,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.2193622213170317,
+        "orientation_similarity": 0.07628583028989941,
+        "long_side_overlap_ratio": 0.27435573389122947
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "seed": 20261014,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 1671,
+      "elapsed_seconds": 5.051869599963538,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.21350078900481514,
+      "far_relative_error": 1.1707785031548269e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 5.61412026767001,
+      "center_change_rms_L": 0.09028888745595426,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.0652474640755337,
+        "orientation_similarity": 0.06951859040437926,
+        "long_side_overlap_ratio": 0.17824866087963082
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "seed": 20261015,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 3330,
+      "elapsed_seconds": 9.996124599943869,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135007909858729,
+      "far_relative_error": 2.428860357219714e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 15.846018652280748,
+      "center_change_rms_L": 0.26981297665914417,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.15977848079936913,
+        "orientation_similarity": 0.05294176274795269,
+        "long_side_overlap_ratio": 0.2662618210105719
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "seed": 20261016,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 2428,
+      "elapsed_seconds": 7.50911709992215,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135007903579388,
+      "far_relative_error": 5.369992749218418e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 29.331940995152678,
+      "center_change_rms_L": 0.33930757945866413,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.24150769166872893,
+        "orientation_similarity": 0.10655495748336745,
+        "long_side_overlap_ratio": 0.26600957945345427
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "mode": "B",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 3306,
+      "elapsed_seconds": 10.031756700016558,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.2135007897438495,
+      "far_relative_error": 8.246278606781113e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 28.632461216771958,
+      "center_change_rms_L": 0.14331907678277656,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.16859413377966886,
+        "orientation_similarity": 0.061325883740646896,
+        "long_side_overlap_ratio": 0.23998829587090545
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "seed": 20261013,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 3964,
+      "elapsed_seconds": 21.485162399942055,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.49097039103553297,
+      "far_relative_error": 4.667122522254521e-08,
+      "outside_ratio": 0.0002082011217612143,
+      "overlap_ratio": 3.097389564051744e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 6.709285012644585,
+      "center_change_rms_L": 0.11248162746816118,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.07089056848802928,
+        "orientation_similarity": 0.06400495892059833,
+        "long_side_overlap_ratio": 0.19390685281929548
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "seed": 20261014,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2562,
+      "elapsed_seconds": 13.662252400070429,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.49097041564236193,
+      "far_relative_error": 3.4475360391970976e-09,
+      "outside_ratio": 0.0012554010879242507,
+      "overlap_ratio": 6.57551484397234e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 43.53431173543971,
+      "center_change_rms_L": 0.09817466345718136,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.10384264635408653,
+        "orientation_similarity": 0.12479121884894798,
+        "long_side_overlap_ratio": 0.38896892562129604
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "seed": 20261015,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 3866,
+      "elapsed_seconds": 20.9949256000109,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.4909703518631429,
+      "far_relative_error": 1.2645686798414987e-07,
+      "outside_ratio": 2.418339801905804e-05,
+      "overlap_ratio": 0.0005742442913121191,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 22.002962511902723,
+      "center_change_rms_L": 0.12726720951956205,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.11265612612076473,
+        "orientation_similarity": 0.1037264963434132,
+        "long_side_overlap_ratio": 0.2710426793256015
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "seed": 20261016,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 3848,
+      "elapsed_seconds": 20.369232299970463,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.4909704176291593,
+      "far_relative_error": 7.494210301659275e-09,
+      "outside_ratio": 0.0011353923766372412,
+      "overlap_ratio": 1.5978488929144104e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 15.107538772769985,
+      "center_change_rms_L": 0.1420762041430729,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.07729198668237387,
+        "orientation_similarity": 0.13152814780643635,
+        "long_side_overlap_ratio": 0.23127685530336212
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "R",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 3846,
+      "elapsed_seconds": 20.728542100056075,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.4909704130767939,
+      "far_relative_error": 1.7779683148345385e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 4.799430695535809e-10,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 5.506461412732773,
+      "center_change_rms_L": 0.08765440750407975,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.052084634949864206,
+        "orientation_similarity": 0.11370420794369734,
+        "long_side_overlap_ratio": 0.20855107967400308
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "seed": 20261013,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2795,
+      "elapsed_seconds": 14.910725299967453,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.49097034714507576,
+      "far_relative_error": 1.3606654511566215e-07,
+      "outside_ratio": 1.5540561637874466e-07,
+      "overlap_ratio": 0.00018156821859547926,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 560.9881154749305,
+      "center_change_rms_L": 0.2009604273540733,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.30698968436851665,
+        "orientation_similarity": 0.07757068277135942,
+        "long_side_overlap_ratio": 0.3250086877975623
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "seed": 20261014,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2737,
+      "elapsed_seconds": 14.488236299948767,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.4909704121369392,
+      "far_relative_error": 3.6922480094295713e-09,
+      "outside_ratio": 0.004652156808261741,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 355.28192673818944,
+      "center_change_rms_L": 0.18844542494977742,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.32054492026774295,
+        "orientation_similarity": 0.0760779090288801,
+        "long_side_overlap_ratio": 0.40012781529993746
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "seed": 20261015,
+      "outcome": "no_feasible",
+      "stop_reason": "converged",
+      "evaluations": 2770,
+      "elapsed_seconds": 14.306499299942516,
+      "optimizer_converged": true,
+      "feasible": false,
+      "equivalent_far": 0.4909703829379008,
+      "far_relative_error": 6.316434160152245e-08,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0023154904137126634,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 320.5004204885012,
+      "center_change_rms_L": 0.25701223861553074,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.286559759261009,
+        "orientation_similarity": 0.11205398398140017,
+        "long_side_overlap_ratio": 0.4043429376394418
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "seed": 20261016,
+      "outcome": "no_feasible",
+      "stop_reason": "evaluation_limit",
+      "evaluations": 6000,
+      "elapsed_seconds": 31.23680269997567,
+      "optimizer_converged": false,
+      "feasible": false,
+      "equivalent_far": 0.49097029199823194,
+      "far_relative_error": 2.483886774617848e-07,
+      "outside_ratio": 0.0012881287102105817,
+      "overlap_ratio": 9.175499039034951e-05,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 164.50978197768328,
+      "center_change_rms_L": 0.1998483428911922,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.23662865769978175,
+        "orientation_similarity": 0.09598447444351875,
+        "long_side_overlap_ratio": 0.465068608543346
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "mode": "B",
+      "seed": 20261017,
+      "outcome": "feasible_found",
+      "stop_reason": "converged",
+      "evaluations": 4083,
+      "elapsed_seconds": 21.310450899996795,
+      "optimizer_converged": true,
+      "feasible": true,
+      "equivalent_far": 0.490970410888873,
+      "far_relative_error": 6.23428755087264e-09,
+      "outside_ratio": 0.0,
+      "overlap_ratio": 0.0,
+      "height_valid": true,
+      "bounds_valid": true,
+      "relation_loss": 254.1455832494762,
+      "center_change_rms_L": 0.17985976066753664,
+      "relation_deviation": {
+        "footprint_gap_block_norm": 0.2769374266277835,
+        "orientation_similarity": 0.050424798131063805,
+        "long_side_overlap_ratio": 0.2737373603367997
+      },
+      "run_id": "adapt_v02_light",
+      "level_id": "light"
+    }
+  ],
+  "paired_summary": [
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "seed": 20261013,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": -8.939531989311695e-08,
+      "R_minus_B_relation_loss": -554.2788304622859,
+      "R_minus_B_center_change_rms_L": -0.08847879988591212
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "seed": 20261014,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": -2.447119702324737e-10,
+      "R_minus_B_relation_loss": -311.74761500274974,
+      "R_minus_B_center_change_rms_L": -0.09027076149259607
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "seed": 20261015,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": 6.329252638262742e-08,
+      "R_minus_B_relation_loss": -298.4974579765985,
+      "R_minus_B_center_change_rms_L": -0.1297450290959687
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "seed": 20261016,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": -2.4089446716012553e-07,
+      "R_minus_B_relation_loss": -149.4022432049133,
+      "R_minus_B_center_change_rms_L": -0.05777213874811929
+    },
+    {
+      "case_id": "P4B_DE_BE_000370",
+      "seed": 20261017,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": -4.4563192360381015e-09,
+      "R_minus_B_relation_loss": -248.63912183674344,
+      "R_minus_B_center_change_rms_L": -0.09220535316345689
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "seed": 20261013,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 4.7485503015432824e-08,
+      "R_minus_B_relation_loss": -112.09597320776496,
+      "R_minus_B_center_change_rms_L": -0.10264177543958453
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "seed": 20261014,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": 5.3306314246638725e-08,
+      "R_minus_B_relation_loss": -75.90517282549415,
+      "R_minus_B_center_change_rms_L": -0.035495503048403265
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "seed": 20261015,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": 1.1352193213554696e-07,
+      "R_minus_B_relation_loss": -194.82864679596517,
+      "R_minus_B_center_change_rms_L": -0.10554011311353012
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "seed": 20261016,
+      "both_recorded": true,
+      "both_feasible": false,
+      "R_minus_B_far_relative_error": 9.985461033629391e-08,
+      "R_minus_B_relation_loss": -36.70797438120518,
+      "R_minus_B_center_change_rms_L": -0.043309866112600265
+    },
+    {
+      "case_id": "P4B_IT_BO_000304",
+      "seed": 20261017,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 4.6712071514144434e-08,
+      "R_minus_B_relation_loss": -96.16499809490935,
+      "R_minus_B_center_change_rms_L": -0.02276135853758951
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "seed": 20261013,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 1.6560722054517803e-11,
+      "R_minus_B_relation_loss": -35.073544945932035,
+      "R_minus_B_center_change_rms_L": -0.22578179358374192
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "seed": 20261014,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 1.2735306307812649e-07,
+      "R_minus_B_relation_loss": -5.448422988241712,
+      "R_minus_B_center_change_rms_L": -0.024491467207275394
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "seed": 20261015,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 2.497577552879023e-07,
+      "R_minus_B_relation_loss": -15.024197032938421,
+      "R_minus_B_center_change_rms_L": -0.14966319012002166
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "seed": 20261016,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 1.721916272876935e-08,
+      "R_minus_B_relation_loss": -29.29185512588299,
+      "R_minus_B_center_change_rms_L": -0.28621245303538156
+    },
+    {
+      "case_id": "P4B_US_BO_000046",
+      "seed": 20261017,
+      "both_recorded": true,
+      "both_feasible": true,
+      "R_minus_B_far_relative_error": 3.255637609505263e-08,
+      "R_minus_B_relation_loss": -28.37844043740082,
+      "R_minus_B_center_change_rms_L": -0.004922463240162184
+    }
+  ],
+  "researcher_judgment": "not_supplied"
+}

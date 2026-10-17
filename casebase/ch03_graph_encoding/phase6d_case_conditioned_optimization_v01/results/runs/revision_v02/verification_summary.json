@@ -1,0 +1,102 @@
+{
+  "state": "CODE_REVISED_AND_PREVIEWED_PENDING_CONFIRMATION",
+  "code_hash": "d61cdff9ca42268744c657761f92c3bafd04a21a6391b5a091ee221cc124d7f0",
+  "revision_tests": {
+    "run": 3,
+    "passed": 3,
+    "failures": 0
+  },
+  "historical_files_checked": 44,
+  "historical_files_changed": 0,
+  "solver_unchanged": true,
+  "real_short_check_rerun": false,
+  "formal_solve_count": 0,
+  "previews": {
+    "light": {
+      "state": "PREPARED_PENDING_CONFIRMATION",
+      "cases": [
+        {
+          "case_id": "P4B_IT_BO_000304",
+          "node_count": 13,
+          "height_cap_m": 6.7,
+          "target_floor_area_increase": 0.04500000000010007,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_US_BO_000046",
+          "node_count": 9,
+          "height_cap_m": 5.226,
+          "target_floor_area_increase": 0.044999999999993046,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_DE_BE_000370",
+          "node_count": 15,
+          "height_cap_m": 7.771599999999999,
+          "target_floor_area_increase": 0.04500000000388771,
+          "warnings": []
+        }
+      ]
+    },
+    "medium": {
+      "state": "PREPARED_PENDING_CONFIRMATION",
+      "cases": [
+        {
+          "case_id": "P4B_IT_BO_000304",
+          "node_count": 13,
+          "height_cap_m": 6.7,
+          "target_floor_area_increase": 0.06250000000030265,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_US_BO_000046",
+          "node_count": 9,
+          "height_cap_m": 5.226,
+          "target_floor_area_increase": 0.06249999999989542,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_DE_BE_000370",
+          "node_count": 15,
+          "height_cap_m": 7.771599999999999,
+          "target_floor_area_increase": 0.062499999991405764,
+          "warnings": []
+        }
+      ]
+    },
+    "strong": {
+      "state": "PREPARED_PENDING_CONFIRMATION",
+      "cases": [
+        {
+          "case_id": "P4B_IT_BO_000304",
+          "node_count": 13,
+          "height_cap_m": 6.7,
+          "target_floor_area_increase": 0.12000000000067779,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_US_BO_000046",
+          "node_count": 9,
+          "height_cap_m": 5.226,
+          "target_floor_area_increase": 0.11999999999980138,
+          "warnings": []
+        },
+        {
+          "case_id": "P4B_DE_BE_000370",
+          "node_count": 15,
+          "height_cap_m": 7.771599999999999,
+          "target_floor_area_increase": 0.1200000000056134,
+          "warnings": []
+        }
+      ]
+    }
+  },
+  "counts": {
+    "planned": 90,
+    "recorded": 0,
+    "not_run": 90,
+    "failed_observed": 0,
+    "timeouts_observed": 0
+  },
+  "temporary_test_dirs": "results/bulk/unit_levels_* automatically removed"
+}

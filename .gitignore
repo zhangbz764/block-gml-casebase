@@ -40,7 +40,7 @@ outputs/
 
 /casebase/ch03_graph_encoding/**/results/bulk/
 
-/casebase/ch03_graph_encoding/**/results/*_evidence_pack.md
+/casebase/ch03_graph_encoding/**/results/**/*_evidence_pack.md
 /casebase/ch03_graph_encoding/**/results/plan_review.md
 /casebase/ch03_graph_encoding/**/results/sampling_report.md
 /casebase/ch03_graph_encoding/**/results/*_decision_summary.md
