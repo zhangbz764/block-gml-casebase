@@ -1,0 +1,27 @@
+{
+  "contract_version": "6c-reconstruction-v01",
+  "encoding_version": "0.3.2",
+  "seed": 20261009,
+  "index": "../phase5_graph_dataset_audit_v01/results/dataset/graph_dataset_index.csv.gz",
+  "registry": "../phase5_graph_dataset_audit_v01/feature_registry_snapshot_v03.tsv",
+  "graph_root": "../phase4b_full_graph_batches_v032",
+  "max_samples": 4800,
+  "max_per_city": 200,
+  "max_reads_per_city": 600,
+  "min_nodes": 8,
+  "max_nodes": 64,
+  "spatial_cell_m": 1000,
+  "target_fingerprint_decimals": 6,
+  "batch_size": 32,
+  "epochs": 50,
+  "learning_rate": 0.001,
+  "patience": 8,
+  "device": "cuda",
+  "set_width": 104,
+  "loss": {"position": 1.0, "size": 1.0, "height": 1.0, "direction": 0.1, "smooth_l1_beta": 1.0},
+  "exposure_sources": [
+    "../phase5_graph_dataset_audit_v01/results/review/*/review_manifest.csv",
+    "../phase6a_relation_validation_setup_v01/results/review/*/pair_manifest.csv",
+    "../phase6b_control_preparation_v01/results/input_manifest.json"
+  ]
+}

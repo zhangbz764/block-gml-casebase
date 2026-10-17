@@ -1,0 +1,324 @@
+{
+  "run_id": "recon_v01",
+  "config": {
+    "contract_version": "6c-reconstruction-v01",
+    "encoding_version": "0.3.2",
+    "seed": 20261009,
+    "index": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\results\\dataset\\graph_dataset_index.csv.gz",
+    "registry": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase5_graph_dataset_audit_v01\\feature_registry_snapshot_v03.tsv",
+    "graph_root": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase4b_full_graph_batches_v032",
+    "max_samples": 4800,
+    "max_per_city": 200,
+    "max_reads_per_city": 600,
+    "min_nodes": 8,
+    "max_nodes": 64,
+    "spatial_cell_m": 1000,
+    "target_fingerprint_decimals": 6,
+    "batch_size": 32,
+    "epochs": 50,
+    "learning_rate": 0.001,
+    "patience": 8,
+    "device": "cuda",
+    "set_width": 104,
+    "loss": {
+      "position": 1.0,
+      "size": 1.0,
+      "height": 1.0,
+      "direction": 0.1,
+      "smooth_l1_beta": 1.0
+    },
+    "exposure_sources": [
+      "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase5_graph_dataset_audit_v01\\results\\review\\*\\review_manifest.csv",
+      "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6a_relation_validation_setup_v01\\results\\review\\*\\pair_manifest.csv",
+      "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6b_control_preparation_v01\\results\\input_manifest.json"
+    ]
+  },
+  "config_hash": "d70c671b4b9f3e56f4070d89761777a532af035e9113665f811fd9e71c7ca519",
+  "code_hash": "9a3824d3530eb4b928c230fe62462d5472a2bfc4fad819785635db8a79ba30a3",
+  "source_sha256": {
+    "index": "3b728b0e2a4d5dbeb192b30af16c352127b95abe9e09fccf77a0a9f8b7711a33",
+    "registry": "88b0ed3b019161c32077672057f8d696b06ef8d1ee480159a0744f874cc7253a"
+  },
+  "counts": {
+    "train": 3863,
+    "test": 466,
+    "val": 471
+  },
+  "selected": 4800,
+  "inapplicable": 0,
+  "selection_report": {
+    "cities": {
+      "Amsterdam": {
+        "candidate_index_count": 1820,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 181,
+          "val": 5,
+          "test": 14
+        }
+      },
+      "Berlin": {
+        "candidate_index_count": 4178,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 159,
+          "val": 23,
+          "test": 18
+        }
+      },
+      "Bologna": {
+        "candidate_index_count": 794,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 142,
+          "val": 26,
+          "test": 32
+        }
+      },
+      "Boston": {
+        "candidate_index_count": 2890,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 134,
+          "val": 29,
+          "test": 37
+        }
+      },
+      "Chicago": {
+        "candidate_index_count": 10620,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 162,
+          "val": 21,
+          "test": 17
+        }
+      },
+      "Dresden": {
+        "candidate_index_count": 1544,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 171,
+          "val": 11,
+          "test": 18
+        }
+      },
+      "Hamburg": {
+        "candidate_index_count": 2967,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 143,
+          "val": 25,
+          "test": 32
+        }
+      },
+      "Kanazawa": {
+        "candidate_index_count": 7567,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 158,
+          "val": 23,
+          "test": 19
+        }
+      },
+      "Luxembourg": {
+        "candidate_index_count": 271,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 188,
+          "val": 5,
+          "test": 7
+        }
+      },
+      "Lyon": {
+        "candidate_index_count": 913,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 162,
+          "val": 16,
+          "test": 22
+        }
+      },
+      "Marseille": {
+        "candidate_index_count": 1598,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 176,
+          "val": 15,
+          "test": 9
+        }
+      },
+      "New York": {
+        "candidate_index_count": 1699,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 185,
+          "val": 9,
+          "test": 6
+        }
+      },
+      "Osaka": {
+        "candidate_index_count": 19163,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 161,
+          "val": 23,
+          "test": 16
+        }
+      },
+      "Paris": {
+        "candidate_index_count": 2415,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 156,
+          "val": 26,
+          "test": 18
+        }
+      },
+      "Portland": {
+        "candidate_index_count": 7249,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 159,
+          "val": 24,
+          "test": 17
+        }
+      },
+      "Rotterdam": {
+        "candidate_index_count": 1439,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 187,
+          "val": 9,
+          "test": 4
+        }
+      },
+      "San Francisco": {
+        "candidate_index_count": 3721,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 159,
+          "val": 24,
+          "test": 17
+        }
+      },
+      "Sapporo": {
+        "candidate_index_count": 25905,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 151,
+          "val": 27,
+          "test": 22
+        }
+      },
+      "Tokyo": {
+        "candidate_index_count": 45079,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 147,
+          "val": 25,
+          "test": 28
+        }
+      },
+      "Toronto": {
+        "candidate_index_count": 8008,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 163,
+          "val": 13,
+          "test": 24
+        }
+      },
+      "Vienna": {
+        "candidate_index_count": 3291,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 144,
+          "val": 35,
+          "test": 21
+        }
+      },
+      "Washington D.C.": {
+        "candidate_index_count": 3226,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 149,
+          "val": 25,
+          "test": 26
+        }
+      },
+      "Winnipeg": {
+        "candidate_index_count": 3530,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 164,
+          "val": 22,
+          "test": 14
+        }
+      },
+      "Zurich": {
+        "candidate_index_count": 975,
+        "graphs_read": 200,
+        "selected": 200,
+        "splits": {
+          "train": 162,
+          "val": 10,
+          "test": 28
+        }
+      }
+    },
+    "exposure": [
+      {
+        "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase5_graph_dataset_audit_v01\\results\\review\\full_v01\\review_manifest.csv",
+        "sha256": "ee4eb75fc7b016d43dc96fe8f172ab4711926576ffedee1726167f85f04d90b4",
+        "status": "read"
+      },
+      {
+        "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6a_relation_validation_setup_v01\\results\\review\\candidate_v01\\pair_manifest.csv",
+        "sha256": "a75311bc9ece765c37abd0f053329ed18a7d3a352f6e7664353e6f59f76a8872",
+        "status": "read"
+      },
+      {
+        "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6a_relation_validation_setup_v01\\results\\review\\smoke_v01\\pair_manifest.csv",
+        "sha256": "9bab42b0d71976488766f2a087612ee5c126f8bcbae80a0f3b9cd9385cb295a6",
+        "status": "read"
+      },
+      {
+        "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6b_control_preparation_v01\\results\\input_manifest.json",
+        "sha256": "6cb904eca06f7baf8ca3947da74e9c1f1a278536066c891de2c77883b297f0de",
+        "status": "read"
+      },
+      {
+        "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\results\\verification_summary.json",
+        "sha256": "61791658dec2c26bb48d16a83c1a2133cd555e910f5c5831d50195f5e3203ab7",
+        "status": "read"
+      }
+    ],
+    "exposed_ids_count": 120,
+    "split_rule": "group hash 80/10/10; exposed test groups moved to val"
+  },
+  "sample_manifest_sha256": "f2e75c6854a26fe47c847269f2487a0d7fb950abedc7b4366d26dc45fbfa8e2b",
+  "normalization": "bulk/{run_id}/normalization.json; train split only"
+}

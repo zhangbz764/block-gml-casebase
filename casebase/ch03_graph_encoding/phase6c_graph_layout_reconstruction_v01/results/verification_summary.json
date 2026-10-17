@@ -1,0 +1,126 @@
+{
+  "state": "short_check_runnable_not_trained",
+  "formal_prepare_run": false,
+  "formal_training_run": false,
+  "formal_evaluation_run": false,
+  "optimizer_steps": 4,
+  "real_cases": [
+    {
+      "sample_id": "P4B_JP_TK_035143",
+      "city": "Tokyo",
+      "node_count": "41.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035738",
+      "city": "Tokyo",
+      "node_count": "8.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035790",
+      "city": "Tokyo",
+      "node_count": "33.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035844",
+      "city": "Tokyo",
+      "node_count": "20.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035892",
+      "city": "Tokyo",
+      "node_count": "15.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035903",
+      "city": "Tokyo",
+      "node_count": "19.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035918",
+      "city": "Tokyo",
+      "node_count": "11.0",
+      "status": "data_adapter_passed"
+    },
+    {
+      "sample_id": "P4B_JP_TK_035920",
+      "city": "Tokyo",
+      "node_count": "63.0",
+      "status": "data_adapter_passed"
+    }
+  ],
+  "config_hash": "d70c671b4b9f3e56f4070d89761777a532af035e9113665f811fd9e71c7ca519",
+  "code_hash": "9a3824d3530eb4b928c230fe62462d5472a2bfc4fad819785635db8a79ba30a3",
+  "unit_checks": {
+    "run": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "skip_reasons": []
+  },
+  "source_sha256": {
+    "index": "3b728b0e2a4d5dbeb192b30af16c352127b95abe9e09fccf77a0a9f8b7711a33",
+    "registry": "88b0ed3b019161c32077672057f8d696b06ef8d1ee480159a0744f874cc7253a"
+  },
+  "exposure_manifest_check": [
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase5_graph_dataset_audit_v01\\results\\review\\full_v01\\review_manifest.csv",
+      "sha256": "ee4eb75fc7b016d43dc96fe8f172ab4711926576ffedee1726167f85f04d90b4",
+      "status": "read"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6a_relation_validation_setup_v01\\results\\review\\candidate_v01\\pair_manifest.csv",
+      "sha256": "a75311bc9ece765c37abd0f053329ed18a7d3a352f6e7664353e6f59f76a8872",
+      "status": "read"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6a_relation_validation_setup_v01\\results\\review\\smoke_v01\\pair_manifest.csv",
+      "sha256": "9bab42b0d71976488766f2a087612ee5c126f8bcbae80a0f3b9cd9385cb295a6",
+      "status": "read"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\..\\phase6b_control_preparation_v01\\results\\input_manifest.json",
+      "sha256": "6cb904eca06f7baf8ca3947da74e9c1f1a278536066c891de2c77883b297f0de",
+      "status": "read"
+    },
+    {
+      "path": "E:\\0_code\\block-gml-casebase\\casebase\\ch03_graph_encoding\\phase6c_graph_layout_reconstruction_v01\\results\\verification_summary.json",
+      "sha256": "951f037afff4d9d4beb2ecad694defc0f34cc0ede55321d64f7af666d6fd0191",
+      "status": "read"
+    }
+  ],
+  "gpu_memory_peak_bytes": 21628928,
+  "step_seconds": {
+    "relation": [
+      0.4634410999715328,
+      0.024735699989832938
+    ],
+    "set": [
+      0.017131099943071604,
+      0.01762359996791929
+    ]
+  },
+  "parameters": {
+    "relation": {
+      "encoder": 17120,
+      "decoder": 27511,
+      "total": 44631
+    },
+    "set": {
+      "encoder": 17064,
+      "decoder": 27511,
+      "total": 44575
+    }
+  },
+  "overnight_estimate": {
+    "rough_seconds_two_models": 7843.97249808535,
+    "assumption": "8-case check scaled to 4800 cases and 50 epochs; excludes IO/validation, batch32 memory unverified; not a promise"
+  },
+  "elapsed_seconds": 11.543390800012276,
+  "data_cases_passed": 8
+}
