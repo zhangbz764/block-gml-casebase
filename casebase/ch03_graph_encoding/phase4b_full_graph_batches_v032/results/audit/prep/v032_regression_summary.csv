@@ -1,3 +1,0 @@
-﻿city,block_id,status,node_count,cell_count,edge_count,invalid_polygonal_area_before_shrink,empty_after_shrink,validation_passed,transaction_read_only,runtime_seconds
-Boston,US_BO_003310,completed,37,37,71,1,0,True,on,0.662625
-San Francisco,US_SF_000689,completed,72,72,154,1,4,True,on,5.840665

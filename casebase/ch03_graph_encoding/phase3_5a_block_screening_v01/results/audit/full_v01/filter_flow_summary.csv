@@ -1,6 +1,0 @@
-﻿rule_id,rule_name,input_count,newly_excluded_count,cumulative_excluded_count,remaining_count
-H01,key_or_block_geometry_invalid,219419,0,0,219419
-H02,candidate_contract_broken,219419,0,0,219419
-H03,coverage_inconsistent,219419,86,86,219333
-H04,unexpected_metric_missing,219419,6,92,219327
-H05,duplicate_centroid_signal,219419,2,94,219325

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "ordinary_with_concave_footprint",
+    "buildings": [
+      ["a", "POLYGON ((2 2, 6 2, 6 6, 2 6, 2 2))", 8],
+      ["b", "POLYGON ((12 2, 18 2, 18 6, 12 6, 12 2))", 12],
+      ["c", "POLYGON ((2 12, 8 12, 8 14, 5 14, 5 18, 2 18, 2 12))", 6],
+      ["d", "POLYGON ((12 12, 18 12, 18 18, 12 18, 12 12))", 15]
+    ]
+  },
+  {
+    "name": "single_node_and_defined_exclusions",
+    "buildings": [
+      ["degenerate", "POLYGON ((1 1, 2 2, 3 3, 1 1))", 8],
+      ["sliver", "POLYGON ((5 5, 5.4 5, 5.4 9, 5 9, 5 5))", 8],
+      ["good", "POLYGON ((10 10, 14 10, 14 14, 10 14, 10 10))", 8]
+    ]
+  },
+  {
+    "name": "no_valid_building",
+    "buildings": [["bad", "POLYGON ((1 1, 2 2, 3 3, 1 1))", 8]]
+  }
+]

@@ -1,4 +1,0 @@
-﻿run_id,sample_id,city,block_id,status,excluded_building_count,node_signature_match,cell_signature_match,edge_signature_match,all_match,baseline_node_count,baseline_cell_count,baseline_edge_count,new_node_count,new_cell_count,new_edge_count,failure_message
-affected-20260921T081649Z,p3__DE_HH_000661,Hamburg,DE_HH_000661,completed,0,True,True,True,True,100,100,231,100,100,231,
-affected-20260921T081649Z,p3__FR_LY_000169,Lyon,FR_LY_000169,completed,0,True,True,True,True,4,4,3,4,4,3,
-affected-20260921T081649Z,p3__JP_TK_054219,Tokyo,JP_TK_054219,completed,0,True,True,True,True,22,22,42,22,22,42,

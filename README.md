@@ -54,6 +54,9 @@ casebase/lod1_metrics_pipeline.ipynb
 
 ## 目录说明
 
+- `casebase/graph_encoding/`：正式0.3.2 Graph数据、筛选/编码功能和独立轻量读取器；参见其中的 `README.md` 与 `dataset.json`。最终入口213,054条，其中有效图213,052份、无有效建筑排除2条，不能与上文候选表口径混用。
+- 正式图、索引和必要冻结资料保留在该目录的 `results/`，不纳入Git；研究生成/训练实验已按确认清单从数据项目移除。
+
 - `casebase/archive/`：已执行修复、被替代流程和旧版分析实验；参见其中的 `README.md`；
 - `casebase/quality_checks/`：候选指标质检程序、修复记录和质检输出；
 - `casebase/20260903_record_text/`：代码理解记录、技术问题总表和论文工作稿；

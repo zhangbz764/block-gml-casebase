@@ -19,61 +19,9 @@ __pycache__
 # roof branch
 outputs/
 
-# Chapter 3 compressed outputs
-/casebase/ch03_graph_encoding/**/results/**/*.gz
+# Formal graph dataset: data, local provenance and cleanup/run outputs
+/casebase/graph_encoding/results/
 
-# Chapter 3 generated graphs, cells and images (all phases)
-/casebase/ch03_graph_encoding/**/results/**/graphs/
-/casebase/ch03_graph_encoding/**/results/**/cells/
-/casebase/ch03_graph_encoding/**/results/**/visual_checks/
-
-# Permanent compact archives: historical generated data and AI handoffs
-# Lightweight records.zip bundles remain eligible for Git.
-/casebase/ch03_graph_encoding/**/results/history.zip
-/casebase/ch03_graph_encoding/evidence_pack.zip
-
-# Generated interactive pages
-/casebase/ch03_graph_encoding/**/results/**/*.html
-
-# Regenerable Chapter 3 visual-review data packages
-/casebase/ch03_graph_encoding/**/results/visual_review/
-
-/casebase/ch03_graph_encoding/**/results/bulk/
-
-/casebase/ch03_graph_encoding/**/results/**/*_evidence_pack.md
-/casebase/ch03_graph_encoding/**/results/plan_review.md
-/casebase/ch03_graph_encoding/**/results/sampling_report.md
-/casebase/ch03_graph_encoding/**/results/*_decision_summary.md
-/casebase/ch03_graph_encoding/**/results/*_spot_checks.md
-/casebase/ch03_graph_encoding/**/results/**/run_log.txt
-
-# Phase 4A regenerable run ledgers and graph batches
-/casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/smoke/
-/casebase/ch03_graph_encoding/phase4a_chunked_graph_pilot_v01/results/pilot/
-
-# Phase 4B frozen data package and regenerable formal run outputs
-/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/dataset/
-/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/runs/
-/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/regression/graphs/
-/casebase/ch03_graph_encoding/phase4b_full_graph_batches_v032/results/audit/full_v032/part_06/run_id_repair_report.json
-
-# Phase 5 regenerable full-audit shards and visual review package
-/casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/dataset/
-/casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/review/
-/casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/pilot/
-/casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/audit/full_v01/parts/
-/casebase/ch03_graph_encoding/phase5_graph_dataset_audit_v01/results/audit/full_v01/researcher_summary.md
-
-# Phase 6A: regenerable sampling/previews; retain compact candidate records
-/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/sampling/
-/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/smoke_*/
-/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/images/
-/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/phase6a_evidence_pack.md
-# Empty review templates are ignored; explicitly add only completed human judgments.
-/casebase/ch03_graph_encoding/phase6a_relation_validation_setup_v01/results/review/*/pair_review.csv
-
-# Phase 6B preparation: small regenerable pictures and per-run AI handoffs
-# Seven synthetic graphs stay covered by the generic graphs/ rule above.
-/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/review/*/images/
-/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/probes/*/*_decision_summary.md
-/casebase/ch03_graph_encoding/phase6b_control_preparation_v01/results/probes/*/*_evidence_pack.md
+# Scientific Data preparation: local audit handoffs
+/casebase/scientific_data_preparation/**/results/*_evidence_pack.md
+/casebase/scientific_data_preparation/**/results/run_log.txt

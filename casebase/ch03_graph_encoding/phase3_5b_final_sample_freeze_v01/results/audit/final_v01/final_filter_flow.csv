@@ -1,7 +1,0 @@
-﻿rule_id,reason,input_count,independent_hit_count,newly_excluded_count,cumulative_excluded_count,remaining_count
-H01-H05,any_hard_rule,219419,94,94,94,219325
-S01,area_upper_tail_p99,219419,2194,2194,2288,217131
-S03,compactness_lower_tail_p01,219419,2194,1938,4226,215193
-S05,bcr_lower_tail_p01,219419,2194,1704,5930,213489
-P995,building_count_upper_tail_p995,219419,1098,435,6365,213054
-S06,large_sparse_combination,219419,172,0,6365,213054

@@ -1,0 +1,37 @@
+{
+  "dataset_id": "block-gml-casebase-graphs-v032",
+  "dataset_version": "0.3.2",
+  "encoding_version": "0.3.2",
+  "layout_version": "functional-2026-10-29",
+  "data_root": "results/dataset",
+  "index": "graph_index.csv.gz",
+  "status_field": "case_status",
+  "graph_path_base": "data_root",
+  "graph_format": "gzip-compressed original JSON",
+  "field_registry": "specs/feature_registry_v03.tsv",
+  "counts": {
+    "mother_sample_count": 219419,
+    "entry_count": 213054,
+    "completed_graph_count": 213052,
+    "excluded_no_valid_building_count": 2,
+    "city_count": 24,
+    "node_total": 7107740,
+    "edge_total": 16100006
+  },
+  "index_sha256": "947fd5389d77a521110d6ac307c54bca8e195adaa23d859bf3574575f921ef15",
+  "origin": {
+    "index": "results/metadata/origin/graph_dataset_index.csv.gz",
+    "index_sha256": "3b728b0e2a4d5dbeb192b30af16c352127b95abe9e09fccf77a0a9f8b7711a33",
+    "final_entry_manifest": "results/metadata/screening/final/graph_encoding_manifest.csv.gz",
+    "final_rules": "specs/final_screening_rules_v0.2.json",
+    "encoding_spec": "specs/encoding_spec_v032.json",
+    "code_hashes": "results/metadata/encoding/code_hashes.json",
+    "audit_summary": "results/metadata/audit/global_summary.json",
+    "note": "Graph bytes and historical hashes are unchanged. The relocated index is a new derivative; refactored code has distinct provenance."
+  },
+  "historical_research": {
+    "directory": "results/metadata/research_history",
+    "formal_full_dataset_split": false,
+    "training_assets_retained": false
+  }
+}

@@ -1,0 +1,970 @@
+[
+  {
+    "status": "completed",
+    "record": {
+      "encoding_version": "0.3.2",
+      "experiment_id": "CH3-P4B-FULL-GRAPH-V032",
+      "sample_manifest_sha256": "synthetic-membership",
+      "sample": {
+        "sample_id": "ordinary_with_concave_footprint",
+        "sample_groups": "offline_regression"
+      },
+      "parameters": {
+        "shrink_m": 0.4,
+        "segment_m": 0.5,
+        "min_shared_boundary_m": 1e-06
+      },
+      "graph": {
+        "block_id": "TEST",
+        "city": "Test City",
+        "country": "Testland",
+        "lod": "LOD1",
+        "storage_srid": 3857,
+        "metric_srid": 3857,
+        "node_count": 4,
+        "edge_count": 5,
+        "local_origin_x_m": 10.0,
+        "local_origin_y_m": 10.0,
+        "coordinate_scale_m": 20.0,
+        "quality_flags": [],
+        "block_geometry_wkt_metric": "POLYGON ((20 0, 20 20, 0 20, 0 0, 20 0))",
+        "source_index": {
+          "block_relation": "summary.lod1_candidate_blocks",
+          "block_geometry_column": "geom",
+          "block_id": "TEST",
+          "building_relation": "lod1.test_city_buildings_lod1",
+          "building_geometry_column": "geom_2d"
+        },
+        "cell_count": 4,
+        "cell_failure_count": 0,
+        "source_building_count": 4,
+        "encoded_building_count": 4,
+        "excluded_building_count": 0,
+        "excluded_building_reason_counts": {}
+      },
+      "block_attributes": {
+        "values": {
+          "area_m2": 400.0,
+          "elongation": null,
+          "compactness": null,
+          "lod1_building_count": null,
+          "bcr": 0.2,
+          "convexity": null,
+          "rectangularity": null,
+          "far": null,
+          "bcd": null,
+          "osr": null,
+          "avh": null,
+          "avh_w": null,
+          "hsd": null,
+          "hcv": null,
+          "h_max": null,
+          "h_range": null,
+          "total_volume": null,
+          "avg_volume": null,
+          "avg_footprint": null,
+          "footprint_cv": null,
+          "avg_complexity": null,
+          "avg_rectangularity": null,
+          "avg_convexity": null,
+          "avg_orientation": null,
+          "orientation_entropy": null,
+          "avg_nn_distance": 5.0
+        },
+        "missing": {
+          "area_m2": false,
+          "elongation": true,
+          "compactness": true,
+          "lod1_building_count": true,
+          "bcr": false,
+          "convexity": true,
+          "rectangularity": true,
+          "far": true,
+          "bcd": true,
+          "osr": true,
+          "avh": true,
+          "avh_w": true,
+          "hsd": true,
+          "hcv": true,
+          "h_max": true,
+          "h_range": true,
+          "total_volume": true,
+          "avg_volume": true,
+          "avg_footprint": true,
+          "footprint_cv": true,
+          "avg_complexity": true,
+          "avg_rectangularity": true,
+          "avg_convexity": true,
+          "avg_orientation": true,
+          "orientation_entropy": true,
+          "avg_nn_distance": false
+        }
+      },
+      "nodes": [
+        {
+          "building_id": "a",
+          "citygml_id": "a",
+          "height_m": 8.0,
+          "source_area_m2": 16.0,
+          "source_perimeter_m": 16.0,
+          "footprint_area_m2": 16.0,
+          "footprint_perimeter_m": 16.0,
+          "footprint_compactness": 0.7853981633974483,
+          "footprint_rectangularity": 1.0,
+          "footprint_convexity": 1.0,
+          "orientation_deg": 90.0,
+          "orientation_sin_2theta": 1.2246467991473532e-16,
+          "orientation_cos_2theta": -1.0,
+          "representative_point_x_m": 4.0,
+          "representative_point_y_m": 4.0,
+          "local_x_m": -6.0,
+          "local_y_m": -6.0,
+          "local_x_normalized": -0.3,
+          "local_y_normalized": -0.3,
+          "boundary_distance_m": 4.0,
+          "boundary_distance_normalized": 0.2,
+          "geometry_wkt_metric": "POLYGON ((2 2, 6 2, 6 6, 2 6, 2 2))",
+          "source_index": {
+            "building_id": "a",
+            "geometry_column": "geom_2d",
+            "schema": "lod1",
+            "relation": "test_city_buildings_lod1"
+          },
+          "missing": {
+            "citygml_id": false,
+            "height_m": false,
+            "source_area_m2": false,
+            "source_perimeter_m": false,
+            "orientation": false
+          },
+          "quality": {
+            "footprint_valid": true,
+            "centroid_covered_by_block": true,
+            "footprint_covered_by_block": true,
+            "orientation_stable": false
+          },
+          "missing_reasons": {
+            "citygml_id": null,
+            "height_m": null,
+            "source_area_m2": null,
+            "source_perimeter_m": null,
+            "orientation": null
+          }
+        },
+        {
+          "building_id": "b",
+          "citygml_id": "b",
+          "height_m": 12.0,
+          "source_area_m2": 24.0,
+          "source_perimeter_m": 20.0,
+          "footprint_area_m2": 24.0,
+          "footprint_perimeter_m": 20.0,
+          "footprint_compactness": 0.7539822368615503,
+          "footprint_rectangularity": 1.0,
+          "footprint_convexity": 1.0,
+          "orientation_deg": 0.0,
+          "orientation_sin_2theta": 0.0,
+          "orientation_cos_2theta": 1.0,
+          "representative_point_x_m": 15.0,
+          "representative_point_y_m": 4.0,
+          "local_x_m": 5.0,
+          "local_y_m": -6.0,
+          "local_x_normalized": 0.25,
+          "local_y_normalized": -0.3,
+          "boundary_distance_m": 4.0,
+          "boundary_distance_normalized": 0.2,
+          "geometry_wkt_metric": "POLYGON ((12 2, 18 2, 18 6, 12 6, 12 2))",
+          "source_index": {
+            "building_id": "b",
+            "geometry_column": "geom_2d",
+            "schema": "lod1",
+            "relation": "test_city_buildings_lod1"
+          },
+          "missing": {
+            "citygml_id": false,
+            "height_m": false,
+            "source_area_m2": false,
+            "source_perimeter_m": false,
+            "orientation": false
+          },
+          "quality": {
+            "footprint_valid": true,
+            "centroid_covered_by_block": true,
+            "footprint_covered_by_block": true,
+            "orientation_stable": true
+          },
+          "missing_reasons": {
+            "citygml_id": null,
+            "height_m": null,
+            "source_area_m2": null,
+            "source_perimeter_m": null,
+            "orientation": null
+          }
+        },
+        {
+          "building_id": "c",
+          "citygml_id": "c",
+          "height_m": 6.0,
+          "source_area_m2": 24.0,
+          "source_perimeter_m": 24.0,
+          "footprint_area_m2": 24.0,
+          "footprint_perimeter_m": 24.0,
+          "footprint_compactness": 0.5235987755982988,
+          "footprint_rectangularity": 0.6666666666666666,
+          "footprint_convexity": 0.8,
+          "orientation_deg": 90.0,
+          "orientation_sin_2theta": 1.2246467991473532e-16,
+          "orientation_cos_2theta": -1.0,
+          "representative_point_x_m": 4.25,
+          "representative_point_y_m": 14.5,
+          "local_x_m": -5.75,
+          "local_y_m": 4.5,
+          "local_x_normalized": -0.2875,
+          "local_y_normalized": 0.225,
+          "boundary_distance_m": 4.25,
+          "boundary_distance_normalized": 0.2125,
+          "geometry_wkt_metric": "POLYGON ((2 12, 8 12, 8 14, 5 14, 5 18, 2 18, 2 12))",
+          "source_index": {
+            "building_id": "c",
+            "geometry_column": "geom_2d",
+            "schema": "lod1",
+            "relation": "test_city_buildings_lod1"
+          },
+          "missing": {
+            "citygml_id": false,
+            "height_m": false,
+            "source_area_m2": false,
+            "source_perimeter_m": false,
+            "orientation": false
+          },
+          "quality": {
+            "footprint_valid": true,
+            "centroid_covered_by_block": true,
+            "footprint_covered_by_block": true,
+            "orientation_stable": false
+          },
+          "missing_reasons": {
+            "citygml_id": null,
+            "height_m": null,
+            "source_area_m2": null,
+            "source_perimeter_m": null,
+            "orientation": null
+          }
+        },
+        {
+          "building_id": "d",
+          "citygml_id": "d",
+          "height_m": 15.0,
+          "source_area_m2": 36.0,
+          "source_perimeter_m": 24.0,
+          "footprint_area_m2": 36.0,
+          "footprint_perimeter_m": 24.0,
+          "footprint_compactness": 0.7853981633974483,
+          "footprint_rectangularity": 1.0,
+          "footprint_convexity": 1.0,
+          "orientation_deg": 90.0,
+          "orientation_sin_2theta": 1.2246467991473532e-16,
+          "orientation_cos_2theta": -1.0,
+          "representative_point_x_m": 15.0,
+          "representative_point_y_m": 15.0,
+          "local_x_m": 5.0,
+          "local_y_m": 5.0,
+          "local_x_normalized": 0.25,
+          "local_y_normalized": 0.25,
+          "boundary_distance_m": 5.0,
+          "boundary_distance_normalized": 0.25,
+          "geometry_wkt_metric": "POLYGON ((12 12, 18 12, 18 18, 12 18, 12 12))",
+          "source_index": {
+            "building_id": "d",
+            "geometry_column": "geom_2d",
+            "schema": "lod1",
+            "relation": "test_city_buildings_lod1"
+          },
+          "missing": {
+            "citygml_id": false,
+            "height_m": false,
+            "source_area_m2": false,
+            "source_perimeter_m": false,
+            "orientation": false
+          },
+          "quality": {
+            "footprint_valid": true,
+            "centroid_covered_by_block": true,
+            "footprint_covered_by_block": true,
+            "orientation_stable": false
+          },
+          "missing_reasons": {
+            "citygml_id": null,
+            "height_m": null,
+            "source_area_m2": null,
+            "source_perimeter_m": null,
+            "orientation": null
+          }
+        }
+      ],
+      "cells": [
+        {
+          "building_id": "a",
+          "geometry_wkt_metric": "POLYGON ((0 4.123076923076923, 0 4.615384615384615, 0 5.107692307692307, 0 8, 0 8.908666898712148, 2.6455722170403684 9.004434218786008, 2.8923076923076922 8.995544826264219, 3.1367166511211035 9.004434019790462, 3.384615384615384 8.995545124757536, 3.6278610852018396 9.004433621799373, 3.8769230769230765 8.995545622246397, 4.119005519282577 9.00443302481274, 4.369230769230769 8.995546318730803, 4.610149953363315 9.004432228830563, 4.861538461538461 8.995547214210752, 5.101294387444051 9.00443123385284, 5.3538461538461535 8.995548308686248, 5.592438821524789 9.004430039879573, 6.083583255605527 8.987239187402947, 6.574727689686263 8.93457438564272, 7.065872123767 8.846435634598894, 9.09870084018284 8.33480722246057, 8.995553398362272 5.3538461538461535, 9.00448080626571 5.11764705882353, 8.995550748707993 4.861538461538462, 9.004483215042328 4.623529411764705, 8.995548580809036 4.36923076923077, 9.004485142063624 4.129411764705882, 8.995546894665402 3.876923076923076, 9.004486587329595 3.635294117647059, 8.995545690277094 3.384615384615384, 9.004487550840242 3.1411764705882352, 8.995544967644108 2.8923076923076927, 9.004488032595566 2.6470588235294117, 8.908666898712147 0, 8.000000000000014 0, 5.107692307692308 0, 4.615384615384616 0, 4.1230769230769235 0, 3.630769230769231 0, 3.138461538461538 0, 2.6461538461538456 0, 0 0, 0 2.646153846153846, 0 3.1384615384615384, 0 3.6307692307692303, 0 4.123076923076923))",
+          "area_m2": 80.06904143643715,
+          "perimeter_m": 35.33416541934168,
+          "geometry_valid": true
+        },
+        {
+          "building_id": "b",
+          "geometry_wkt_metric": "POLYGON ((14.129411764705882 0, 13.635294117647058 0, 13.141176470588237 0, 12.647058823529413 0, 8.908666898712147 0, 9.004488032595566 2.6470588235294117, 8.995544967644108 2.8923076923076927, 9.004487550840242 3.1411764705882352, 8.995545690277094 3.384615384615384, 9.004486587329595 3.635294117647059, 8.995546894665402 3.876923076923076, 9.004485142063624 4.129411764705882, 8.995548580809036 4.36923076923077, 9.004483215042328 4.623529411764705, 8.995550748707993 4.861538461538462, 9.00448080626571 5.11764705882353, 8.995553398362272 5.3538461538461535, 9.09870084018284 8.33480722246057, 9.604011512303003 8.700293218819661, 9.855722170403684 8.89823326803694, 12.647619047619047 9.004499239142024, 12.905882352941177 8.9955202380837, 13.142857142857142 9.00450099301543, 13.400000000000002 8.99551857651942, 13.63809523809524 9.004502562270583, 13.894117647058824 8.995517099573393, 14.133333333333335 9.004503946907482, 14.38823529411765 8.99551580724562, 14.62857142857143 9.00450514692613, 14.882352941176471 8.9955146995361, 15.123809523809525 9.004506162326523, 15.376470588235296 8.995513776444835, 15.61904761904762 9.004506993108663, 15.870588235294118 8.99551303797182, 16.114285714285714 9.004507639272548, 16.364705882352943 8.99551248411706, 16.60952380952381 9.004508100818182, 16.858823529411765 8.995512114880555, 17.104761904761908 9.004508377745562, 17.35294117647059 8.995511930262301, 20 9.091903428037881, 20 5.352941176470588, 20 4.858823529411764, 20 4.364705882352941, 20 3.870588235294117, 20 3.3764705882352937, 20 2.88235294117647, 20 0, 19.75935828877006 0, 17.094117647058823 0, 16.6 0, 16.105882352941176 0, 15.611764705882354 0, 15.117647058823529 0, 14.623529411764707 0, 14.129411764705882 0))",
+          "area_m2": 98.59440796180688,
+          "perimeter_m": 39.618352861181904,
+          "geometry_valid": true
+        },
+        {
+          "building_id": "c",
+          "geometry_wkt_metric": "POLYGON ((0 12.64557221704037, 0 13.136716651121105, 0 13.627861085201843, 0 14.119005519282581, 0 14.610149953363317, 0 15.101294387444053, 0 15.59243882152479, 0 16.08358325560553, 0 16.574727689686263, 0 17.065872123767, 0 19.211827619884758, 0 20, 2.848160991928474 20, 3.339305426009211 20, 3.8304498600899475 20, 4.321594294170685 20, 8.563368343792588 20, 8.489098007330066 17.650636393843715, 8.496288503418796 17.384437882597634, 8.71580520592642 17.104761904761908, 9.05341987087255 16.60952380952381, 9.339938541865546 16.114285714285714, 9.575361218905405 15.61904761904762, 9.759687901992127 15.123809523809523, 9.892918591125712 14.62857142857143, 9.97505328630616 14.133333333333333, 10.006091987533472 13.63809523809524, 9.993990909724376 13.339305426009211, 10.006135628319074 13.142857142857142, 9.993949014570198 12.848160991928474, 10.006175777841827 12.647619047619049, 9.855722170403684 9.08287408037214, 9.855722170403684 8.89823326803694, 9.604011512303003 8.700293218819661, 9.09870084018284 8.33480722246057, 7.065872123767 8.846435634598894, 6.574727689686263 8.93457438564272, 6.083583255605527 8.987239187402947, 5.592438821524789 9.004430039879573, 5.3538461538461535 8.995548308686248, 5.101294387444051 9.00443123385284, 4.861538461538461 8.995547214210752, 4.610149953363315 9.004432228830563, 4.369230769230769 8.995546318730803, 4.119005519282577 9.00443302481274, 3.8769230769230765 8.995545622246397, 3.6278610852018396 9.004433621799373, 3.384615384615384 8.995545124757536, 3.1367166511211035 9.004434019790462, 2.8923076923076922 8.995544826264219, 2.6455722170403684 9.004434218786008, 0 8.908666898712148, 0 12.64557221704037))",
+          "area_m2": 105.29809920671019,
+          "perimeter_m": 41.25127468540007,
+          "geometry_valid": true
+        },
+        {
+          "building_id": "d",
+          "geometry_wkt_metric": "POLYGON ((9.855722170403684 9.08287408037214, 10.006175777841827 12.647619047619049, 9.993949014570198 12.848160991928474, 10.006135628319074 13.142857142857142, 9.993990909724376 13.339305426009211, 10.006091987533472 13.63809523809524, 9.97505328630616 14.133333333333333, 9.892918591125712 14.62857142857143, 9.759687901992127 15.123809523809523, 9.575361218905405 15.61904761904762, 9.339938541865546 16.114285714285714, 9.05341987087255 16.60952380952381, 8.71580520592642 17.104761904761908, 8.496288503418796 17.384437882597634, 8.489098007330066 17.650636393843715, 8.563368343792588 20, 10.00000000000002 20, 12.895238095238096 20, 13.39047619047619 20, 13.885714285714286 20, 14.380952380952381 20, 14.876190476190477 20, 15.371428571428574 20, 15.866666666666667 20, 16.36190476190476 20, 16.85714285714286 20, 17.352380952380955 20, 20 20, 20 17.352380952380955, 20 16.85714285714286, 20 16.361904761904764, 20 15.866666666666669, 20 15.371428571428574, 20 14.876190476190477, 20 14.380952380952381, 20 13.885714285714286, 20 13.39047619047619, 20 12.895238095238096, 20 10.000000000000004, 20 9.091903428037881, 17.35294117647059 8.995511930262301, 17.104761904761908 9.004508377745562, 16.858823529411765 8.995512114880555, 16.60952380952381 9.004508100818182, 16.364705882352943 8.99551248411706, 16.114285714285714 9.004507639272548, 15.870588235294118 8.99551303797182, 15.61904761904762 9.004506993108663, 15.376470588235296 8.995513776444835, 15.123809523809525 9.004506162326523, 14.882352941176471 8.9955146995361, 14.62857142857143 9.00450514692613, 14.38823529411765 8.99551580724562, 14.133333333333335 9.004503946907482, 13.894117647058824 8.995517099573393, 13.63809523809524 9.004502562270583, 13.400000000000002 8.99551857651942, 13.142857142857142 9.00450099301543, 12.905882352941177 8.9955202380837, 12.647619047619047 9.004499239142024, 9.855722170403684 8.89823326803694, 9.855722170403684 9.08287408037214))",
+          "area_m2": 116.03845139504577,
+          "perimeter_m": 43.97188621942223,
+          "geometry_valid": true
+        }
+      ],
+      "cell_failures": [],
+      "edges": [
+        {
+          "edge_id": "celladj|a|b",
+          "source": "a",
+          "target": "b",
+          "shared_cell_boundary_m": 8.340110859973846,
+          "shared_boundary_ratio_min": 0.23603531485728899,
+          "shared_boundary_ratio_mean": 0.22254384645915293,
+          "footprint_gap_m": 6.0,
+          "footprint_gap_block_norm": 0.3,
+          "centroid_distance_m": 11.0,
+          "centroid_distance_block_norm": 0.55,
+          "orientation_diff_deg": 90.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.0,
+          "long_side_offset_norm": 0.3162277660168379,
+          "connection_axis_alignment_i": 90.0,
+          "connection_axis_alignment_j": 0.0,
+          "log_area_ratio_abs": 0.40546510810816444,
+          "height_diff_m": 4.0,
+          "log_height_ratio_abs": 0.40546510810816444,
+          "volume_ratio": 2.25,
+          "missing": {
+            "orientation_diff_deg": false,
+            "orientation_similarity": false,
+            "long_side_overlap_ratio": false,
+            "long_side_offset_norm": false,
+            "connection_axis_alignment_i": false,
+            "connection_axis_alignment_j": false,
+            "log_area_ratio_abs": false,
+            "height_diff_m": false,
+            "log_height_ratio_abs": false,
+            "volume_ratio": false
+          },
+          "missing_reasons": {
+            "orientation_diff_deg": null,
+            "orientation_similarity": null,
+            "long_side_overlap_ratio": null,
+            "long_side_offset_norm": null,
+            "connection_axis_alignment_i": null,
+            "connection_axis_alignment_j": null,
+            "log_area_ratio_abs": null,
+            "height_diff_m": null,
+            "log_height_ratio_abs": null,
+            "volume_ratio": null
+          },
+          "long_distance_candidate": false,
+          "low_shared_candidate": false,
+          "combined_weak_candidate": false
+        },
+        {
+          "edge_id": "celladj|a|c",
+          "source": "a",
+          "target": "c",
+          "shared_cell_boundary_m": 9.17672076194355,
+          "shared_boundary_ratio_min": 0.25971239600639545,
+          "shared_boundary_ratio_mean": 0.23964661558105682,
+          "footprint_gap_m": 6.0,
+          "footprint_gap_block_norm": 0.3,
+          "centroid_distance_m": 10.502975768800002,
+          "centroid_distance_block_norm": 0.5251487884400001,
+          "orientation_diff_deg": 0.0,
+          "orientation_similarity": 1.0,
+          "long_side_overlap_ratio": 0.0,
+          "long_side_offset_norm": 1.4895204919483638e-16,
+          "connection_axis_alignment_i": 1.3639275316029256,
+          "connection_axis_alignment_j": 1.3639275316029256,
+          "log_area_ratio_abs": 0.40546510810816444,
+          "height_diff_m": 2.0,
+          "log_height_ratio_abs": 0.28768207245178085,
+          "volume_ratio": 1.125,
+          "missing": {
+            "orientation_diff_deg": false,
+            "orientation_similarity": false,
+            "long_side_overlap_ratio": false,
+            "long_side_offset_norm": false,
+            "connection_axis_alignment_i": false,
+            "connection_axis_alignment_j": false,
+            "log_area_ratio_abs": false,
+            "height_diff_m": false,
+            "log_height_ratio_abs": false,
+            "volume_ratio": false
+          },
+          "missing_reasons": {
+            "orientation_diff_deg": null,
+            "orientation_similarity": null,
+            "long_side_overlap_ratio": null,
+            "long_side_offset_norm": null,
+            "connection_axis_alignment_i": null,
+            "connection_axis_alignment_j": null,
+            "log_area_ratio_abs": null,
+            "height_diff_m": null,
+            "log_height_ratio_abs": null,
+            "volume_ratio": null
+          },
+          "long_distance_candidate": false,
+          "low_shared_candidate": false,
+          "combined_weak_candidate": false
+        },
+        {
+          "edge_id": "celladj|b|c",
+          "source": "b",
+          "target": "c",
+          "shared_cell_boundary_m": 0.9438499795028519,
+          "shared_boundary_ratio_min": 0.023823554270668252,
+          "shared_boundary_ratio_mean": 0.023342508383859734,
+          "footprint_gap_m": 7.211102550927978,
+          "footprint_gap_block_norm": 0.3605551275463989,
+          "centroid_distance_m": 15.027058927148719,
+          "centroid_distance_block_norm": 0.751352946357436,
+          "orientation_diff_deg": 90.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 1.0,
+          "long_side_offset_norm": 1.4433756729740643,
+          "connection_axis_alignment_i": 44.32596310201549,
+          "connection_axis_alignment_j": 45.67403689798451,
+          "log_area_ratio_abs": 0.0,
+          "height_diff_m": 6.0,
+          "log_height_ratio_abs": 0.6931471805599453,
+          "volume_ratio": 2.0,
+          "missing": {
+            "orientation_diff_deg": false,
+            "orientation_similarity": false,
+            "long_side_overlap_ratio": false,
+            "long_side_offset_norm": false,
+            "connection_axis_alignment_i": false,
+            "connection_axis_alignment_j": false,
+            "log_area_ratio_abs": false,
+            "height_diff_m": false,
+            "log_height_ratio_abs": false,
+            "volume_ratio": false
+          },
+          "missing_reasons": {
+            "orientation_diff_deg": null,
+            "orientation_similarity": null,
+            "long_side_overlap_ratio": null,
+            "long_side_offset_norm": null,
+            "connection_axis_alignment_i": null,
+            "connection_axis_alignment_j": null,
+            "log_area_ratio_abs": null,
+            "height_diff_m": null,
+            "log_height_ratio_abs": null,
+            "volume_ratio": null
+          },
+          "long_distance_candidate": true,
+          "low_shared_candidate": false,
+          "combined_weak_candidate": false
+        },
+        {
+          "edge_id": "celladj|b|d",
+          "source": "b",
+          "target": "d",
+          "shared_cell_boundary_m": 10.151155492379482,
+          "shared_boundary_ratio_min": 0.256223562043277,
+          "shared_boundary_ratio_mean": 0.24287896778452703,
+          "footprint_gap_m": 6.0,
+          "footprint_gap_block_norm": 0.3,
+          "centroid_distance_m": 11.0,
+          "centroid_distance_block_norm": 0.55,
+          "orientation_diff_deg": 90.0,
+          "orientation_similarity": 0.0,
+          "long_side_overlap_ratio": 0.0,
+          "long_side_offset_norm": 0.0,
+          "connection_axis_alignment_i": 90.0,
+          "connection_axis_alignment_j": 0.0,
+          "log_area_ratio_abs": 0.40546510810816444,
+          "height_diff_m": 3.0,
+          "log_height_ratio_abs": 0.2231435513142097,
+          "volume_ratio": 1.875,
+          "missing": {
+            "orientation_diff_deg": false,
+            "orientation_similarity": false,
+            "long_side_overlap_ratio": false,
+            "long_side_offset_norm": false,
+            "connection_axis_alignment_i": false,
+            "connection_axis_alignment_j": false,
+            "log_area_ratio_abs": false,
+            "height_diff_m": false,
+            "log_height_ratio_abs": false,
+            "volume_ratio": false
+          },
+          "missing_reasons": {
+            "orientation_diff_deg": null,
+            "orientation_similarity": null,
+            "long_side_overlap_ratio": null,
+            "long_side_offset_norm": null,
+            "connection_axis_alignment_i": null,
+            "connection_axis_alignment_j": null,
+            "log_area_ratio_abs": null,
+            "height_diff_m": null,
+            "log_height_ratio_abs": null,
+            "volume_ratio": null
+          },
+          "long_distance_candidate": false,
+          "low_shared_candidate": false,
+          "combined_weak_candidate": false
+        },
+        {
+          "edge_id": "celladj|c|d",
+          "source": "c",
+          "target": "d",
+          "shared_cell_boundary_m": 11.476002498873223,
+          "shared_boundary_ratio_min": 0.2781975244739501,
+          "shared_boundary_ratio_mean": 0.2693165185855917,
+          "footprint_gap_m": 4.0,
+          "footprint_gap_block_norm": 0.2,
+          "centroid_distance_m": 10.761621625015442,
+          "centroid_distance_block_norm": 0.5380810812507721,
+          "orientation_diff_deg": 0.0,
+          "orientation_similarity": 1.0,
+          "long_side_overlap_ratio": 1.0,
+          "long_side_offset_norm": 0.7302967433402213,
+          "connection_axis_alignment_i": 87.33699923393286,
+          "connection_axis_alignment_j": 87.33699923393286,
+          "log_area_ratio_abs": 0.40546510810816444,
+          "height_diff_m": 9.0,
+          "log_height_ratio_abs": 0.916290731874155,
+          "volume_ratio": 3.75,
+          "missing": {
+            "orientation_diff_deg": false,
+            "orientation_similarity": false,
+            "long_side_overlap_ratio": false,
+            "long_side_offset_norm": false,
+            "connection_axis_alignment_i": false,
+            "connection_axis_alignment_j": false,
+            "log_area_ratio_abs": false,
+            "height_diff_m": false,
+            "log_height_ratio_abs": false,
+            "volume_ratio": false
+          },
+          "missing_reasons": {
+            "orientation_diff_deg": null,
+            "orientation_similarity": null,
+            "long_side_overlap_ratio": null,
+            "long_side_offset_norm": null,
+            "connection_axis_alignment_i": null,
+            "connection_axis_alignment_j": null,
+            "log_area_ratio_abs": null,
+            "height_diff_m": null,
+            "log_height_ratio_abs": null,
+            "volume_ratio": null
+          },
+          "long_distance_candidate": false,
+          "low_shared_candidate": false,
+          "combined_weak_candidate": false
+        }
+      ],
+      "weak_edge_summary": {
+        "edge_count": 5,
+        "long_distance_rule": "footprint_gap_block_norm > within-graph Tukey upper fence; n>=4",
+        "long_distance_threshold": 0.3,
+        "long_distance_candidate_count": 1,
+        "low_shared_rule": "shared_boundary_ratio_min <= within-graph 10th percentile; n>=10",
+        "low_shared_threshold": null,
+        "low_shared_candidate_count": 0,
+        "combined_weak_candidate_count": 0,
+        "edge_deletion_count": 0
+      },
+      "diagnostics": {
+        "v01_node_derivation": {
+          "node_count": 4,
+          "duplicate_point_groups": [],
+          "connected_components": 1,
+          "average_degree": 2.5,
+          "edge_construction_status": "delaunay"
+        },
+        "tessellation": {
+          "construction_status": "voronoi",
+          "config": {
+            "shrink_m": 0.4,
+            "segment_m": 0.5,
+            "min_shared_boundary_m": 1e-06
+          },
+          "input_building_count": 4,
+          "valid_shrunken_building_count": 4,
+          "success_cell_count": 4,
+          "failure_count": 0,
+          "sample_point_count": 144,
+          "cell_overlap_area_m2": 5.684341886080802e-14,
+          "cell_outside_area_m2": 0.0,
+          "uncovered_area_m2": 0.0,
+          "uncovered_area_ratio": 0.0,
+          "operations": [
+            "make_valid_if_needed",
+            "negative_buffer",
+            "boundary_segmentize",
+            "point_voronoi_edges",
+            "polygonize_with_block_boundary",
+            "nearest_site_owner",
+            "union_by_building",
+            "clip_to_block"
+          ],
+          "warnings": []
+        },
+        "adjacency": {
+          "cell_count": 4,
+          "edge_count": 5,
+          "point_contacts_excluded": 0,
+          "min_shared_boundary_m": 1e-06
+        }
+      },
+      "validation": {
+        "passed": true,
+        "issue_count": 0,
+        "issue_types": [],
+        "issues": []
+      },
+      "exclusions": {
+        "buildings": [],
+        "summary": {
+          "source_building_count": 4,
+          "encoded_building_count": 4,
+          "excluded_building_count": 0,
+          "excluded_building_reason_counts": {}
+        }
+      }
+    },
+    "excluded_buildings": []
+  },
+  {
+    "status": "completed",
+    "record": {
+      "encoding_version": "0.3.2",
+      "experiment_id": "CH3-P4B-FULL-GRAPH-V032",
+      "sample_manifest_sha256": "synthetic-membership",
+      "sample": {
+        "sample_id": "single_node_and_defined_exclusions",
+        "sample_groups": "offline_regression"
+      },
+      "parameters": {
+        "shrink_m": 0.4,
+        "segment_m": 0.5,
+        "min_shared_boundary_m": 1e-06
+      },
+      "graph": {
+        "block_id": "TEST",
+        "city": "Test City",
+        "country": "Testland",
+        "lod": "LOD1",
+        "storage_srid": 3857,
+        "metric_srid": 3857,
+        "node_count": 1,
+        "edge_count": 0,
+        "local_origin_x_m": 10.0,
+        "local_origin_y_m": 10.0,
+        "coordinate_scale_m": 20.0,
+        "quality_flags": [],
+        "block_geometry_wkt_metric": "POLYGON ((20 0, 20 20, 0 20, 0 0, 20 0))",
+        "source_index": {
+          "block_relation": "summary.lod1_candidate_blocks",
+          "block_geometry_column": "geom",
+          "block_id": "TEST",
+          "building_relation": "lod1.test_city_buildings_lod1",
+          "building_geometry_column": "geom_2d"
+        },
+        "cell_count": 1,
+        "cell_failure_count": 0,
+        "source_building_count": 3,
+        "encoded_building_count": 1,
+        "excluded_building_count": 2,
+        "excluded_building_reason_counts": {
+          "empty_after_shrink": 1,
+          "invalid_polygonal_area_before_shrink": 1
+        }
+      },
+      "block_attributes": {
+        "values": {
+          "area_m2": 400.0,
+          "elongation": null,
+          "compactness": null,
+          "lod1_building_count": null,
+          "bcr": 0.2,
+          "convexity": null,
+          "rectangularity": null,
+          "far": null,
+          "bcd": null,
+          "osr": null,
+          "avh": null,
+          "avh_w": null,
+          "hsd": null,
+          "hcv": null,
+          "h_max": null,
+          "h_range": null,
+          "total_volume": null,
+          "avg_volume": null,
+          "avg_footprint": null,
+          "footprint_cv": null,
+          "avg_complexity": null,
+          "avg_rectangularity": null,
+          "avg_convexity": null,
+          "avg_orientation": null,
+          "orientation_entropy": null,
+          "avg_nn_distance": 5.0
+        },
+        "missing": {
+          "area_m2": false,
+          "elongation": true,
+          "compactness": true,
+          "lod1_building_count": true,
+          "bcr": false,
+          "convexity": true,
+          "rectangularity": true,
+          "far": true,
+          "bcd": true,
+          "osr": true,
+          "avh": true,
+          "avh_w": true,
+          "hsd": true,
+          "hcv": true,
+          "h_max": true,
+          "h_range": true,
+          "total_volume": true,
+          "avg_volume": true,
+          "avg_footprint": true,
+          "footprint_cv": true,
+          "avg_complexity": true,
+          "avg_rectangularity": true,
+          "avg_convexity": true,
+          "avg_orientation": true,
+          "orientation_entropy": true,
+          "avg_nn_distance": false
+        }
+      },
+      "nodes": [
+        {
+          "building_id": "good",
+          "citygml_id": "good",
+          "height_m": 8.0,
+          "source_area_m2": 16.0,
+          "source_perimeter_m": 16.0,
+          "footprint_area_m2": 16.0,
+          "footprint_perimeter_m": 16.0,
+          "footprint_compactness": 0.7853981633974483,
+          "footprint_rectangularity": 1.0,
+          "footprint_convexity": 1.0,
+          "orientation_deg": 90.0,
+          "orientation_sin_2theta": 1.2246467991473532e-16,
+          "orientation_cos_2theta": -1.0,
+          "representative_point_x_m": 12.0,
+          "representative_point_y_m": 12.0,
+          "local_x_m": 2.0,
+          "local_y_m": 2.0,
+          "local_x_normalized": 0.1,
+          "local_y_normalized": 0.1,
+          "boundary_distance_m": 8.0,
+          "boundary_distance_normalized": 0.4,
+          "geometry_wkt_metric": "POLYGON ((10 10, 14 10, 14 14, 10 14, 10 10))",
+          "source_index": {
+            "building_id": "good",
+            "geometry_column": "geom_2d",
+            "schema": "lod1",
+            "relation": "test_city_buildings_lod1"
+          },
+          "missing": {
+            "citygml_id": false,
+            "height_m": false,
+            "source_area_m2": false,
+            "source_perimeter_m": false,
+            "orientation": false
+          },
+          "quality": {
+            "footprint_valid": true,
+            "centroid_covered_by_block": true,
+            "footprint_covered_by_block": true,
+            "orientation_stable": false
+          },
+          "missing_reasons": {
+            "citygml_id": null,
+            "height_m": null,
+            "source_area_m2": null,
+            "source_perimeter_m": null,
+            "orientation": null
+          }
+        }
+      ],
+      "cells": [
+        {
+          "building_id": "good",
+          "geometry_wkt_metric": "POLYGON ((20 0, 20 20, 0 20, 0 0, 20 0))",
+          "area_m2": 400.0,
+          "perimeter_m": 80.0,
+          "geometry_valid": true
+        }
+      ],
+      "cell_failures": [],
+      "edges": [],
+      "weak_edge_summary": {
+        "edge_count": 0,
+        "long_distance_rule": "footprint_gap_block_norm > within-graph Tukey upper fence; n>=4",
+        "long_distance_threshold": null,
+        "long_distance_candidate_count": 0,
+        "low_shared_rule": "shared_boundary_ratio_min <= within-graph 10th percentile; n>=10",
+        "low_shared_threshold": null,
+        "low_shared_candidate_count": 0,
+        "combined_weak_candidate_count": 0,
+        "edge_deletion_count": 0
+      },
+      "diagnostics": {
+        "v01_node_derivation": {
+          "node_count": 1,
+          "duplicate_point_groups": [],
+          "connected_components": 1,
+          "average_degree": 0.0,
+          "edge_construction_status": "single_node"
+        },
+        "tessellation": {
+          "construction_status": "single_building_rule",
+          "config": {
+            "shrink_m": 0.4,
+            "segment_m": 0.5,
+            "min_shared_boundary_m": 1e-06
+          },
+          "input_building_count": 1,
+          "valid_shrunken_building_count": 1,
+          "success_cell_count": 1,
+          "failure_count": 0,
+          "sample_point_count": 26,
+          "cell_overlap_area_m2": 0.0,
+          "cell_outside_area_m2": 0.0,
+          "uncovered_area_m2": 0.0,
+          "uncovered_area_ratio": 0.0,
+          "operations": [
+            "make_valid_if_needed",
+            "negative_buffer",
+            "boundary_segmentize",
+            "point_voronoi_edges",
+            "polygonize_with_block_boundary",
+            "nearest_site_owner",
+            "union_by_building",
+            "clip_to_block"
+          ],
+          "warnings": []
+        },
+        "adjacency": {
+          "cell_count": 1,
+          "edge_count": 0,
+          "point_contacts_excluded": 0,
+          "min_shared_boundary_m": 1e-06
+        }
+      },
+      "validation": {
+        "passed": true,
+        "issue_count": 0,
+        "issue_types": [],
+        "issues": []
+      },
+      "exclusions": {
+        "buildings": [
+          {
+            "sample_id": "single_node_and_defined_exclusions",
+            "city": "Test City",
+            "block_id": "TEST",
+            "building_id": "degenerate",
+            "reason": "invalid_polygonal_area_before_shrink",
+            "footprint_area_m2": 0.0,
+            "footprint_perimeter_m": 5.656854249492381,
+            "footprint_compactness": null,
+            "geometry_was_valid": false,
+            "geometry_validity_detail": "polygonal extraction after make_valid was empty or non-positive",
+            "footprint_covered_by_block": true
+          },
+          {
+            "sample_id": "single_node_and_defined_exclusions",
+            "city": "Test City",
+            "block_id": "TEST",
+            "building_id": "sliver",
+            "reason": "empty_after_shrink",
+            "footprint_area_m2": 1.6000000000000014,
+            "footprint_perimeter_m": 8.8,
+            "footprint_compactness": 0.2596357564950244,
+            "geometry_was_valid": true,
+            "geometry_validity_detail": "valid polygonal footprint became empty or non-positive after inward buffer",
+            "footprint_covered_by_block": true
+          }
+        ],
+        "summary": {
+          "source_building_count": 3,
+          "encoded_building_count": 1,
+          "excluded_building_count": 2,
+          "excluded_building_reason_counts": {
+            "empty_after_shrink": 1,
+            "invalid_polygonal_area_before_shrink": 1
+          }
+        }
+      }
+    },
+    "excluded_buildings": [
+      {
+        "sample_id": "single_node_and_defined_exclusions",
+        "city": "Test City",
+        "block_id": "TEST",
+        "building_id": "degenerate",
+        "reason": "invalid_polygonal_area_before_shrink",
+        "footprint_area_m2": 0.0,
+        "footprint_perimeter_m": 5.656854249492381,
+        "footprint_compactness": null,
+        "geometry_was_valid": false,
+        "geometry_validity_detail": "polygonal extraction after make_valid was empty or non-positive",
+        "footprint_covered_by_block": true
+      },
+      {
+        "sample_id": "single_node_and_defined_exclusions",
+        "city": "Test City",
+        "block_id": "TEST",
+        "building_id": "sliver",
+        "reason": "empty_after_shrink",
+        "footprint_area_m2": 1.6000000000000014,
+        "footprint_perimeter_m": 8.8,
+        "footprint_compactness": 0.2596357564950244,
+        "geometry_was_valid": true,
+        "geometry_validity_detail": "valid polygonal footprint became empty or non-positive after inward buffer",
+        "footprint_covered_by_block": true
+      }
+    ]
+  },
+  {
+    "status": "excluded_no_valid_building",
+    "record": null,
+    "excluded_buildings": [
+      {
+        "sample_id": "no_valid_building",
+        "city": "Test City",
+        "block_id": "TEST",
+        "building_id": "bad",
+        "reason": "invalid_polygonal_area_before_shrink",
+        "footprint_area_m2": 0.0,
+        "footprint_perimeter_m": 5.656854249492381,
+        "footprint_compactness": null,
+        "geometry_was_valid": false,
+        "geometry_validity_detail": "polygonal extraction after make_valid was empty or non-positive",
+        "footprint_covered_by_block": true
+      }
+    ]
+  }
+]
