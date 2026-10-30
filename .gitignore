@@ -25,3 +25,4 @@ outputs/
 # Scientific Data preparation: local audit handoffs
 /casebase/scientific_data_preparation/**/results/*_evidence_pack.md
 /casebase/scientific_data_preparation/**/results/run_log.txt
+/casebase/scientific_data_preparation/method_scope_audit_v01
