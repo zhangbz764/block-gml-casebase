@@ -2,7 +2,7 @@
 
 ## Scope and provenance
 
-Encoding v0.2 is derived only from the 15 frozen v0.1 graph JSON files listed in `results/input_manifest.csv`. It does not query or write the database and does not modify v0.1 outputs. Every output graph records its source path and SHA-256.
+Encoding v0.2 was defined on 15 frozen v0.1 graph JSON samples. It does not query or write the database and does not modify v0.1 outputs. Every output graph records its source path and SHA-256.
 
 ## Morphological cells
 
@@ -27,8 +27,8 @@ Cells retain the source `building_id`. Undirected edge endpoints are lexicograph
 - `log_area_ratio_abs` and `log_height_ratio_abs` are absolute natural logarithms.
 - `volume_ratio` is `max(area*height) / min(area*height)` and is only a LoD1 volume proxy.
 
-The complete edge field contract is in `edge_relation_fields.csv`.
+The current field registry is `feature_registry_v03.tsv`; this document describes the inherited v0.2 cell and relation definitions.
 
 ## Quality and interpretation boundary
 
-Tessellation adjacency is a candidate spatial-influence graph, not a semantic claim that every edge is architecturally meaningful. Long-distance flags are descriptive review aids only. Winnipeg and Portland remain `out_of_scope_candidate`; Osaka remains a data-quality stress case. No GNN/GAT training or full-database expansion is part of this phase.
+Tessellation adjacency is a candidate spatial-influence graph, not a semantic claim that every edge is architecturally meaningful. Long-distance flags are descriptive review aids only. Winnipeg and Portland remain `out_of_scope_candidate`; Osaka remains a data-quality stress case. This specification describes geometry and relations without prescribing a downstream learned model.
